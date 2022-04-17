@@ -1,6 +1,15 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using NLog;
+using SmartG.API.Extensions;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+
+// Add services to the container.
+
+builder.Services.ConfigureCors();
+builder.Services.ConfigureLoggerService();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

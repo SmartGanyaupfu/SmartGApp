@@ -30,6 +30,11 @@ appsettings.json
 **/appsettings.Development.json
 appsettings.Development.json
 
+#logger
+internal_logs/
+logs/
+
+
 # Thumbnails
 ._*
 

@@ -5,6 +5,10 @@ VisualStudioVersion = 25.0.1700.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartG.API", "SmartG.API\SmartG.API.csproj", "{AC7CD357-87C0-43CA-9E8A-4418E6FE28D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartG.LoggerService", "SmartG.LoggerService\SmartG.LoggerService.csproj", "{B63B4CB6-837B-4FB2-933A-35802A1D1429}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartG.Contracts", "SmartG.Contracts\SmartG.Contracts.csproj", "{E70BF1E8-65A4-4D99-A75F-FAD3C6CEB718}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{AC7CD357-87C0-43CA-9E8A-4418E6FE28D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC7CD357-87C0-43CA-9E8A-4418E6FE28D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC7CD357-87C0-43CA-9E8A-4418E6FE28D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B63B4CB6-837B-4FB2-933A-35802A1D1429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B63B4CB6-837B-4FB2-933A-35802A1D1429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B63B4CB6-837B-4FB2-933A-35802A1D1429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B63B4CB6-837B-4FB2-933A-35802A1D1429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E70BF1E8-65A4-4D99-A75F-FAD3C6CEB718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E70BF1E8-65A4-4D99-A75F-FAD3C6CEB718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E70BF1E8-65A4-4D99-A75F-FAD3C6CEB718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E70BF1E8-65A4-4D99-A75F-FAD3C6CEB718}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

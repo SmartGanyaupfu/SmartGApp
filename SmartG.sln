@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartG.LoggerService", "Sma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartG.Contracts", "SmartG.Contracts\SmartG.Contracts.csproj", "{E70BF1E8-65A4-4D99-A75F-FAD3C6CEB718}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartG.Entities", "SmartG.Entities\SmartG.Entities.csproj", "{23323CAB-800A-461E-A4B4-94889812A417}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartG.Repository", "SmartG.Repository\SmartG.Repository.csproj", "{AD24F914-E704-4A7E-8A27-8B88ACC47C18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{E70BF1E8-65A4-4D99-A75F-FAD3C6CEB718}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E70BF1E8-65A4-4D99-A75F-FAD3C6CEB718}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E70BF1E8-65A4-4D99-A75F-FAD3C6CEB718}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23323CAB-800A-461E-A4B4-94889812A417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23323CAB-800A-461E-A4B4-94889812A417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23323CAB-800A-461E-A4B4-94889812A417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23323CAB-800A-461E-A4B4-94889812A417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD24F914-E704-4A7E-8A27-8B88ACC47C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD24F914-E704-4A7E-8A27-8B88ACC47C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD24F914-E704-4A7E-8A27-8B88ACC47C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD24F914-E704-4A7E-8A27-8B88ACC47C18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

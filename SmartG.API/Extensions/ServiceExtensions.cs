@@ -1,6 +1,10 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SmartG.Contracts;
+using SmartG.Entities.Models;
 using SmartG.LoggerService;
+using SmartG.Repository;
 
 namespace SmartG.API.Extensions
 {
@@ -16,14 +20,12 @@ namespace SmartG.API.Extensions
            });
 
         public static void ConfigureLoggerService(this IServiceCollection services) => services.AddSingleton<ILoggerManager, LoggerManger>();
-        /*public static void ConfigureEmailService(this IServiceCollection services) => services.AddScoped<IEmailSender, EmailSender>();
-        public static void ConfigureRepositoryManager(this IServiceCollection services) =>
-           services.AddScoped<IRepositoryManager, RepositoryManager>();
-        public static void ConfigureServiceManager(this IServiceCollection services) => services.AddScoped<IServiceManager, ServiceManager>();
+     
+       // public static void ConfigureServiceManager(this IServiceCollection services) => services.AddScoped<IServiceManager, ServiceManager>();
         public static void ConfigureSqlContext(this IServiceCollection services,
         IConfiguration cofiguration) =>
          services.AddDbContext<RepositoryContext>(opts =>
-         opts.UseSqlServer(cofiguration.GetConnectionString("KayaDatabase")));
+         opts.UseSqlServer(cofiguration.GetConnectionString("SGDatabase"))); // add the nuget package
 
         public static void ConfigureIdentity(this IServiceCollection services)
         {
@@ -39,41 +41,44 @@ namespace SmartG.API.Extensions
 
         }
 
-        public static void ConfigureEmail(this IServiceCollection services, IConfiguration configuration)
-        {
-            var emailConfig = configuration
-       .GetSection("EmailConfiguration")
-       .Get<EmailConfiguration>();
-            services.AddSingleton(emailConfig);
+        /*
+         *   public static void ConfigureEmailService(this IServiceCollection services) => services.AddScoped<IEmailSender, EmailSender>();
+        public static void ConfigureRepositoryManager(this IServiceCollection services) =>
+           services.AddScoped<IRepositoryManager, RepositoryManager>();public static void ConfigureEmail(this IServiceCollection services, IConfiguration configuration)
+         {
+             var emailConfig = configuration
+        .GetSection("EmailConfiguration")
+        .Get<EmailConfiguration>();
+             services.AddSingleton(emailConfig);
 
-        }
+         }
 
-        //configuring jwt
-        //installl Microsoft.AspNetCore.Authentication.JwtBearer  for ths to work.
-        public static void ConfigureJwt(this IServiceCollection services, IConfiguration configuration)
-        {
-            var jwtSettings = configuration.GetSection("JwtSettings");
-            var secretKey = Environment.GetEnvironmentVariable("SECRET");
-            var secretK = configuration.GetSection("SecretKey").Value;
+         //configuring jwt
+         //installl Microsoft.AspNetCore.Authentication.JwtBearer  for ths to work.
+         public static void ConfigureJwt(this IServiceCollection services, IConfiguration configuration)
+         {
+             var jwtSettings = configuration.GetSection("JwtSettings");
+             var secretKey = Environment.GetEnvironmentVariable("SECRET");
+             var secretK = configuration.GetSection("SecretKey").Value;
 
-            services.AddAuthentication(opt =>
-            {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options => {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
+             services.AddAuthentication(opt =>
+             {
+                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+             }).AddJwtBearer(options => {
+                 options.TokenValidationParameters = new TokenValidationParameters
+                 {
+                     ValidateIssuer = true,
+                     ValidateAudience = true,
+                     ValidateLifetime = true,
+                     ValidateIssuerSigningKey = true,
 
-                    ValidIssuer = jwtSettings.GetSection("validIssuer").Value,
-                    ValidAudience = jwtSettings.GetSection("validAudience").Value,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretK))
-                };
-            });
-        }*/
+                     ValidIssuer = jwtSettings.GetSection("validIssuer").Value,
+                     ValidAudience = jwtSettings.GetSection("validAudience").Value,
+                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretK))
+                 };
+             });
+         }*/
     }
 }
 

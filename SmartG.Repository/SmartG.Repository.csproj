@@ -10,4 +10,10 @@
     <ProjectReference Include="..\SmartG.Entities\SmartG.Entities.csproj" />
     <ProjectReference Include="..\SmartG.Contracts\SmartG.Contracts.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Configuration\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+  </ItemGroup>
 </Project>

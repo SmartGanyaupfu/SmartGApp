@@ -7,6 +7,8 @@ namespace SmartG.Entities.Models
         public string? Content { get; set; }
         public bool Approved { get; set; }
 
+        public int PostId { get; set; }
+
     }
 }
 

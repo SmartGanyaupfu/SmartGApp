@@ -9,7 +9,7 @@ namespace SmartG.Entities.Models
         public string? Excerpt { get; set; }
         public string? MetaDescription { get; set; }
         public string? MetaKeyWords { get; set; }
-        public string? slug { get; set; }
+        public string? Slug { get; set; }
 
     }
 }

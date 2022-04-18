@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartG.Repository;
 
@@ -11,9 +12,10 @@ using SmartG.Repository;
 namespace SmartG.API.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20220418104253_commentsforposts")]
+    partial class commentsforposts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,29 +49,6 @@ namespace SmartG.API.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "0e81ad09-41cb-4e2b-981f-ac92b448a80b",
-                            ConcurrencyStamp = "bfb8f867-9fa1-439e-9811-d3651e6aa2ad",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "97441034-da57-4c79-8605-08047676db1c",
-                            ConcurrencyStamp = "4e1b9d12-e943-4073-b67b-252560b8ede8",
-                            Name = "Subscriber",
-                            NormalizedName = "SUBSCRIBER"
-                        },
-                        new
-                        {
-                            Id = "d926ddf0-25c6-455b-b298-09b0304ad736",
-                            ConcurrencyStamp = "fcb4c394-204c-4d1a-9e2a-23dce3859795",
-                            Name = "Editor",
-                            NormalizedName = "EDITOR"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -187,6 +166,7 @@ namespace SmartG.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
 
                     b.Property<string>("AuthorId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DateCreated")
@@ -201,7 +181,7 @@ namespace SmartG.API.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Slug")
+                    b.Property<string>("slug")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoryId");
@@ -221,6 +201,7 @@ namespace SmartG.API.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("AuthorId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Content")
@@ -254,6 +235,7 @@ namespace SmartG.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PageId"), 1L, 1);
 
                     b.Property<string>("AuthorId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Content")
@@ -277,53 +259,15 @@ namespace SmartG.API.Migrations
                     b.Property<string>("MetaKeyWords")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Slug")
+                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("slug")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PageId");
 
                     b.ToTable("Pages");
-
-                    b.HasData(
-                        new
-                        {
-                            PageId = 1,
-                            Content = "The innner part of the solar cookker is made of mirroes",
-                            DateCreated = new DateTime(2022, 4, 18, 17, 10, 10, 622, DateTimeKind.Local).AddTicks(4090),
-                            DateUpdated = new DateTime(2022, 4, 18, 17, 10, 10, 622, DateTimeKind.Local).AddTicks(4090),
-                            Deleted = false,
-                            MetaDescription = "The inner was the inner",
-                            MetaKeyWords = "test,tets,done",
-                            Slug = "home",
-                            Title = "Home"
-                        },
-                        new
-                        {
-                            PageId = 2,
-                            Content = "The innner part of the solar cookker is made of mirroes",
-                            DateCreated = new DateTime(2022, 4, 18, 17, 10, 10, 622, DateTimeKind.Local).AddTicks(4100),
-                            DateUpdated = new DateTime(2022, 4, 18, 17, 10, 10, 622, DateTimeKind.Local).AddTicks(4100),
-                            Deleted = false,
-                            MetaDescription = "The inner was the inner",
-                            MetaKeyWords = "test,tets,done",
-                            Slug = "about",
-                            Title = "About"
-                        },
-                        new
-                        {
-                            PageId = 3,
-                            Content = "The innner part of the solar cookker is made of mirroes",
-                            DateCreated = new DateTime(2022, 4, 18, 17, 10, 10, 622, DateTimeKind.Local).AddTicks(4100),
-                            DateUpdated = new DateTime(2022, 4, 18, 17, 10, 10, 622, DateTimeKind.Local).AddTicks(4110),
-                            Deleted = false,
-                            MetaDescription = "The inner was the inner",
-                            MetaKeyWords = "test,tets,done",
-                            Slug = "contact",
-                            Title = "Contact"
-                        });
                 });
 
             modelBuilder.Entity("SmartG.Entities.Models.Post", b =>
@@ -335,6 +279,7 @@ namespace SmartG.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PostId"), 1L, 1);
 
                     b.Property<string>("AuthorId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CategoryId")
@@ -361,10 +306,10 @@ namespace SmartG.API.Migrations
                     b.Property<string>("MetaKeyWords")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Slug")
+                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("slug")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PostId");

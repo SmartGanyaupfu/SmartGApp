@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartG.Entities", "SmartG.E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartG.Repository", "SmartG.Repository\SmartG.Repository.csproj", "{AD24F914-E704-4A7E-8A27-8B88ACC47C18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartG.Shared", "SmartG.Shared\SmartG.Shared.csproj", "{28473D42-2D2B-4431-87F8-7F67D496F866}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{AD24F914-E704-4A7E-8A27-8B88ACC47C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD24F914-E704-4A7E-8A27-8B88ACC47C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD24F914-E704-4A7E-8A27-8B88ACC47C18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28473D42-2D2B-4431-87F8-7F67D496F866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28473D42-2D2B-4431-87F8-7F67D496F866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28473D42-2D2B-4431-87F8-7F67D496F866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28473D42-2D2B-4431-87F8-7F67D496F866}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

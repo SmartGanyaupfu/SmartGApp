@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SmartG.Entities\SmartG.Entities.csproj" />
-    <ProjectReference Include="..\SmartG.Shared\SmartG.Shared.csproj" />
+    <None Remove="RequestFeatures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RequestFeatures\" />
   </ItemGroup>
 </Project>

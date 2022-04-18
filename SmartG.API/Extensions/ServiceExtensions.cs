@@ -1,10 +1,17 @@
 ﻿using System;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SmartG.Contracts;
+using SmartG.EmailService;
 using SmartG.Entities.Models;
 using SmartG.LoggerService;
 using SmartG.Repository;
+using SmartG.Service;
+using SmartG.Service.Contracts;
+using SmartG.Shared.DTOs;
 
 namespace SmartG.API.Extensions
 {
@@ -21,7 +28,7 @@ namespace SmartG.API.Extensions
 
         public static void ConfigureLoggerService(this IServiceCollection services) => services.AddSingleton<ILoggerManager, LoggerManger>();
      
-       // public static void ConfigureServiceManager(this IServiceCollection services) => services.AddScoped<IServiceManager, ServiceManager>();
+        public static void ConfigureServiceManager(this IServiceCollection services) => services.AddScoped<IServiceManager, ServiceManager>();
         public static void ConfigureSqlContext(this IServiceCollection services,
         IConfiguration cofiguration) =>
          services.AddDbContext<RepositoryContext>(opts =>
@@ -41,8 +48,7 @@ namespace SmartG.API.Extensions
 
         }
 
-        /*
-         *   public static void ConfigureEmailService(this IServiceCollection services) => services.AddScoped<IEmailSender, EmailSender>();
+         public static void ConfigureEmailService(this IServiceCollection services) => services.AddScoped<IEmailSender, EmailSender>();
         public static void ConfigureRepositoryManager(this IServiceCollection services) =>
            services.AddScoped<IRepositoryManager, RepositoryManager>();public static void ConfigureEmail(this IServiceCollection services, IConfiguration configuration)
          {
@@ -78,7 +84,7 @@ namespace SmartG.API.Extensions
                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretK))
                  };
              });
-         }*/
+         }
     }
 }
 

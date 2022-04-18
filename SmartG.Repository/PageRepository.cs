@@ -39,6 +39,11 @@ namespace SmartG.Repository
         {
             Update(page);
         }
+
+        public async Task<Page> GetPageBySlugNameAsync(string slug, bool trackChanges)
+        {
+            return await FindByCondition(p => p.Slug.Equals(slug), trackChanges).SingleOrDefaultAsync();
+        }
     }
 }
 

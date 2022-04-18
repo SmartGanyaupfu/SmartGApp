@@ -7,15 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="RequestFeatures\" />
-    <None Remove="DTOs\" />
-    <None Remove="NETCore.MailKit" />
+    <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="RequestFeatures\" />
-    <Folder Include="DTOs\" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.4" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NETCore.MailKit" Version="2.0.3" />
+    <ProjectReference Include="..\SmartG.Shared\SmartG.Shared.csproj" />
   </ItemGroup>
 </Project>

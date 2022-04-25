@@ -7,6 +7,7 @@ namespace SmartG.Entities.Models
         public string? Name { get; set; }
         public string? Slug { get; set; }
         public ICollection<Post>? Posts { get; set; }
+        public ICollection<Portifolio>? Portifolios { get; set; }
 
     }
 }

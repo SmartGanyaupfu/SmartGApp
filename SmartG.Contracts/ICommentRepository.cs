@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using SmartG.Entities.Models;
 using SmartG.Shared.RequestFeatures;
 

@@ -33,6 +33,11 @@ namespace SmartG.Repository
             return await FindByCondition(c => c.CategoryId.Equals(categoryId),trackChanges).SingleOrDefaultAsync();
         }
 
+        public Task<Category> GetCategoryBySlugAsync(string slug, bool trackChanges)
+        {
+            return FindByCondition(c => c.Slug.Equals(slug), trackChanges).SingleOrDefaultAsync();
+        }
+
         public void UpdatePageAsync(Category category)
         {
             Update(category);

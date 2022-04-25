@@ -1,23 +1,25 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using Microsoft.VisualBasic;
 
 namespace SmartG.Shared.DTOs
 {
-    public class PageForCreationDto:BaseDto
+    public class PostForCreationDto:BaseDto
     {
-        public PageForCreationDto()
+        public PostForCreationDto()
         {
             DateCreated = DateTime.Now;
-            DateUpdated = DateTime.Now;
+            DateUpdated = DateAndTime.Now;
             Deleted = false;
         }
-        [Required]
+        
         public string? Title { get; set; }
         public string? Content { get; set; }
         public string? Excerpt { get; set; }
         public string? MetaDescription { get; set; }
         public string? MetaKeyWords { get; set; }
         public string? Slug { get; set; }
+
+        public int CategoryId { get; set; }
     }
 }
 

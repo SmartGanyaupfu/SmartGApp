@@ -105,8 +105,7 @@ namespace SmartG.Service
                     PhoneNumber = user.PhoneNumber,
                    
                     Roles = activatedRoles,
-                    Id = user.Id,
-                    ImageUrl = user.ImageUrl
+                    Id = user.Id
 
                 });
 
@@ -361,8 +360,7 @@ namespace SmartG.Service
                 LastName = user.LastName,
                 PhoneNumber = user.PhoneNumber,
                 Roles = activatedRoles,
-                Id = user.Id,
-                ImageUrl = user.ImageUrl
+                Id = user.Id
             };
             return userToReturn;
         }

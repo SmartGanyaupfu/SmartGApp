@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,9 @@ namespace SmartG.API.Controllers.API.V1
         [HttpGet]
         public async Task<IActionResult> GetPages([FromQuery] PageParameters pageParameters)
         {
+           
             var pages = await _repository.Page.GetAllPagesAsync(pageParameters, trackChanges: false);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pages.MetaData));
             var pagesToReturn = _mapper.Map<IEnumerable<PageDto>>(pages);
             return Ok(pagesToReturn);
         }

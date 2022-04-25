@@ -1,4 +1,5 @@
 ﻿using NLog;
+using SmartG.API.ActionFilters;
 using SmartG.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,7 @@ builder.Services.ConfigureEmail(builder.Configuration);
 builder.Services.ConfigureEmailService();
 builder.Services.ConfigureJwt(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddScoped<ValidationFilterAttribute>(); // registering action filters
 
 
 builder.Services.AddControllers();

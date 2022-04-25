@@ -16,6 +16,18 @@ namespace SmartG.API
             CreateMap<Page, PageDto>();
             CreateMap<PageForCreationDto, Page>();
             CreateMap<PageForUpdateDto, Page>();
+
+            CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryForCreationDto, Category>();
+            CreateMap<CategoryForUpdateDto, Category>();
+
+            CreateMap<Post, PostDto>();
+            CreateMap<PostForCreationDto, Post>();
+            CreateMap<PostForUpdateDto, Post>();
+
+            CreateMap<Comment, CommentDto>();
+            CreateMap<CommentForCreationDto, Comment>();
+            CreateMap<CommentForUpdateDto, Comment>();
         }
     }
 }

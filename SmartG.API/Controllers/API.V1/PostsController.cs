@@ -40,7 +40,7 @@ namespace SmartG.API.Controllers.API.V1
 
         // GET api/values/5
         [HttpGet("{postId}", Name = "postsId")]
-        public async Task<IActionResult> GetPageById(int postId)
+        public async Task<IActionResult> GetPageById(Guid postId)
         {
             var post = await _repository.Post.GetPostByIdAsync(postId, trackChanges: false);
             if (post is null)
@@ -70,14 +70,14 @@ namespace SmartG.API.Controllers.API.V1
             var postToReturn = _mapper.Map<PostDto>(postEntity);
 
             //var votesToReturn = await _serviceManager.QualificationService.CreateQualificationForStudyOptionAsync(studyOptionId, qualification, trackChanges: false);
-            return CreatedAtRoute("postsId", new { postId = postToReturn.PostId }, postToReturn);
+            return CreatedAtRoute("postsId", new { PostId = postToReturn.PostId }, postToReturn);
         }
 
 
 
         [HttpPut("{postId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> UpdatePostById(int postId, [FromBody] PostForUpdateDto post)
+        public async Task<IActionResult> UpdatePostById(Guid postId, [FromBody] PostForUpdateDto post)
         {
 
             var postEntity = await _repository.Post.GetPostByIdAsync(postId, trackChanges: true);
@@ -93,7 +93,7 @@ namespace SmartG.API.Controllers.API.V1
         }
 
         [HttpDelete("{postId}")]
-        public async Task<IActionResult> DeletePost(int postId)
+        public async Task<IActionResult> DeletePost(Guid postId)
         {
 
 

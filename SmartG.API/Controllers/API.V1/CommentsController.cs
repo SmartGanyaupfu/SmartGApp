@@ -16,7 +16,7 @@ using SmartG.Shared.RequestFeatures;
 namespace SmartG.API.Controllers.API.V1
 {
 
-    [Route("api/{postId}/comments")]
+    [Route("api/{postType}/comments")]
 
     public class CommentsController : ControllerBase
     {
@@ -29,11 +29,16 @@ namespace SmartG.API.Controllers.API.V1
             _mapper = mapper;
         }
         // GET: api/values
-        [HttpGet]
-        public async Task<IActionResult> GetComments([FromQuery] CommentParameters commentParameters,int postId)
+        [HttpGet("type-id/{postId}")]
+        public async Task<IActionResult> GetComments([FromQuery] CommentParameters commentParameters,Guid
+            postId, string postType)
         {
-
-            var comments = await _repository.Comment.GetAllCommentsForPostAsync(commentParameters,postId, trackChanges: false);
+            var postTypeValues = Enum.GetNames(typeof(PostTypeEnum));
+            if (!postTypeValues.Contains(postType))
+            {
+                return NotFound($"Postype {postType} does not exist");
+            }
+            var comments = await _repository.Comment.GetAllCommentsForPostAsync(commentParameters,postId,postType, trackChanges: false);
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(comments.MetaData));
             var commentsToReturn = _mapper.Map<IEnumerable<CommentDto>>(comments);
             return Ok(commentsToReturn);
@@ -41,13 +46,9 @@ namespace SmartG.API.Controllers.API.V1
 
         // GET api/values/5
         [HttpGet("{commentId}", Name = "commentsId")]
-        public async Task<IActionResult> GetCommentById(int commentId,int postId)
+        public async Task<IActionResult> GetCommentById(int commentId)
         {
-            var postFromDb = await _repository.Post.GetPostByIdAsync(postId, trackChanges: false);
-            if (postFromDb is null)
-            {
-                return NotFound($" post with id {postId} not found");
-            }
+            
             var comment = await _repository.Comment.GetCommentByIdAsync(commentId, trackChanges: false);
             if (comment is null)
                 return NotFound();
@@ -58,36 +59,55 @@ namespace SmartG.API.Controllers.API.V1
 
 
 
-        [HttpPost]
+        [HttpPost("{postId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> CreateComment([FromBody] CommentForCreationDto comment, int postId)
+        public async Task<IActionResult> CreateComment([FromBody] CommentForCreationDto comment, Guid postId, string postType)
         {
-            var postFromDb = await _repository.Post.GetPostByIdAsync(postId, trackChanges: false);
-            if(postFromDb is null)
-            {
-                return NotFound($" post with id {postId} not found");
-            }
-                  
 
+            var postTypeValues = Enum.GetNames(typeof(PostTypeEnum));
+            if (!postTypeValues.Contains(postType))
+            {
+                return NotFound($"Postype {postType} does not exist");
+            }
+            if (postType.Equals(PostTypeEnum.portifolio.ToString()) )
+            {
+                comment.PortifolioId = postId;
+                var postFromDb = await _repository.Portifolio.GetPortifolioByIdAsync(postId, trackChanges: false);
+                if (postFromDb is null)
+                {
+                    return NotFound($" portifolio with id {postId} not found");
+                }
+            }
+            else if (postType.Equals(PostTypeEnum.post.ToString()))
+            {
+                comment.PostId = postId;
+                var postFromDb = await _repository.Post.GetPostByIdAsync(postId, trackChanges: false);
+                if (postFromDb is null)
+                {
+                    return NotFound($" post with id {postId} not found");
+                }
+            }else
+            {
+                return NotFound($" Post Type {postType} does not exist");
+            }
+           
+                  
+            
             var commentEntity = _mapper.Map<Comment>(comment);
             _repository.Comment.CreateCommentAsync(commentEntity);
             await _repository.SaveAsync();
             var commentToReturn = _mapper.Map<CommentDto>(commentEntity);
 
-            return CreatedAtRoute("commentsId", new { commentId = commentToReturn.CommentId, postId= postId }, commentToReturn);
+            return CreatedAtRoute("commentsId", new { commentId = commentToReturn.CommentId ,postType=postType}, commentToReturn);
         }
 
 
 
         [HttpPut("{commentId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> UpdateCommentById(int commentId, [FromBody] CommentForUpdateDto comment, int postId)
+        public async Task<IActionResult> UpdateCommentById(int commentId, [FromBody] CommentForUpdateDto comment)
         {
-            var postFromDb = await _repository.Post.GetPostByIdAsync(postId, trackChanges: false);
-            if (postFromDb is null)
-            {
-                return NotFound($" post with id {postId} not found");
-            }
+            
             var commentEntity = await _repository.Comment.GetCommentByIdAsync(commentId, trackChanges: true);
             if (commentEntity is null)
                 return NotFound($"Comment with id {commentId} does not exist");
@@ -101,14 +121,9 @@ namespace SmartG.API.Controllers.API.V1
         }
 
         [HttpDelete("{commentId}")]
-        public async Task<IActionResult> DeleteComment(int commentId,int postId)
+        public async Task<IActionResult> DeleteComment(int commentId)
         {
-            var postFromDb = await _repository.Post.GetPostByIdAsync(postId, trackChanges: false);
-            if (postFromDb is null)
-            {
-                return NotFound($" post with id {postId} not found");
-            }
-
+         
             var commentEntity = await _repository.Comment.GetCommentByIdAsync(commentId: commentId, trackChanges: false);
             if (commentEntity is null)
                 return NotFound($"Comment with id {commentId} does not exist");

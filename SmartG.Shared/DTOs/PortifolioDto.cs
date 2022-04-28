@@ -3,7 +3,7 @@ namespace SmartG.Shared.DTOs
 {
     public class PortifolioDto:BaseDto
     {
-        public int PortifolioId { get; set; }
+        public Guid PortifolioId { get; set; }
 
         public string? Title { get; set; }
         public string? Content { get; set; }
@@ -11,8 +11,8 @@ namespace SmartG.Shared.DTOs
         public string? MetaDescription { get; set; }
         public string? MetaKeyWords { get; set; }
         public string? Slug { get; set; }
-        public ImageDto? Image { get; set; }
         public CategoryDto? Category { get; set; }
     }
 }
+
 

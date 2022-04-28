@@ -3,7 +3,7 @@ namespace SmartG.Shared.DTOs
 {
     public class PostDto:BaseDto
     {
-        public int PostId { get; set; }
+        public Guid PostId { get; set; }
         public string? Title { get; set; }
         public string? Content { get; set; }
         public string? Excerpt { get; set; }
@@ -12,7 +12,6 @@ namespace SmartG.Shared.DTOs
         public string? Slug { get; set; }
 
         public CategoryDto? Category { get; set; }
-        public int CategoryId { get; set; }
     }
 }
 

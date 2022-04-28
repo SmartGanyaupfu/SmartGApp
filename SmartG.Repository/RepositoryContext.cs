@@ -17,16 +17,19 @@ namespace SmartG.Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-           
-                //optional relationships
-                modelBuilder.Entity<Post>()
+
+            /*optional relationships*/
+            modelBuilder.Entity<Post>()
             .HasOne(p => p.Category)
-            .WithMany(b => b.Posts)
+            .WithMany(p=>p.Posts)
             .IsRequired(false);
-            modelBuilder.Entity<Portifolio>()
-        .HasOne(p => p.Category)
-        .WithMany(b => b.Portifolios)
-        .IsRequired(false);
+
+          modelBuilder.Entity<Portifolio>()
+             .HasOne(p => p.Category)
+             .WithMany(b => b.Portifolios)
+             .IsRequired(false);
+
+
 
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new PageConfiguration());
@@ -35,8 +38,8 @@ namespace SmartG.Repository
         public DbSet<Page>? Pages { get; set; }
         public DbSet<Post>? Posts { get; set; }
         public DbSet<Portifolio> Portifolios { get; set; }
-        public DbSet<Image> Images { get; set; }
         public DbSet<Category>? Categories { get; set; }
+        /*  public DbSet<Image> Images { get; set; }*/
         public DbSet<Comment>? Comments { get; set; }
         //public DbSet<Image>? Images { get; set; }
     }

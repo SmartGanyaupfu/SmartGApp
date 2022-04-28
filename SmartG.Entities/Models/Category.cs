@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
+
 namespace SmartG.Entities.Models
 {
     public class Category:BaseEntity
@@ -9,6 +11,7 @@ namespace SmartG.Entities.Models
         public ICollection<Post>? Posts { get; set; }
         public ICollection<Portifolio>? Portifolios { get; set; }
 
+
+
     }
 }
-

@@ -9,11 +9,11 @@ namespace SmartG.Shared.DTOs
             DateUpdated = DateTime.Now;
             Deleted = false;
         }
-        public int CommentId { get; set; }
+        
         public string? Content { get; set; }
         public bool Approved { get; set; }
-
-        public int PostId { get; set; }
+        public Guid? PortifolioId { get; set; }
+        public Guid? PostId { get; set; }
     }
 }
 

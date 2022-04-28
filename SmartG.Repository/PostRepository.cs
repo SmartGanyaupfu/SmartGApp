@@ -24,13 +24,13 @@ namespace SmartG.Repository
 
         public async Task<PagedList<Post>> GetAllPostsAsync(PostParameters postParameters, bool trackChanges)
         {
-            var posts = await FindAll(trackChanges).Include(c=>c.Category).ToListAsync();
+            var posts = await FindAll(trackChanges).Include(c => c.Category).ToListAsync();
             return PagedList<Post>.ToPagedList(posts, postParameters.PageNumber, postParameters.PageSize);
         }
 
-        public async Task<Post> GetPostByIdAsync(int postId, bool trackChanges)
+        public async Task<Post> GetPostByIdAsync(Guid postId, bool trackChanges)
         {
-            return await FindByCondition(p=>p.PostId.Equals(postId),trackChanges).Include(c => c.Category).SingleOrDefaultAsync();
+            return await FindByCondition(p=>p.PostId.Equals(postId),trackChanges).Include(c=>c.Category).SingleOrDefaultAsync();
         }
 
         public async Task<Post> GetPostBySlugNameAsync(string slug, bool trackChanges)

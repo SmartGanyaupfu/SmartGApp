@@ -28,6 +28,13 @@ namespace SmartG.API
             CreateMap<Comment, CommentDto>();
             CreateMap<CommentForCreationDto, Comment>();
             CreateMap<CommentForUpdateDto, Comment>();
+
+            CreateMap<Portifolio, PortifolioDto>();
+            CreateMap<PortifolioForCreationDto, Portifolio>();
+            CreateMap<PortifolioForUpdateDto, Portifolio>();
+
+            CreateMap<Image, ImageDto>();
+            CreateMap<ImageForCreationDto, Image>();
         }
     }
 }

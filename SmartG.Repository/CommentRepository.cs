@@ -22,10 +22,19 @@ namespace SmartG.Repository
             Delete(comment);
         }
 
-        public async Task<PagedList<Comment>> GetAllCommentsForPostAsync(CommentParameters commentParameters,int postId, bool trackChanges)
+        public async Task<PagedList<Comment>> GetAllCommentsForPostAsync(CommentParameters commentParameters, Guid postId,string postType, bool trackChanges)
         {
-            var comments = await FindByCondition(c => c.PostId.Equals(postId) && c.Approved, trackChanges).ToListAsync();
-            return PagedList<Comment>.ToPagedList(comments, commentParameters.PageNumber, commentParameters.PageSize);
+            if (postType.Equals(PostTypeEnum.portifolio.ToString()))
+            {
+                var comments = await FindByCondition(c => c.PortifolioId.Equals(postId) && c.Approved, trackChanges).ToListAsync();
+                return PagedList<Comment>.ToPagedList(comments, commentParameters.PageNumber, commentParameters.PageSize);
+            }
+            else 
+            {
+                var comments = await FindByCondition(c => c.PostId.Equals(postId) && c.Approved, trackChanges).ToListAsync();
+                return PagedList<Comment>.ToPagedList(comments, commentParameters.PageNumber, commentParameters.PageSize);
+            }
+           
         }
 
         public async Task<Comment> GetCommentByIdAsync(int commentId, bool trackChanges)

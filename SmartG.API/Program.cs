@@ -19,6 +19,8 @@ builder.Services.ConfigureIdentity();
 builder.Services.ConfigureEmail(builder.Configuration);
 builder.Services.ConfigureEmailService();
 builder.Services.ConfigureJwt(builder.Configuration);
+builder.Services.ConfigureCloudinary(builder.Configuration);
+builder.Services.ConfigureCloudinaryImageService();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<ValidationFilterAttribute>(); // registering action filters
 

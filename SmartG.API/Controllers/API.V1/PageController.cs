@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
+using SmartG.CloudinaryService;
 using SmartG.Contracts;
 using SmartG.Entities.Models;
 using SmartG.Shared.DTOs;
@@ -21,11 +22,13 @@ namespace SmartG.API.Controllers.API.V1
     {
         private readonly IRepositoryManager _repository;
         private readonly IMapper _mapper;
+        private readonly IImageUploader _imageService;
 
-        public PageController(IRepositoryManager repository, IMapper mapper)
+        public PageController(IRepositoryManager repository, IMapper mapper, IImageUploader imageService)
         {
             _repository = repository;
             _mapper = mapper;
+            _imageService = imageService;
         }
         // GET: api/values
         [HttpGet]
@@ -72,7 +75,15 @@ namespace SmartG.API.Controllers.API.V1
             //var votesToReturn = await _serviceManager.QualificationService.CreateQualificationForStudyOptionAsync(studyOptionId, qualification, trackChanges: false);
             return CreatedAtRoute("pagesId", new { pageId = pageToReturn.PageId }, pageToReturn);
         }
+        [HttpPost("add-image")]
+        public async Task<IActionResult> AddImage(IFormFile file)
+        {
+            var result = await _imageService.AddImageAsync(file);
+            if (result.Error != null)
+                return BadRequest(result.Error.Message);
 
+            return Ok(result);
+        }
 
       
         [HttpPut("{pageId}")]

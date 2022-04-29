@@ -26,6 +26,9 @@
     <ProjectReference Include="..\SmartG.Service\SmartG.Service.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\SmartG.CloudinaryService\SmartG.CloudinaryService.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Remove="Extensions\" />
@@ -35,11 +38,14 @@
     <None Remove="Controllers\API.V1\" />
     <None Remove="ActionFilters\" />
     <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="CloudinaryDotNet" />
+    <None Remove="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
     <Folder Include="ContextFactory\" />
     <Folder Include="Controllers\API.V1\" />
     <Folder Include="ActionFilters\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 </Project>

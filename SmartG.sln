@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartG.Service.Contracts", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartG.EmailService", "SmartG.EmailService\SmartG.EmailService.csproj", "{4F377F8E-FE15-4A70-A185-459BF064419F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartG.CloudinaryService", "SmartG.CloudinaryService\SmartG.CloudinaryService.csproj", "{57A98366-4C41-4A73-B937-D7C6BACBA637}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{4F377F8E-FE15-4A70-A185-459BF064419F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F377F8E-FE15-4A70-A185-459BF064419F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F377F8E-FE15-4A70-A185-459BF064419F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57A98366-4C41-4A73-B937-D7C6BACBA637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57A98366-4C41-4A73-B937-D7C6BACBA637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57A98366-4C41-4A73-B937-D7C6BACBA637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57A98366-4C41-4A73-B937-D7C6BACBA637}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

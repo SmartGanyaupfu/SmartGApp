@@ -10,4 +10,10 @@
     <ProjectReference Include="..\SmartG.Entities\SmartG.Entities.csproj" />
     <ProjectReference Include="..\SmartG.Shared\SmartG.Shared.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="CloudinaryDotNet" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.16.0" />
+  </ItemGroup>
 </Project>

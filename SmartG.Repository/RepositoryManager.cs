@@ -13,6 +13,7 @@ namespace SmartG.Repository
         private readonly Lazy<ICommentRepository> _commentRepository;
 
         private readonly Lazy<ICategoryRepository> _categoryRepository;
+        private readonly Lazy<IImageRepository> _imageRepository;
 
         public RepositoryManager( RepositoryContext repositoryContext)
         {
@@ -22,6 +23,7 @@ namespace SmartG.Repository
             _commentRepository = new Lazy<ICommentRepository>(() => new CommentRepository(repositoryContext));
             _categoryRepository = new Lazy<ICategoryRepository>(() => new CategoryRepository(repositoryContext));
             _portifolioRepository = new Lazy<IPortifolioRepository>(() => new PortifolioRepository(repositoryContext));
+            _imageRepository = new Lazy<IImageRepository>(() => new ImageRepository(repositoryContext));
 
         }
 
@@ -34,6 +36,8 @@ namespace SmartG.Repository
         public ICommentRepository Comment => _commentRepository.Value;
 
         public IPortifolioRepository Portifolio => _portifolioRepository.Value;
+
+        public IImageRepository Image => _imageRepository.Value;
 
         public async Task SaveAsync()
         {

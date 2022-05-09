@@ -75,14 +75,35 @@ namespace SmartG.API.Controllers.API.V1
             //var votesToReturn = await _serviceManager.QualificationService.CreateQualificationForStudyOptionAsync(studyOptionId, qualification, trackChanges: false);
             return CreatedAtRoute("pagesId", new { pageId = pageToReturn.PageId }, pageToReturn);
         }
-        [HttpPost("add-image")]
-        public async Task<IActionResult> AddImage(IFormFile file)
+        [HttpPost("{pageId}/add-image")]
+        public async Task<IActionResult> AddImage(IFormFile file, int pageId)
         {
+            var pageEntity = await _repository.Page.GetPageByIdAsync(pageId: pageId, trackChanges: true);
+            if (pageEntity is null)
+                return NotFound($"page with id {pageId} does not exist");
+
             var result = await _imageService.AddImageAsync(file);
             if (result.Error != null)
                 return BadRequest(result.Error.Message);
 
-            return Ok(result);
+            var image = new Image()
+            {
+                DateCreated = DateTime.Now,
+                DateUpdated = DateTime.Now,
+                Deleted = false,
+                PublicId = result.PublicId,
+                ImageUrl = result.SecureUrl.AbsoluteUri,
+                PageId = pageId
+            };
+            var imageEntity = _mapper.Map<Image>(image);
+            _repository.Image.CreateImageAsync(imageEntity);
+          
+            await _repository.SaveAsync();
+
+            var pageToReturn = _mapper.Map<PageDto>(pageEntity);
+
+           
+            return CreatedAtRoute("pagesId", new { pageId = pageToReturn.PageId }, pageToReturn);
         }
 
       

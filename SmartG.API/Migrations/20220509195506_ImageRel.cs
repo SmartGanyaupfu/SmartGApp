@@ -9,6 +9,14 @@ namespace SmartG.API.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_AspNetUsers_Image_ImageId",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropIndex(
+                name: "IX_AspNetUsers_ImageId",
+                table: "AspNetUsers");
+
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
@@ -24,22 +32,26 @@ namespace SmartG.API.Migrations
                 keyColumn: "Id",
                 keyValue: "d8075beb-6bb3-4d8f-989c-e271478f4119");
 
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.DropColumn(
                 name: "ImageId",
-                table: "Posts",
+                table: "AspNetUsers");
+
+            migrationBuilder.AddColumn<int>(
+                name: "PageId",
+                table: "Image",
                 type: "int",
                 nullable: true);
 
-            migrationBuilder.AddColumn<int>(
-                name: "ImageId",
-                table: "Portifolios",
-                type: "int",
+            migrationBuilder.AddColumn<Guid>(
+                name: "PortifolioId",
+                table: "Image",
+                type: "uniqueidentifier",
                 nullable: true);
 
-            migrationBuilder.AddColumn<int>(
-                name: "ImageId",
-                table: "Pages",
-                type: "int",
+            migrationBuilder.AddColumn<Guid>(
+                name: "PostId",
+                table: "Image",
+                type: "uniqueidentifier",
                 nullable: true);
 
             migrationBuilder.InsertData(
@@ -47,9 +59,9 @@ namespace SmartG.API.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2540423e-98e5-43e0-9f28-b077ed9cedea", "9f8ddc95-cdb4-4f1f-afe5-6ac12e6208db", "Admin", "ADMIN" },
-                    { "2fd6688d-1b66-42bf-9d81-029a31d74bf7", "9a4c140a-4838-461d-b169-af421550fb12", "Editor", "EDITOR" },
-                    { "3d51b9bc-7308-4869-ac35-8002397edd06", "5db8aecb-3242-4074-b1e7-11e58bb22939", "Subscriber", "SUBSCRIBER" }
+                    { "387e230c-1a7b-45d6-a0ee-0d2522ed9637", "29152f6f-e138-4472-8357-8ac1599b7d1f", "Editor", "EDITOR" },
+                    { "73a5079e-eb2e-4581-923d-747e09b4de0b", "f537d6d4-05c0-448d-b0df-ca7fa2b939ba", "Admin", "ADMIN" },
+                    { "8d6a877d-e85d-4594-9be4-5232d839d7b7", "d2fa602d-c6ab-425e-bafe-7ad6d74fb71a", "Subscriber", "SUBSCRIBER" }
                 });
 
             migrationBuilder.UpdateData(
@@ -57,111 +69,123 @@ namespace SmartG.API.Migrations
                 keyColumn: "PageId",
                 keyValue: 1,
                 columns: new[] { "DateCreated", "DateUpdated" },
-                values: new object[] { new DateTime(2022, 5, 9, 16, 25, 12, 651, DateTimeKind.Local).AddTicks(8520), new DateTime(2022, 5, 9, 16, 25, 12, 651, DateTimeKind.Local).AddTicks(8520) });
+                values: new object[] { new DateTime(2022, 5, 9, 21, 55, 5, 816, DateTimeKind.Local).AddTicks(180), new DateTime(2022, 5, 9, 21, 55, 5, 816, DateTimeKind.Local).AddTicks(180) });
 
             migrationBuilder.UpdateData(
                 table: "Pages",
                 keyColumn: "PageId",
                 keyValue: 2,
                 columns: new[] { "DateCreated", "DateUpdated" },
-                values: new object[] { new DateTime(2022, 5, 9, 16, 25, 12, 651, DateTimeKind.Local).AddTicks(8520), new DateTime(2022, 5, 9, 16, 25, 12, 651, DateTimeKind.Local).AddTicks(8520) });
+                values: new object[] { new DateTime(2022, 5, 9, 21, 55, 5, 816, DateTimeKind.Local).AddTicks(190), new DateTime(2022, 5, 9, 21, 55, 5, 816, DateTimeKind.Local).AddTicks(190) });
 
             migrationBuilder.UpdateData(
                 table: "Pages",
                 keyColumn: "PageId",
                 keyValue: 3,
                 columns: new[] { "DateCreated", "DateUpdated" },
-                values: new object[] { new DateTime(2022, 5, 9, 16, 25, 12, 651, DateTimeKind.Local).AddTicks(8530), new DateTime(2022, 5, 9, 16, 25, 12, 651, DateTimeKind.Local).AddTicks(8530) });
+                values: new object[] { new DateTime(2022, 5, 9, 21, 55, 5, 816, DateTimeKind.Local).AddTicks(190), new DateTime(2022, 5, 9, 21, 55, 5, 816, DateTimeKind.Local).AddTicks(190) });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Posts_ImageId",
-                table: "Posts",
-                column: "ImageId");
+                name: "IX_Image_PageId",
+                table: "Image",
+                column: "PageId",
+                unique: true,
+                filter: "[PageId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Portifolios_ImageId",
-                table: "Portifolios",
-                column: "ImageId");
+                name: "IX_Image_PortifolioId",
+                table: "Image",
+                column: "PortifolioId",
+                unique: true,
+                filter: "[PortifolioId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pages_ImageId",
-                table: "Pages",
-                column: "ImageId");
+                name: "IX_Image_PostId",
+                table: "Image",
+                column: "PostId",
+                unique: true,
+                filter: "[PostId] IS NOT NULL");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Pages_Image_ImageId",
-                table: "Pages",
-                column: "ImageId",
-                principalTable: "Image",
-                principalColumn: "ImageId");
+                name: "FK_Image_Pages_PageId",
+                table: "Image",
+                column: "PageId",
+                principalTable: "Pages",
+                principalColumn: "PageId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Portifolios_Image_ImageId",
-                table: "Portifolios",
-                column: "ImageId",
-                principalTable: "Image",
-                principalColumn: "ImageId");
+                name: "FK_Image_Portifolios_PortifolioId",
+                table: "Image",
+                column: "PortifolioId",
+                principalTable: "Portifolios",
+                principalColumn: "PortifolioId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Posts_Image_ImageId",
-                table: "Posts",
-                column: "ImageId",
-                principalTable: "Image",
-                principalColumn: "ImageId");
+                name: "FK_Image_Posts_PostId",
+                table: "Image",
+                column: "PostId",
+                principalTable: "Posts",
+                principalColumn: "PostId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Pages_Image_ImageId",
-                table: "Pages");
+                name: "FK_Image_Pages_PageId",
+                table: "Image");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Portifolios_Image_ImageId",
-                table: "Portifolios");
+                name: "FK_Image_Portifolios_PortifolioId",
+                table: "Image");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Posts_Image_ImageId",
-                table: "Posts");
+                name: "FK_Image_Posts_PostId",
+                table: "Image");
 
             migrationBuilder.DropIndex(
-                name: "IX_Posts_ImageId",
-                table: "Posts");
+                name: "IX_Image_PageId",
+                table: "Image");
 
             migrationBuilder.DropIndex(
-                name: "IX_Portifolios_ImageId",
-                table: "Portifolios");
+                name: "IX_Image_PortifolioId",
+                table: "Image");
 
             migrationBuilder.DropIndex(
-                name: "IX_Pages_ImageId",
-                table: "Pages");
+                name: "IX_Image_PostId",
+                table: "Image");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "2540423e-98e5-43e0-9f28-b077ed9cedea");
+                keyValue: "387e230c-1a7b-45d6-a0ee-0d2522ed9637");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "2fd6688d-1b66-42bf-9d81-029a31d74bf7");
+                keyValue: "73a5079e-eb2e-4581-923d-747e09b4de0b");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "3d51b9bc-7308-4869-ac35-8002397edd06");
+                keyValue: "8d6a877d-e85d-4594-9be4-5232d839d7b7");
 
             migrationBuilder.DropColumn(
-                name: "ImageId",
-                table: "Posts");
+                name: "PageId",
+                table: "Image");
 
             migrationBuilder.DropColumn(
-                name: "ImageId",
-                table: "Portifolios");
+                name: "PortifolioId",
+                table: "Image");
 
             migrationBuilder.DropColumn(
+                name: "PostId",
+                table: "Image");
+
+            migrationBuilder.AddColumn<int>(
                 name: "ImageId",
-                table: "Pages");
+                table: "AspNetUsers",
+                type: "int",
+                nullable: true);
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
@@ -193,6 +217,18 @@ namespace SmartG.API.Migrations
                 keyValue: 3,
                 columns: new[] { "DateCreated", "DateUpdated" },
                 values: new object[] { new DateTime(2022, 4, 28, 16, 3, 34, 911, DateTimeKind.Local).AddTicks(3180), new DateTime(2022, 4, 28, 16, 3, 34, 911, DateTimeKind.Local).AddTicks(3180) });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_ImageId",
+                table: "AspNetUsers",
+                column: "ImageId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_AspNetUsers_Image_ImageId",
+                table: "AspNetUsers",
+                column: "ImageId",
+                principalTable: "Image",
+                principalColumn: "ImageId");
         }
     }
 }

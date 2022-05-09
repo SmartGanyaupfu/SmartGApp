@@ -9,6 +9,7 @@ namespace SmartG.Contracts
 		ICategoryRepository Category{ get; }
 		ICommentRepository Comment{ get; }
 		IPortifolioRepository Portifolio { get; }
+		IImageRepository Image { get; }
 	}
 }
 

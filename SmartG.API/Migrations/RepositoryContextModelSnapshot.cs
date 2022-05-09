@@ -51,22 +51,22 @@ namespace SmartG.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2540423e-98e5-43e0-9f28-b077ed9cedea",
-                            ConcurrencyStamp = "9f8ddc95-cdb4-4f1f-afe5-6ac12e6208db",
+                            Id = "73a5079e-eb2e-4581-923d-747e09b4de0b",
+                            ConcurrencyStamp = "f537d6d4-05c0-448d-b0df-ca7fa2b939ba",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "3d51b9bc-7308-4869-ac35-8002397edd06",
-                            ConcurrencyStamp = "5db8aecb-3242-4074-b1e7-11e58bb22939",
+                            Id = "8d6a877d-e85d-4594-9be4-5232d839d7b7",
+                            ConcurrencyStamp = "d2fa602d-c6ab-425e-bafe-7ad6d74fb71a",
                             Name = "Subscriber",
                             NormalizedName = "SUBSCRIBER"
                         },
                         new
                         {
-                            Id = "2fd6688d-1b66-42bf-9d81-029a31d74bf7",
-                            ConcurrencyStamp = "9a4c140a-4838-461d-b169-af421550fb12",
+                            Id = "387e230c-1a7b-45d6-a0ee-0d2522ed9637",
+                            ConcurrencyStamp = "29152f6f-e138-4472-8357-8ac1599b7d1f",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         });
@@ -273,10 +273,31 @@ namespace SmartG.API.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("PageId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("PortifolioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("PostId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("PublicId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ImageId");
+
+                    b.HasIndex("PageId")
+                        .IsUnique()
+                        .HasFilter("[PageId] IS NOT NULL");
+
+                    b.HasIndex("PortifolioId")
+                        .IsUnique()
+                        .HasFilter("[PortifolioId] IS NOT NULL");
+
+                    b.HasIndex("PostId")
+                        .IsUnique()
+                        .HasFilter("[PostId] IS NOT NULL");
 
                     b.ToTable("Image");
                 });
@@ -307,9 +328,6 @@ namespace SmartG.API.Migrations
                     b.Property<string>("Excerpt")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ImageId")
-                        .HasColumnType("int");
-
                     b.Property<string>("MetaDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -324,8 +342,6 @@ namespace SmartG.API.Migrations
 
                     b.HasKey("PageId");
 
-                    b.HasIndex("ImageId");
-
                     b.ToTable("Pages");
 
                     b.HasData(
@@ -333,8 +349,8 @@ namespace SmartG.API.Migrations
                         {
                             PageId = 1,
                             Content = "The innner part of the solar cookker is made of mirroes",
-                            DateCreated = new DateTime(2022, 5, 9, 16, 25, 12, 651, DateTimeKind.Local).AddTicks(8520),
-                            DateUpdated = new DateTime(2022, 5, 9, 16, 25, 12, 651, DateTimeKind.Local).AddTicks(8520),
+                            DateCreated = new DateTime(2022, 5, 9, 21, 55, 5, 816, DateTimeKind.Local).AddTicks(180),
+                            DateUpdated = new DateTime(2022, 5, 9, 21, 55, 5, 816, DateTimeKind.Local).AddTicks(180),
                             Deleted = false,
                             MetaDescription = "The inner was the inner",
                             MetaKeyWords = "test,tets,done",
@@ -345,8 +361,8 @@ namespace SmartG.API.Migrations
                         {
                             PageId = 2,
                             Content = "The innner part of the solar cookker is made of mirroes",
-                            DateCreated = new DateTime(2022, 5, 9, 16, 25, 12, 651, DateTimeKind.Local).AddTicks(8520),
-                            DateUpdated = new DateTime(2022, 5, 9, 16, 25, 12, 651, DateTimeKind.Local).AddTicks(8520),
+                            DateCreated = new DateTime(2022, 5, 9, 21, 55, 5, 816, DateTimeKind.Local).AddTicks(190),
+                            DateUpdated = new DateTime(2022, 5, 9, 21, 55, 5, 816, DateTimeKind.Local).AddTicks(190),
                             Deleted = false,
                             MetaDescription = "The inner was the inner",
                             MetaKeyWords = "test,tets,done",
@@ -357,8 +373,8 @@ namespace SmartG.API.Migrations
                         {
                             PageId = 3,
                             Content = "The innner part of the solar cookker is made of mirroes",
-                            DateCreated = new DateTime(2022, 5, 9, 16, 25, 12, 651, DateTimeKind.Local).AddTicks(8530),
-                            DateUpdated = new DateTime(2022, 5, 9, 16, 25, 12, 651, DateTimeKind.Local).AddTicks(8530),
+                            DateCreated = new DateTime(2022, 5, 9, 21, 55, 5, 816, DateTimeKind.Local).AddTicks(190),
+                            DateUpdated = new DateTime(2022, 5, 9, 21, 55, 5, 816, DateTimeKind.Local).AddTicks(190),
                             Deleted = false,
                             MetaDescription = "The inner was the inner",
                             MetaKeyWords = "test,tets,done",
@@ -394,9 +410,6 @@ namespace SmartG.API.Migrations
                     b.Property<string>("Excerpt")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ImageId")
-                        .HasColumnType("int");
-
                     b.Property<string>("MetaDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -412,8 +425,6 @@ namespace SmartG.API.Migrations
                     b.HasKey("PortifolioId");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("ImageId");
 
                     b.ToTable("Portifolios");
                 });
@@ -445,9 +456,6 @@ namespace SmartG.API.Migrations
                     b.Property<string>("Excerpt")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ImageId")
-                        .HasColumnType("int");
-
                     b.Property<string>("MetaDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -463,8 +471,6 @@ namespace SmartG.API.Migrations
                     b.HasKey("PostId");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("ImageId");
 
                     b.ToTable("Posts");
                 });
@@ -490,9 +496,6 @@ namespace SmartG.API.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ImageId")
-                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -537,8 +540,6 @@ namespace SmartG.API.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ImageId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -617,13 +618,25 @@ namespace SmartG.API.Migrations
                     b.Navigation("Post");
                 });
 
-            modelBuilder.Entity("SmartG.Entities.Models.Page", b =>
+            modelBuilder.Entity("SmartG.Entities.Models.Image", b =>
                 {
-                    b.HasOne("SmartG.Entities.Models.Image", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId");
+                    b.HasOne("SmartG.Entities.Models.Page", "Page")
+                        .WithOne("Image")
+                        .HasForeignKey("SmartG.Entities.Models.Image", "PageId");
 
-                    b.Navigation("Image");
+                    b.HasOne("SmartG.Entities.Models.Portifolio", "Portifolio")
+                        .WithOne("Image")
+                        .HasForeignKey("SmartG.Entities.Models.Image", "PortifolioId");
+
+                    b.HasOne("SmartG.Entities.Models.Post", "Post")
+                        .WithOne("Image")
+                        .HasForeignKey("SmartG.Entities.Models.Image", "PostId");
+
+                    b.Navigation("Page");
+
+                    b.Navigation("Portifolio");
+
+                    b.Navigation("Post");
                 });
 
             modelBuilder.Entity("SmartG.Entities.Models.Portifolio", b =>
@@ -632,13 +645,7 @@ namespace SmartG.API.Migrations
                         .WithMany("Portifolios")
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("SmartG.Entities.Models.Image", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId");
-
                     b.Navigation("Category");
-
-                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("SmartG.Entities.Models.Post", b =>
@@ -647,22 +654,7 @@ namespace SmartG.API.Migrations
                         .WithMany("Posts")
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("SmartG.Entities.Models.Image", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId");
-
                     b.Navigation("Category");
-
-                    b.Navigation("Image");
-                });
-
-            modelBuilder.Entity("SmartG.Entities.Models.User", b =>
-                {
-                    b.HasOne("SmartG.Entities.Models.Image", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId");
-
-                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("SmartG.Entities.Models.Category", b =>
@@ -672,14 +664,23 @@ namespace SmartG.API.Migrations
                     b.Navigation("Posts");
                 });
 
+            modelBuilder.Entity("SmartG.Entities.Models.Page", b =>
+                {
+                    b.Navigation("Image");
+                });
+
             modelBuilder.Entity("SmartG.Entities.Models.Portifolio", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("SmartG.Entities.Models.Post", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Image");
                 });
 #pragma warning restore 612, 618
         }

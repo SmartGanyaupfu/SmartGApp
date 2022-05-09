@@ -29,6 +29,18 @@ namespace SmartG.Repository
              .WithMany(b => b.Portifolios)
              .IsRequired(false);
 
+            modelBuilder.Entity<Post>()
+                .HasOne(i => i.Image)
+                .WithOne(p => p.Post)
+                .IsRequired(false);
+            modelBuilder.Entity<Page>()
+              .HasOne(i => i.Image)
+              .WithOne(p => p.Page)
+              .IsRequired(false);
+            modelBuilder.Entity<Portifolio>()
+              .HasOne(i => i.Image)
+              .WithOne(p => p.Portifolio)
+              .IsRequired(false);
 
 
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
@@ -39,7 +51,7 @@ namespace SmartG.Repository
         public DbSet<Post>? Posts { get; set; }
         public DbSet<Portifolio> Portifolios { get; set; }
         public DbSet<Category>? Categories { get; set; }
-        /*  public DbSet<Image> Images { get; set; }*/
+        public DbSet<Image> Image { get; set; }
         public DbSet<Comment>? Comments { get; set; }
         //public DbSet<Image>? Images { get; set; }
     }

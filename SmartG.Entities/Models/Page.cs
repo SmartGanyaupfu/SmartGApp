@@ -13,6 +13,7 @@ namespace SmartG.Entities.Models
         public string? MetaDescription { get; set; }
         public string? MetaKeyWords { get; set; }
         public string? Slug { get; set; }
+        public Image? Image { get; set; }
 
 
     }

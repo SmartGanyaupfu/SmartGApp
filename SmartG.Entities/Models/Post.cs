@@ -14,6 +14,7 @@ namespace SmartG.Entities.Models
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
        public ICollection<Comment>? Comments { get; set; }
+        public Image? Image { get; set; }
 
     }
 }

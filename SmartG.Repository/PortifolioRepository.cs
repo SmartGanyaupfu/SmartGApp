@@ -24,13 +24,13 @@ namespace SmartG.Repository
 
         public async Task<PagedList<Portifolio>> GetAllPortifoliosAsync(RequestParameters requestParameters, bool trackChanges)
         {
-            var portifilioList = await FindAll(trackChanges).Include(c=>c.Category).ToListAsync();
+            var portifilioList = await FindAll(trackChanges).Include(i => i.Image).Include(c=>c.Category).ToListAsync();
             return PagedList<Portifolio>.ToPagedList(portifilioList, requestParameters.PageNumber, requestParameters.PageSize);
         }
 
         public async Task<Portifolio> GetPortifolioByIdAsync(Guid portifolioId, bool trackChanges)
         {
-            return await FindByCondition(p => p.PortifolioId.Equals(portifolioId), trackChanges).Include(c => c.Category).SingleOrDefaultAsync();
+            return await FindByCondition(p => p.PortifolioId.Equals(portifolioId), trackChanges).Include(i=>i.Image).Include(c => c.Category).SingleOrDefaultAsync();
         }
 
         public async Task<Portifolio> GetPortifolioBySlugNameAsync(string slug, bool trackChanges)

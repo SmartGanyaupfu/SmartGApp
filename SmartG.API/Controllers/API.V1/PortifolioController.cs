@@ -21,11 +21,13 @@ namespace SmartG.API.Controllers.API.V1
     {
         private readonly IRepositoryManager _repository;
         private readonly IMapper _mapper;
+        private readonly IImageUploader _imageService;
 
-        public PortifolioController(IRepositoryManager repository, IMapper mapper)
+        public PortifolioController(IRepositoryManager repository, IMapper mapper, IImageUploader imageService)
         {
             _repository = repository;
             _mapper = mapper;
+            _imageService = imageService;
         }
         // GET: api/values
         [HttpGet]
@@ -69,7 +71,36 @@ namespace SmartG.API.Controllers.API.V1
             return CreatedAtRoute("portifoliosId", new { portifolioId = portifolioToReturn.PortifolioId }, portifolioToReturn);
         }
 
+        [HttpPost("{portifolioId}/add-image")]
+        public async Task<IActionResult> AddImage(IFormFile file, Guid portifolioId)
+        {
+            var portifolioEntity = await _repository.Portifolio.GetPortifolioByIdAsync( portifolioId, trackChanges: true);
+            if (portifolioEntity is null)
+                return NotFound($"page with id {portifolioEntity} does not exist");
 
+            var result = await _imageService.AddImageAsync(file);
+            if (result.Error != null)
+                return BadRequest(result.Error.Message);
+
+            var image = new Image()
+            {
+                DateCreated = DateTime.Now,
+                DateUpdated = DateTime.Now,
+                Deleted = false,
+                PublicId = result.PublicId,
+                ImageUrl = result.SecureUrl.AbsoluteUri,
+                PortifolioId = portifolioId
+            };
+            var imageEntity = _mapper.Map<Image>(image);
+            _repository.Image.CreateImageAsync(imageEntity);
+
+            await _repository.SaveAsync();
+
+            var portfolioToReturn = _mapper.Map<PortifolioDto>(portifolioEntity);
+
+
+            return CreatedAtRoute("portifoliosId", new { portifolioId = portfolioToReturn.PortifolioId }, portfolioToReturn);
+        }
 
         [HttpPut("{portifolioId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]

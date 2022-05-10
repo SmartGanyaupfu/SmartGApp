@@ -12,6 +12,7 @@ namespace SmartG.Shared.DTOs
         public string? MetaKeyWords { get; set; }
         public string? Slug { get; set; }
         public CategoryDto? Category { get; set; }
+        public ImageDto? Image { get; set; }
     }
 }
 

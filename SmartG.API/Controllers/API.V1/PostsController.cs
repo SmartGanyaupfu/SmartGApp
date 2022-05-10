@@ -21,11 +21,13 @@ namespace SmartG.API.Controllers.API.V1
     {
         private readonly IRepositoryManager _repository;
         private readonly IMapper _mapper;
+        private readonly IImageUploader _imageService;
 
-        public PostsController(IRepositoryManager repository, IMapper mapper)
+        public PostsController(IRepositoryManager repository, IMapper mapper, IImageUploader imageService)
         {
             _repository = repository;
             _mapper = mapper;
+            _imageService = imageService;
         }
         // GET: api/values
         [HttpGet]
@@ -49,7 +51,36 @@ namespace SmartG.API.Controllers.API.V1
             return Ok(postToReturn);
         }
 
+        [HttpPost("{postId}/add-image")]
+        public async Task<IActionResult> AddImage(IFormFile file, Guid postId)
+        {
+            var postEntity = await _repository.Post.GetPostByIdAsync(postId, trackChanges: true);
+            if (postEntity is null)
+                return NotFound($"post with id {postEntity} does not exist");
 
+            var result = await _imageService.AddImageAsync(file);
+            if (result.Error != null)
+                return BadRequest(result.Error.Message);
+
+            var image = new Image()
+            {
+                DateCreated = DateTime.Now,
+                DateUpdated = DateTime.Now,
+                Deleted = false,
+                PublicId = result.PublicId,
+                ImageUrl = result.SecureUrl.AbsoluteUri,
+                PostId = postId
+            };
+            var imageEntity = _mapper.Map<Image>(image);
+            _repository.Image.CreateImageAsync(imageEntity);
+
+            await _repository.SaveAsync();
+
+            var postToReturn = _mapper.Map<PostDto>(postEntity);
+
+
+            return CreatedAtRoute("postsId", new { postId = postToReturn.PostId }, postToReturn);
+        }
 
 
         [HttpPost]

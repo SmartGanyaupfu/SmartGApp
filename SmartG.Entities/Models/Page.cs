@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Net.Mime;
 
 namespace SmartG.Entities.Models
 {
@@ -14,6 +15,7 @@ namespace SmartG.Entities.Models
         public string? MetaKeyWords { get; set; }
         public string? Slug { get; set; }
         public Image? Image { get; set; }
+        public ICollection<ContentBlock>? ContentBlocks { get; set; }
 
 
     }

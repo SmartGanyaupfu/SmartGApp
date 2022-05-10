@@ -32,7 +32,7 @@ namespace SmartG.Repository
 
         public async Task<Page> GetPageByIdAsync(int pageId, bool trackChanges)
         {
-            return await FindByCondition(p => p.PageId.Equals(pageId), trackChanges).Include(i=>i.Image).SingleOrDefaultAsync();
+            return await FindByCondition(p => p.PageId.Equals(pageId), trackChanges).Include(i=>i.Image).Include(b=>b.ContentBlocks).SingleOrDefaultAsync();
         }
 
         public void UpdatePageAsync(Page page)

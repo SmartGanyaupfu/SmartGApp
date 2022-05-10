@@ -42,6 +42,8 @@ namespace SmartG.Repository
               .WithOne(p => p.Portifolio)
               .IsRequired(false);
 
+          
+
 
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new PageConfiguration());
@@ -53,7 +55,7 @@ namespace SmartG.Repository
         public DbSet<Category>? Categories { get; set; }
         public DbSet<Image> Image { get; set; }
         public DbSet<Comment>? Comments { get; set; }
-        //public DbSet<Image>? Images { get; set; }
+        public DbSet<ContentBlock>? ContentBlocks { get; set; }
     }
 }
 

@@ -106,7 +106,26 @@ namespace SmartG.API.Controllers.API.V1
             return CreatedAtRoute("pagesId", new { pageId = pageToReturn.PageId }, pageToReturn);
         }
 
-      
+        [HttpPost("{pageId}/add-block")]
+        public async Task<IActionResult> AddBlock([FromBody] ContentBlockForCreationDto contentBlock, int pageId)
+        {
+            var pageEntity = await _repository.Page.GetPageByIdAsync(pageId: pageId, trackChanges: true);
+            if (pageEntity is null)
+                return NotFound($"page with id {pageId} does not exist");
+
+            contentBlock.PageId = pageId;
+            var blockEntity = _mapper.Map<ContentBlock>(contentBlock);
+            _repository.ContentBlock.CreateContentBlockAsync(blockEntity);
+
+            await _repository.SaveAsync();
+
+            var pageToReturn = _mapper.Map<PageDto>(pageEntity);
+
+
+            return CreatedAtRoute("pagesId", new { pageId = pageToReturn.PageId }, pageToReturn);
+        }
+
+
         [HttpPut("{pageId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdatePageById(int pageId, [FromBody] PageForUpdateDto page)

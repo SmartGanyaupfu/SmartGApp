@@ -30,7 +30,7 @@ namespace SmartG.Repository
 
         public async Task<Post> GetPostByIdAsync(Guid postId, bool trackChanges)
         {
-            return await FindByCondition(p=>p.PostId.Equals(postId),trackChanges).Include(i => i.Image).Include(c=>c.Category).SingleOrDefaultAsync();
+            return await FindByCondition(p=>p.PostId.Equals(postId),trackChanges).Include(i => i.Image).Include(c=>c.Category).Include(b => b.ContentBlocks).SingleOrDefaultAsync();
         }
 
         public async Task<Post> GetPostBySlugNameAsync(string slug, bool trackChanges)

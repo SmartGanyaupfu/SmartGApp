@@ -30,7 +30,7 @@ namespace SmartG.Repository
 
         public async Task<Portifolio> GetPortifolioByIdAsync(Guid portifolioId, bool trackChanges)
         {
-            return await FindByCondition(p => p.PortifolioId.Equals(portifolioId), trackChanges).Include(i=>i.Image).Include(c => c.Category).SingleOrDefaultAsync();
+            return await FindByCondition(p => p.PortifolioId.Equals(portifolioId), trackChanges).Include(i=>i.Image).Include(c => c.Category).Include(b => b.ContentBlocks).SingleOrDefaultAsync();
         }
 
         public async Task<Portifolio> GetPortifolioBySlugNameAsync(string slug, bool trackChanges)

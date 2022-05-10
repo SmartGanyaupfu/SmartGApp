@@ -13,6 +13,7 @@ namespace SmartG.Shared.DTOs
 
         public CategoryDto? Category { get; set; }
         public ImageDto? Image { get; set; }
+        public ICollection<ContentBlockDto>? ContentBlocks { get; set; }
     }
 }
 

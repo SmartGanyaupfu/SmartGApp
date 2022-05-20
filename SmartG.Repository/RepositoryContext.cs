@@ -18,31 +18,42 @@ namespace SmartG.Repository
         {
             base.OnModelCreating(modelBuilder);
 
-            /*optional relationships*/
+            ///optional relationships
             modelBuilder.Entity<Post>()
             .HasOne(p => p.Category)
             .WithMany(p=>p.Posts)
             .IsRequired(false);
 
-          modelBuilder.Entity<Portifolio>()
+          modelBuilder.Entity<Portfolio>()
              .HasOne(p => p.Category)
-             .WithMany(b => b.Portifolios)
+             .WithMany(b => b.Portfolios)
              .IsRequired(false);
 
-            modelBuilder.Entity<Post>()
+           /* modelBuilder.Entity<Post>()
                 .HasOne(i => i.Image)
                 .WithOne(p => p.Post)
                 .IsRequired(false);
+            modelBuilder.Entity<Post>()
+             .HasMany(c => c.Comments)
+             .WithOne(p => p.Post)
+             .IsRequired(false);
+
             modelBuilder.Entity<Page>()
               .HasOne(i => i.Image)
               .WithOne(p => p.Page)
               .IsRequired(false);
-            modelBuilder.Entity<Portifolio>()
+            modelBuilder.Entity<Portfolio>()
               .HasOne(i => i.Image)
-              .WithOne(p => p.Portifolio)
+              .WithOne(p => p.Portfolio)
               .IsRequired(false);
 
-          
+            modelBuilder.Entity<Portfolio>()
+                .HasMany(c => c.Comments)
+                .WithOne(p => p.Portfolio)
+                .IsRequired(false);*/
+
+
+
 
 
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
@@ -51,11 +62,12 @@ namespace SmartG.Repository
         }
         public DbSet<Page>? Pages { get; set; }
         public DbSet<Post>? Posts { get; set; }
-        public DbSet<Portifolio> Portifolios { get; set; }
+        public DbSet<Portfolio> Portfolios { get; set; }
         public DbSet<Category>? Categories { get; set; }
         public DbSet<Image> Image { get; set; }
         public DbSet<Comment>? Comments { get; set; }
         public DbSet<ContentBlock>? ContentBlocks { get; set; }
+        public DbSet<OfferedService> Services { get; set; }
     }
 }
 

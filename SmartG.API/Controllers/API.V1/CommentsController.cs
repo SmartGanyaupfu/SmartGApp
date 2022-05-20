@@ -69,13 +69,13 @@ namespace SmartG.API.Controllers.API.V1
             {
                 return NotFound($"Postype {postType} does not exist");
             }
-            if (postType.Equals(PostTypeEnum.portifolio.ToString()) )
+            if (postType.Equals(PostTypeEnum.portfolio.ToString()) )
             {
-                comment.PortifolioId = postId;
-                var postFromDb = await _repository.Portifolio.GetPortifolioByIdAsync(postId, trackChanges: false);
+                comment.PortfolioId = postId;
+                var postFromDb = await _repository.Portfolio.GetPortfolioByIdAsync(postId, trackChanges: false);
                 if (postFromDb is null)
                 {
-                    return NotFound($" portifolio with id {postId} not found");
+                    return NotFound($" Portfolio with id {postId} not found");
                 }
             }
             else if (postType.Equals(PostTypeEnum.post.ToString()))

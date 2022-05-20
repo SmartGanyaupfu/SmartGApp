@@ -109,7 +109,7 @@ namespace SmartG.API.Controllers.API.V1
         [HttpPost("{pageId}/add-block")]
         public async Task<IActionResult> AddBlock([FromBody] ContentBlockForCreationDto contentBlock, int pageId)
         {
-            var pageEntity = await _repository.Page.GetPageByIdAsync(pageId: pageId, trackChanges: true);
+            var pageEntity = await _repository.Page.GetPageByIdAsync(pageId: pageId, trackChanges: false);
             if (pageEntity is null)
                 return NotFound($"page with id {pageId} does not exist");
 

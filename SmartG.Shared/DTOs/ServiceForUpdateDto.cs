@@ -1,25 +1,23 @@
 ﻿using System;
-using Microsoft.VisualBasic;
-
 namespace SmartG.Shared.DTOs
 {
-    public class PortifolioForCreationDto:BaseDto
+    public class ServiceForUpdateDto
     {
-        public PortifolioForCreationDto()
+        public ServiceForUpdateDto()
         {
-            DateCreated = DateTime.Now;
-            DateUpdated = DateAndTime.Now;
-            Deleted = false;
+            DateUpdated = DateTime.Now;
         }
-
         public string? Title { get; set; }
         public string? Content { get; set; }
         public string? Excerpt { get; set; }
         public string? MetaDescription { get; set; }
         public string? MetaKeyWords { get; set; }
         public string? Slug { get; set; }
+        public DateTime? DateUpdated { get; set; }
 
-        public int CategoryId { get; set; }
+
+        public string? AuthorId { get; set; }
+
     }
 }
 

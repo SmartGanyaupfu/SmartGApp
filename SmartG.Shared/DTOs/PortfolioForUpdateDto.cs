@@ -1,17 +1,15 @@
 ﻿using System;
-using Microsoft.VisualBasic;
-
 namespace SmartG.Shared.DTOs
 {
-    public class PostForCreationDto:BaseDto
+    public class PortfolioForUpdateDto
     {
-        public PostForCreationDto()
+        public PortfolioForUpdateDto()
         {
-            DateCreated = DateTime.Now;
-            DateUpdated = DateAndTime.Now;
-            Deleted = false;
+            DateUpdated = DateTime.Now;
         }
-        
+
+        public DateTime? DateUpdated { get; set; }
+        public string? AuthorId { get; set; }
         public string? Title { get; set; }
         public string? Content { get; set; }
         public string? Excerpt { get; set; }
@@ -19,8 +17,10 @@ namespace SmartG.Shared.DTOs
         public string? MetaKeyWords { get; set; }
         public string? Slug { get; set; }
 
+
         public int CategoryId { get; set; }
-        public ICollection<ContentBlockForCreationDto>? ContentBlocks { get; set; }
+
+
     }
 }
 

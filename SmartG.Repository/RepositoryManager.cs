@@ -8,13 +8,14 @@ namespace SmartG.Repository
         private readonly RepositoryContext _repositoryContext;
         private readonly Lazy<IPageRepository> _pageRepository;
         private readonly Lazy<IPostRepository> _postRepository;
-        private readonly Lazy<IPortifolioRepository> _portifolioRepository;
+        private readonly Lazy<IPortfolioRepository> _portfolioRepository;
 
         private readonly Lazy<ICommentRepository> _commentRepository;
 
         private readonly Lazy<ICategoryRepository> _categoryRepository;
         private readonly Lazy<IImageRepository> _imageRepository;
         private readonly Lazy<IContentBlockRepository> _contentBlockRepository;
+        private readonly Lazy<IServiceRepository> _serviceRepository;
 
         public RepositoryManager( RepositoryContext repositoryContext)
         {
@@ -23,9 +24,10 @@ namespace SmartG.Repository
             _postRepository = new Lazy<IPostRepository>(() => new PostRepository(repositoryContext));
             _commentRepository = new Lazy<ICommentRepository>(() => new CommentRepository(repositoryContext));
             _categoryRepository = new Lazy<ICategoryRepository>(() => new CategoryRepository(repositoryContext));
-            _portifolioRepository = new Lazy<IPortifolioRepository>(() => new PortifolioRepository(repositoryContext));
+            _portfolioRepository = new Lazy<IPortfolioRepository>(() => new PortfolioRepository(repositoryContext));
             _imageRepository = new Lazy<IImageRepository>(() => new ImageRepository(repositoryContext));
             _contentBlockRepository = new Lazy<IContentBlockRepository>(() => new ContentBlockRepository(repositoryContext));
+            _serviceRepository = new Lazy<IServiceRepository>(() => new ServiceRepository(repositoryContext));
 
         }
 
@@ -37,11 +39,13 @@ namespace SmartG.Repository
 
         public ICommentRepository Comment => _commentRepository.Value;
 
-        public IPortifolioRepository Portifolio => _portifolioRepository.Value;
+        public IPortfolioRepository Portfolio => _portfolioRepository.Value;
 
         public IImageRepository Image => _imageRepository.Value;
 
         public IContentBlockRepository ContentBlock => _contentBlockRepository.Value;
+
+        public IServiceRepository Service => _serviceRepository.Value;
 
         public async Task SaveAsync()
         {

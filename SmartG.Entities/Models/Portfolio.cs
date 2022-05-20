@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmartG.Entities.Models
 {
-    public class Portifolio:BaseEntity
+    public class Portfolio:BaseEntity
     {
-        public Guid PortifolioId { get; set; }
+        public Guid PortfolioId { get; set; }
 
         public string? Title { get; set; }
         public string? Content { get; set; }

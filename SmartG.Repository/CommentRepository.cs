@@ -24,9 +24,9 @@ namespace SmartG.Repository
 
         public async Task<PagedList<Comment>> GetAllCommentsForPostAsync(CommentParameters commentParameters, Guid postId,string postType, bool trackChanges)
         {
-            if (postType.Equals(PostTypeEnum.portifolio.ToString()))
+            if (postType.Equals(PostTypeEnum.portfolio.ToString()))
             {
-                var comments = await FindByCondition(c => c.PortifolioId.Equals(postId) && c.Approved, trackChanges).ToListAsync();
+                var comments = await FindByCondition(c => c.PortfolioId.Equals(postId) && c.Approved, trackChanges).ToListAsync();
                 return PagedList<Comment>.ToPagedList(comments, commentParameters.PageNumber, commentParameters.PageSize);
             }
             else 

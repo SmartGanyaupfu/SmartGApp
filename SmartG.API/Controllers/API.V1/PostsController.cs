@@ -103,7 +103,24 @@ namespace SmartG.API.Controllers.API.V1
             //var votesToReturn = await _serviceManager.QualificationService.CreateQualificationForStudyOptionAsync(studyOptionId, qualification, trackChanges: false);
             return CreatedAtRoute("postsId", new { PostId = postToReturn.PostId }, postToReturn);
         }
+        [HttpPost("{postId}/add-block")]
+        public async Task<IActionResult> AddBlock([FromBody] ContentBlockForCreationDto contentBlock, Guid postId)
+        {
+            var postEntity = await _repository.Post.GetPostByIdAsync(postId, trackChanges: false);
+            if (postEntity is null)
+                return NotFound($"Post with id {postId} does not exist.");
 
+            contentBlock.PostId = postId;
+            var blockEntity = _mapper.Map<ContentBlock>(contentBlock);
+            _repository.ContentBlock.CreateContentBlockAsync(blockEntity);
+
+            await _repository.SaveAsync();
+
+            var postToReturn = _mapper.Map<PostDto>(postEntity);
+
+
+            return CreatedAtRoute("postsId", new { postId = postToReturn.PostId }, postToReturn);
+        }
 
 
         [HttpPut("{postId}")]

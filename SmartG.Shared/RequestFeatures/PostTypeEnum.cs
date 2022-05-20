@@ -4,7 +4,7 @@ namespace SmartG.Shared.RequestFeatures
     public enum PostTypeEnum
     {
         post,
-        portifolio
+        portfolio
     }
 }
 

@@ -8,7 +8,7 @@ namespace SmartG.Shared.DTOs
         public bool Approved { get; set; }
 
         public Guid? PostId { get; set; }
-        public Guid?PortifolioId { get; set; }
+        public Guid?PortfolioId { get; set; }
     }
 }
 

@@ -1,9 +1,9 @@
 ﻿using System;
-namespace SmartG.Shared.DTOs
+namespace SmartG.Entities.Models
 {
-    public class PortifolioDto:BaseDto
+    public class OfferedService:BaseEntity
     {
-        public Guid PortifolioId { get; set; }
+        public Guid OfferedServiceId { get; set; }
 
         public string? Title { get; set; }
         public string? Content { get; set; }
@@ -11,10 +11,9 @@ namespace SmartG.Shared.DTOs
         public string? MetaDescription { get; set; }
         public string? MetaKeyWords { get; set; }
         public string? Slug { get; set; }
-        public CategoryDto? Category { get; set; }
-        public ImageDto? Image { get; set; }
-        public ICollection<ContentBlockDto>? ContentBlocks { get; set; }
+
+        public Image? Image { get; set; }
+        public ICollection<ContentBlock>? ContentBlocks { get; set; }
     }
 }
-
 

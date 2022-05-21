@@ -91,8 +91,9 @@ namespace SmartG.API.Controllers.API.V1
                 ImageUrl = result.SecureUrl.AbsoluteUri
                 
             };
-            var imageEntity = _mapper.Map<Image>(image);
-            _repository.Image.CreateImageAsync(imageEntity);
+            serviceEntity.Image = image;
+          //  var serviceEntityToUpdate = _mapper.Map<serviceEntity>(i);
+           // _repository.Image.CreateImageAsync(imageEntity);
 
             await _repository.SaveAsync();
 

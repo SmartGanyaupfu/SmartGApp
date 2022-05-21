@@ -24,7 +24,7 @@ namespace SmartG.Repository
 
         public async Task<OfferedService> GetServiceByIdAsync(Guid serviceId, bool trackChanges)
         {
-            return await FindByCondition(s => s.OfferedServiceId.Equals(serviceId), trackChanges).Include(i=>i.Image).SingleOrDefaultAsync();
+            return await FindByCondition(s => s.OfferedServiceId.Equals(serviceId), trackChanges).Include(i=>i.Image).Include(b=>b.ContentBlocks).SingleOrDefaultAsync();
         }
 
         public async Task<OfferedService> GetServiceBySlugAsync(string slug, bool trackChanges)
@@ -34,7 +34,7 @@ namespace SmartG.Repository
 
         public async Task<PagedList<OfferedService>> GetServicesAsync(RequestParameters requestParameters, bool trackChanges)
         {
-            var services = await FindAll(trackChanges).Include(i => i.Image).ToListAsync();
+            var services = await FindAll(trackChanges).Include(i => i.Image).Include(b => b.ContentBlocks).ToListAsync();
 
             return PagedList<OfferedService>.ToPagedList(services, requestParameters.PageNumber, requestParameters.PageSize);
         }

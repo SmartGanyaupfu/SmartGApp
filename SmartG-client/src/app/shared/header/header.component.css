@@ -1,0 +1,10 @@
+.menu-items-list {
+    margin-left: 200px;
+    margin-right:300px;
+}
+.bg-light {
+    background: rgb(255, 255, 255) !important;
+}
+.navbar-toggler-icon {
+    color: #000 !important;
+}

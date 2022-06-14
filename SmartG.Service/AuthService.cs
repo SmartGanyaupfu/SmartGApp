@@ -153,8 +153,8 @@ namespace SmartG.Service
                 await _userManager.AddToRolesAsync(user, roles);
 
                 var callback = QueryHelpers.AddQueryString(userForRegistration.ClientURI, param);
-                var message = new EmailMessageDto(new string[] { user.Email }, "Email Confirmation token", "Hi " + user.UserName + " Your account has bee created" +
-            "using this email, click on  the link to verify your email" + callback + " If you did not request, kindly ignore the email. Thanks Digital Team.");
+                var message = new EmailMessageDto(new string[] { user.Email }, "Email Confirmation token", "Hi " + user.UserName + "\n Your account has bee created " +
+            "using this email, click on  the link to verify your email \n" + callback + " If you did not request, kindly ignore the email.\n Thanks Digital Team.");
                 await _emailService.SendEmailAsync(message);
 
             }

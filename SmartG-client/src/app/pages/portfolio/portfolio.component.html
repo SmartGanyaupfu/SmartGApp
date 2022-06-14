@@ -1,1 +1,77 @@
-<p>portfolio works!</p>
+<div class="container mt-5">
+    <h3> Some of my selected projects </h3>
+    <h1>Portfolio</h1>
+
+
+    <div>
+        <tabset>
+          <tab heading="ALL" id="tab1">
+
+            <div class="services-home text-center mt-5"> <!--port all-->
+    
+                <div class="row mt-4">
+                  <div class="col-md-4 " *ngFor="let portfolio of portfolios">
+                    <div class="card" style="max-width: 100%;">
+                        <img src="{{portfolio?.image?.imageUrl}}" class="card-img-top" alt="{{portfolio.title + ' image'}}">
+                        <div class="card-body">
+                          <h5 class="card-title">{{portfolio?.title}}</h5>
+                          <p class="card-text">{{portfolio?.excerpt}}</p>
+                          <a href="#" mat-raised-button class="mt">Read More</a>
+                        </div>
+                      </div>
+                  </div>
+                   
+                </div>
+        
+                
+            </div> <!--port all-->
+          </tab><!--First Tab-->
+          <tab heading="Web">
+            <div class="services-home text-center mt-5"> <!--Web-->
+    
+                <div class="row mt-4">
+                  <div class="col-md-4 " *ngFor="let portfolio of webPortfolio">
+                    <div class="card" style="max-width: 100%;">
+                        <img src="{{portfolio?.image?.imageUrl}}" class="card-img-top" alt="{{portfolio.title + ' image'}}">
+                        <div class="card-body">
+                          <h5 class="card-title">{{portfolio?.title}}</h5>
+                          <p class="card-text">{{portfolio?.excerpt}}</p>
+                          <a href="#" mat-raised-button class="mt">Read More</a>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+        
+                
+            </div> <!---->
+          </tab><!--Web category tab-->
+          <tab heading="Mobile">
+            <div class="row mt-4" *ngIf="mobilePortfolio?.length>0; else else_block">
+              <div class="col-md-4 " *ngFor="let portfolio of mobilePortfolio">
+                <div class="card" style="max-width: 100%;" >
+                    <img src="{{portfolio?.image?.imageUrl}}" class="card-img-top" alt="{{portfolio.title + ' image'}}">
+                    <div class="card-body">
+                      <h5 class="card-title">{{portfolio?.title}}</h5>
+                      <p class="card-text">{{portfolio?.excerpt}}</p>
+                      <a href="#" mat-raised-button class="mt">Read More</a>
+                    </div>
+                  </div>
+               
+              </div>
+           
+            </div>
+            <ng-template #else_block>
+              <p class="alert alert-secondary mt-3"> Oops! Nothing found. </p>
+            </ng-template>
+          </tab>
+            
+        </tabset>
+      </div>
+
+   
+   <div class="text-center mt-4">
+       <h3> Let’s work together</h3>
+       
+       <h1><a  href="#">dev@smartganyaupfu.com</a></h1>
+   </div>
+</div>

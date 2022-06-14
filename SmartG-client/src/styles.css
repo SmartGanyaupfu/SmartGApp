@@ -1,1 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
+body, .card{
+    background: #000;
+    color: #fff;
+}
+a {
+    color:#fff;
+}
+a:hover {
+    color:#2dadc6;
+}
+.primary-color {
+    color:#2dadc6;
+}
+.primary-bg-btn {
+background: #2dadc6;
+color: #fff;
+}
+a.nav-link {
+    color:#2dadc6;
+}
+
+.bg-light {
+    background: #fff !important;
+    color: #000 !important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Social Icons*/
+.social-icons i {
+padding-right: 15px;
+color:#2dadc6;
+font-size: medium;
+}
+
+.social-icons ul li {
+  list-style: none;
+    }
+
+.social-icons ul li i{
+ 
+    color:#2dadc6;
+    font-size: 20px;
+}
+
+.card-light {
+    background: #fff !important;
+    color: #000;
+}
+
+.footer {
+    background: #14344c;
+}
+.hireMeEmail {
+    font-size: 40px;
+}
+.btn-cancel {
+    margin-left: 10px !important;
+    background-color: #911;
+    color: white;
+}

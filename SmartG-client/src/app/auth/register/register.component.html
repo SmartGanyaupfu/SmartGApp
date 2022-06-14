@@ -1,1 +1,127 @@
-<p>register works!</p>
+<div class="container mt-3 mb-3">
+ <div class="d-flex justify-content-center">
+
+        <h1>Register</h1>
+  
+    </div>
+    <div class="alert alert-success" *ngIf="showSuccess">
+        <p><strong>Information: </strong> {{successMessage}}</p>
+    </div>
+    <div class="alert alert-info" *ngIf="createUserForm.dirty">
+        <p><strong>Information: </strong> Changes detected, please not any unsaved changes will be lost!</p>
+    </div>
+    <form [formGroup]="createUserForm" autocomplete="off" (ngSubmit)="newUser()">
+    <div class="row mt-3 mb-3">
+                          
+        <div class="col-6">
+            <h4> First Name: </h4>
+            <input type="text" class="form-control" name="firstName" formControlName="firstName" >
+    
+            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+            class="alert alert-danger">
+          
+                <div *ngIf="firstName.errors?.['required']">
+                  Name is required.
+                </div>
+                
+          </div>
+        </div>
+        <div class="col-6">
+            <h4> Last Name: </h4>
+            <input type="text" class="form-control" name="lastName" formControlName="lastName" >
+    
+            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+            class="alert alert-danger">
+          
+                <div *ngIf="lastName.errors?.['required']">
+                Surname is required.
+                </div>
+                
+          </div>
+        </div>
+      
+      
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4> Email: </h4>
+            <input type="email" class="form-control" name="email" formControlName="email" >
+    
+            <div *ngIf="email.invalid && (email.dirty || email.touched)"
+            class="alert alert-danger">
+          
+                <div *ngIf="email.errors?.['required' ]">
+                  Email is required
+                </div>
+                <div *ngIf="email.errors?.['email' ]">
+                 Enter valid email
+                </div>
+                
+          </div>
+        </div>
+        
+        <div class="col-6">
+            <h4> Phone: </h4>
+            <input type="text" class="form-control" name="phoneNumber" formControlName="phoneNumber">
+    
+            <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+            class="alert alert-danger">
+          
+                <div *ngIf="phoneNumber.errors?.['required']">
+                  Phone is required.
+                </div>
+                
+          </div>
+        </div>
+       
+      
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <h4> Username: </h4>
+            <input type="text" class="form-control" autocomplete="off" name="userName" formControlName="userName">
+    
+            <div *ngIf="userName.invalid && (userName.dirty || userName.touched)"
+            class="alert alert-danger">
+          
+                <div *ngIf="userName.errors?.['required']">
+                  Username is required.
+                </div>
+                
+          </div>
+        </div>
+        <div class="col-8">
+            <div class="form-group row mt-2">
+                <label for="password" class="col-form-label col-sm-2">Password:</label>
+                <div class="col-md-5">
+                    <input type="password" id="password" formControlName="password" class="form-control" />
+                </div>
+                <div class="col-md-5">
+                    <em *ngIf="validateControl('password') && hasError('password', 'required')">Password is required</em>
+                </div>
+            </div>
+            <div class="form-group row mt-2">
+                <label for="confirm" class="col-form-label col-sm-2">Confirm Password:</label>
+                <div class="col-md-5">
+                    <input type="password" id="confirm" formControlName="confirmPassword" class="form-control" />
+                </div>
+                <div class="col-md-5">
+                    
+                    <em *ngIf="hasError('confirmPassword', 'mustMatch')">Passwords must match</em>
+                </div>
+            </div>
+        </div>
+     
+       
+     
+    </div>
+
+
+    <button [disabled]="!createUserForm.valid" type="submit" class="mt-3 primary-bg-btn" mat-raised-button>Register</button>
+    <a [routerLink]="['/home']" mat-raised-button class="btn-cancel"  > Cancel</a>
+</form>
+
+
+    <p>{{createUserForm.value|json}}</p>
+    
+</div>

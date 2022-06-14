@@ -1,38 +1,174 @@
-<div class="container">
-    <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+<div class="container mt-5">     
+   
+    
+    
+    <div class="card mb-3" style="max-width: 100%;">
+        <div class="row g-0">
+          <div class="col-md-3 mx-auto">
+            <img class=" img-thumbnail  rounded-circle mx-auto d-block " width="200" src="https://res.cloudinary.com/smart-ganyaupfu/image/upload/v1653232343/Smart_Profile_zmfyag.jpg" alt="profile image">
+            
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <h4 class="card-title primary-color">Hi, I'm Smart Ganyaupfu.</h4>
+              <h1>Web & Mobile App Developer</h1>
+              <div class="social-icons ">
+               <a href="https://www.linkedin.com/in/smart-ganyaupfu-294705185/"><i class="fa-brands fa-linkedin"></i></a> 
+                <a href="https://github.com/SmartGanyaupfu"><i class="fa-brands fa-github"></i></a>
+                <a href="https://twitter.com/smartg"><i class="fa-brands fa-twitter"></i></a>
+                
+                <a href="https://www.youtube.com/channel/UC2VQ50lgu9o4DBfwUgtEFPw"><i class="fa-brands fa-youtube"></i></a>
+              </div>
+             
+            </div>
           </div>
         </div>
-      </nav>
+      </div>
+
+      <div class="row">
+          <div class="col-md-8">
+            <div class="card mb-3" style="max-width: 100%;">
+              
+                    <div class="card-body">
+                      <h4 class="card-title primary-color">About Me</h4>
+                      <div [innerHTML]="page?.content"></div>
+                      
+                     <a href="#" mat-raised-button class="mt-3"> Dwnload CV/Resume</a> 
+
+                     <div class="lets-work text-center">
+                        <h2>Hire Me</h2>
+                        <p>Let's chat.</p>
+
+                        <h1><a href="mailto:dev@smartganyaupfu.com" class="hireMeEmail">dev@smartganyaupfu.com</a></h1>
+                     </div>
+                    </div>
+                 
+              </div>
+            
+              <div class="services-home text-center mt-5"> <!--My services-->
+                  <h2>My Services</h2>
+                  <div class="row mt-4">
+                      <div class="col-md-4 " *ngFor="let service of myServices">
+                        <div class="card" style="max-width: 100%;">
+                            <img src="{{service?.image?.imageUrl}}" class="card-img-top" alt="service name">
+                            <div class="card-body">
+                              <h5 class="card-title">{{service?.title}}</h5>
+                              <p class="card-text">{{service?.excerpt}}</p>
+                              <a href="#" mat-raised-button class="mt">Read More</a>
+                            </div>
+                           
+                     
+                          </div>
+                      </div>
+                   
+                   
+                  </div>
+              </div> <!--close my services-->
+              <hr>
+              <div class="services-home text-center mt-5"> <!--My Portifolio-->
+                <h2>Portfolio</h2>
+                <div class="row mt-4">
+                    <div class="col-md-4 " *ngFor="let portfolio of portfolios">
+                      <div class="card" style="max-width: 100%;">
+                          <img src="{{portfolio?.image?.imageUrl}}" class="card-img-top" alt="{{portfolio.title + ' image'}}">
+                          <div class="card-body">
+                            <h5 class="card-title">{{portfolio?.title}}</h5>
+                            <p class="card-text">{{portfolio?.excerpt}}</p>
+                            <a href="#" mat-raised-button class="mt">Read More</a>
+                          </div>
+                        </div>
+                    </div>
+                 
+                </div>
+            </div> <!--close my portifolio-->
+
+          </div> <!-- /first colum-->
+          <div class="col-md-4">
+            <div class="card mb-3 card-light" style="max-width: 100%;"> <!--My skills-->
+              
+                <div class="card-body">
+                  <h4 class="card-title primary-color">My Skills</h4>
+                  <div [innerHtml]="skillBlock?.content">
+
+                  </div>
+                  
+                 
+                </div>
+             
+          </div> <!--My skills-->
+          <div class="card mb-3 card-light" style="max-width: 100%;"> <!--Blog-->
+              
+            <div class="card-body" >
+              <h4 class="card-title primary-color">Blog</h4>
+              <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action " aria-current="true" *ngFor="let post of posts">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h3 class="mb-1">{{post.title}}</h3>
+                    <small>{{post.dateCreated | date:'d/M/yy'}}</small>
+                  </div>
+                  <p class="mb-1">{{post.excerpt}}</p>
+                  <small>Read More</small>
+                </a>
+                
+              </div>
+              
+             <button class="mt-3">Load More</button>
+            </div>
+         
+      </div>
+
+            <div class="card mb-3 card-light" style="max-width: 100%;"> <!-- Work Experience-->
+                    
+                <div class="card-body">
+                <h4 class="card-title primary-color">Work Experience</h4>
+                <p [innerHtml]="workBlock?.content">
+                    </p>
+                
+                </div>
+            
+            </div>
+
+            <div class="card mb-3 card-light" style="max-width: 100%;"> <!--Education-->
+                    
+                <div class="card-body">
+                <h4 class="card-title primary-color">Education</h4>
+                <p [innerHtml]="eduBlock?.content">  </p>
+                
+                </div>
+            
+            </div>
+
+
+            <div class="card mb-3 card-light" style="max-width: 100%;"> <!--Hobbies-->
+                    
+                <div class="card-body">
+                <h4 class="card-title primary-color">Interests</h4>
+                <p [innerHtml]="InterestBlock?.content">  </p>
+                
+                </div>
+            
+            </div>
+
+          </div><!--End of second column, side bar-->
+        <hr>
+       <!-- <form>
+          <div class="mb-3">
+            <label for="Name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="">
+          </div>
+          <div class="mb-3">
+            <label for="Email" class="form-label">Email</label>
+            <input type="email" class="form-control" >
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+         
+          
+          <button type="submit" class="mt-3 mb-3" mat-raised-button>Subscribe</button>
+        </form> -->
+
+        
+         
+    </div>
 </div>
+
+

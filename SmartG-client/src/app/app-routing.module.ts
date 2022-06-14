@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'blog', component: PostComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'learn-to-code', component: LearnComponent},
+  { path: 'admin/page/new-page', component: NewPageComponent},
   { path: 'admin/new-page', component: NewPageComponent},
   { path:  'auth/login',component:LoginComponent},
   { path:'auth/email-confirmation', component:EmailConfirmationComponent },

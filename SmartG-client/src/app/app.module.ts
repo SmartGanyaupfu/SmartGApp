@@ -29,6 +29,9 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmailConfirmationComponent } from './auth/email-confirmation/email-confirmation.component';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { SlugifyPipe } from './_pipes/slugify.pipe';
 
 export function tokenGetter() {
   return localStorage.getItem("mytoken");
@@ -51,7 +54,8 @@ export function tokenGetter() {
     NewPageComponent,
     ResetPasswordComponent,
     ForgotPasswordComponent,
-    EmailConfirmationComponent
+    EmailConfirmationComponent,
+    SlugifyPipe
   ],
   imports: [
     BrowserModule,
@@ -62,6 +66,8 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
+    NgxSpinnerModule,
+    EditorModule,
     TabsModule.forRoot(),
     JwtModule.forRoot({
       config: {
@@ -75,7 +81,8 @@ export function tokenGetter() {
     }),
  
   ],
-  providers: [{provide: HTTP_INTERCEPTORS,useClass:JwtInterceptor,multi:true},{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  providers: [SlugifyPipe,
+    {provide: HTTP_INTERCEPTORS,useClass:JwtInterceptor,multi:true},{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi: true},
     {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}],
   bootstrap: [AppComponent]

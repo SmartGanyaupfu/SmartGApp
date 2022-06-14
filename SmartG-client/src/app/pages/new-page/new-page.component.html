@@ -1,6 +1,113 @@
-<div class="container mt-5">     
-   
-    New page
-    
-   
-</div>
+
+
+   <div class="container mt-5 mb-5">
+    <div class="alert alert-info" *ngIf="createPageForm.dirty">
+         <p><strong>Information: </strong> Changes detected, please not any unsaved changes will be lost!</p>
+     </div>
+     <form #createPageForm="ngForm" autocomplete="off" (ngSubmit)="addPage()">
+       <div class="row">
+                           
+         <div class="col-4">
+             <h4> Title: </h4>
+             <input type="text" class="form-control" [(ngModel)]="title" name="title" >
+         </div>
+         <div class="col-4">
+            <h4 *ngIf="show;else else_block "> Slug: {{title | slugify}}</h4> <ng-template #else_block><h4> Slug: {{slug | slugify}}</h4></ng-template> 
+            <span *ngIf="show"><a class="customLink" (click)="editSlug()">edit slug</a></span>
+            <div *ngIf="slugEdit">
+                <input type="text" class="form-control" autocomplete="off"  name="slug" [(ngModel)]="slug" >
+            </div>
+           
+        </div>
+        <div class="col-4">
+            <h4> Feature Image: </h4>
+            <input type="text" class="form-control" [(ngModel)]="image" name="image" >
+        </div>
+         <div class="col-12 mt-2">
+             <h4> Page Content: </h4>
+             <editor apiKey="as2y4cbv5phr8yh7lyvpzyx2q12nc90soaiou632j1wkchbs"
+             
+             [(ngModel)]="content" name="content"
+             initialValue="<p>Initial content of the editor</p>"
+             [init]="{
+            
+            selector: '#tinymce',
+             branding: false,
+                 height: 500,
+                 menubar: true,
+                 block_formats: 'Paragraph=p; Header 1=h1; Header 2=h2; Header 3=h3',
+                 plugins: [ 'image','advlist','autolink','charmap','table', 'preview','anchor', 'code','lists', 'table','link','media','visualblocks'],
+                 toolbar:
+                 'undo redo | formatselect | bold italic backcolor | \
+                 alignleft aligncenter alignright alignjustify | \
+                 bullist numlist outdent indent |link removeformat image| help'
+             }"
+             >
+
+
+
+             </editor>
+         </div>
+
+         <div class="col-6 mt-3">
+            <div class="mb-3">
+                <label  class="form-label">Except</label>
+                <div class="form-floating">
+                  <textarea class="form-control" name="excerpt" [(ngModel)]="excerpt" placeholder="Brief text"  style="height: 100px"></textarea>
+                 
+                </div>
+  
+              </div> 
+         </div>
+         <div class="col-6 mt-3">
+            <div class="mb-3">
+                <label  class="form-label">Meta Description</label>
+                <div class="form-floating">
+                  <textarea class="form-control" name="metaDescription" [(ngModel)]="metaDescription" placeholder="Brief text"  style="height: 100px"></textarea>
+                 
+                </div>
+  
+              </div> 
+         </div>
+
+         <div class="col-6 mt-3">
+            <div class="mb-3">
+                <label  class="form-label">Key Words</label>
+                <div class="form-floating">
+                  <textarea class="form-control" name="metaKeyWords" [(ngModel)]="metaKeyWords" placeholder="Brief text"  style="height: 100px"></textarea>
+                 
+                </div>
+  
+              </div> 
+         </div>
+         <div class="col-6 mt-3">
+            <h4> Extra Content Block: </h4>
+            <editor apiKey="as2y4cbv5phr8yh7lyvpzyx2q12nc90soaiou632j1wkchbs"
+            
+            [(ngModel)]="contentBlocks" name="contentBlocks"
+            initialValue="<p>Initial content of the editor</p>"
+            [init]="{
+           
+           selector: '#tinymce',
+            branding: false,
+                height: 100,
+                menubar: false,
+                block_formats: 'Paragraph=p; Header 1=h1; Header 2=h2; Header 3=h3',
+                plugins: [ 'image','advlist','autolink','charmap','table', 'preview','anchor', 'code','lists', 'table','link','media','visualblocks'],
+                toolbar:
+                'undo redo | formatselect | bold italic backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent |link removeformat image| help'
+            }"
+            >
+
+
+
+            </editor>
+         </div>
+        
+       
+     </div>
+         <button type="submit" class="mt-5" mat-raised-button>Publish</button>
+       </form>
+ </div>

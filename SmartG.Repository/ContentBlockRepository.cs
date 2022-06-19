@@ -29,7 +29,7 @@ namespace SmartG.Repository
 
         public async Task<PagedList<ContentBlock>> GetContentBlocksAsync(RequestParameters requestParameters, bool trackChanges)
         {
-            var blocks = await FindAll(trackChanges).ToListAsync();
+            var blocks = await FindAll(trackChanges).OrderByDescending(p => p.Title).ToListAsync();
             return PagedList<ContentBlock>.ToPagedList(blocks, requestParameters.PageNumber, requestParameters.PageSize);
         }
 

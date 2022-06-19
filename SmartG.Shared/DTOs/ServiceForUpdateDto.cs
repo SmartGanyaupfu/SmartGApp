@@ -15,7 +15,7 @@ namespace SmartG.Shared.DTOs
         public string? Slug { get; set; }
         public DateTime? DateUpdated { get; set; }
 
-
+        public int? ImageId { get; set; }
         public string? AuthorId { get; set; }
 
     }

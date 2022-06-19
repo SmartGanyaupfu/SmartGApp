@@ -16,8 +16,7 @@ namespace SmartG.Shared.DTOs
         public string? MetaDescription { get; set; }
         public string? MetaKeyWords { get; set; }
         public string? Slug { get; set; }
-
-        public ImageForCreationDto? Image { get; set; }
+        public int? ImageId { get; set; }
         public ICollection<ContentBlockForCreationDto>? ContentBlocks { get; set; }
     }
 }

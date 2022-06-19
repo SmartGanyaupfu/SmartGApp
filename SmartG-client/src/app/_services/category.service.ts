@@ -10,11 +10,11 @@ import { PaginatedResult } from '../_interfaces/pagination';
 })
 export class CategoryService {
   baseurl:string= environment.baseUrl;
-  //service:Service;
+  
   paginatedResult:PaginatedResult<Category[]>= new PaginatedResult<Category[]>();
     
     constructor(private http:HttpClient) { }
-    getServices(pageNumber?:number,pageSize?:number){
+    getCategories(pageNumber?:number,pageSize?:number){
       const parmsObj={
     
         pageNumber:pageNumber||undefined,
@@ -33,14 +33,17 @@ export class CategoryService {
       )
     }
   
-    getCategoryById(categoryId:number){
+    getCategoryById(categoryId:any){
       return this.http.get<Category>(this.baseurl + 'categories/'+categoryId )
     }
   
     createCategory(category:any){
       return this.http.post<Category>(this.baseurl+ 'categories/',category);
     }
-    updateCategory(categoryId:number,category:any){
+    updateCategory(categoryId:any,category:any){
       return this.http.put(this.baseurl+ 'categories/'+categoryId,category);
+    }
+    deleteCategory(categoryId:any){
+      return this.http.delete<Category>(this.baseurl+'categories/'+categoryId);
     }
 }

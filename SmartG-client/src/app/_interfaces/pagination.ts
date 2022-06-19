@@ -1,11 +1,11 @@
 export interface Pagination {
-    currentPage: number;
-    pageNumber:number
-    totalPages: number;
-    pageSize: number;
-    totalCount: number;
-    hasPrevious: boolean;
-    hasNext: boolean;
+    CurrentPage: number;
+    PageNumber:number
+    TotalPages: number;
+    PageSize: number;
+    TotalCount: number;
+    HasPrevious: boolean;
+    HasNext: boolean;
 }
 export class PaginatedResult<T>{
     public result:T;

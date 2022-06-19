@@ -24,19 +24,22 @@ export class PageService {
       return this.http.get<Page[]>(this.baseurl +'pages',{observe:'response',params}).pipe(
         map(response=>{
           this.paginatedResult.result=response.body;
-          if(response.headers.get('pagination')!==null){
-            this.paginatedResult.pagination=JSON.parse(response.headers.get('pagination'));
+          if(response.headers.get('x-pagination')!==null){
+            this.paginatedResult.pagination=JSON.parse(response.headers.get('x-pagination'));
           }
-          console.log(JSON.parse(response.headers.get('pagination')));
+         
           return this.paginatedResult;
         })
       )
     }
   
-    getPageById(pageId:number){
+    getPageById(pageId:any){
       return this.http.get<Page>(this.baseurl + 'pages/'+pageId )
     }
   
+    getPageBySlug(pageSlug:string){
+      return this.http.get<Page>(this.baseurl + 'pages/slug/'+pageSlug )
+    }
     createImageForPage(pageId:number){
       
     }
@@ -46,5 +49,8 @@ export class PageService {
     }
     updatePage(pageId:number,page:any){
       return this.http.put(this.baseurl+ 'pages/'+pageId,page);
+    }
+    deletePage(pageId:number){
+      return this.http.delete<Page>(this.baseurl+'pages/'+pageId);
     }
   }

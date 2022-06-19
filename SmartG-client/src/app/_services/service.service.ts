@@ -24,8 +24,8 @@ export class ServiceService {
       return this.http.get<Service[]>(this.baseurl +'services',{observe:'response',params}).pipe(
         map(response=>{
           this.paginatedResult.result=response.body;
-          if(response.headers.get('pagination')!==null){
-            this.paginatedResult.pagination=JSON.parse(response.headers.get('pagination'));
+          if(response.headers.get('x-pagination')!==null){
+            this.paginatedResult.pagination=JSON.parse(response.headers.get('x-pagination'));
           }
           
           return this.paginatedResult;
@@ -33,10 +33,12 @@ export class ServiceService {
       )
     }
   
-    getServiceById(serviceId:number){
+    getServiceById(serviceId:any){
       return this.http.get<Service>(this.baseurl + 'services/'+serviceId )
     }
-  
+    getPageBySlug(pageSlug:string){
+      return this.http.get<Service>(this.baseurl + 'services/slug/'+pageSlug )
+    }
     createImageForPage(pageId:number){
       
     }
@@ -44,7 +46,10 @@ export class ServiceService {
     createService(service:any){
       return this.http.post<Service>(this.baseurl+ 'services/',service);
     }
-    updateService(serviceId:number,service:any){
+    updateService(serviceId:any,service:any){
       return this.http.put(this.baseurl+ 'services/'+serviceId,service);
+    }
+    deleteService(serviceId:any){
+      return this.http.delete<Service>(this.baseurl+'services/'+serviceId);
     }
 }

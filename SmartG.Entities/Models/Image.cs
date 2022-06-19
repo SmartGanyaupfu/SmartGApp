@@ -10,12 +10,6 @@ namespace SmartG.Entities.Models
         public string? ImageUrl { get; set; }
         public string? PublicId { get; set; }
 
-        public Guid? PostId { get; set; }
-        public Post? Post { get; set; }
-        public Guid? PortfolioId { get; set; }
-        public Portfolio? Portfolio { get; set; }
-        public int? PageId { get; set; }
-        public Page?  Page { get; set; }
 
     }
 }

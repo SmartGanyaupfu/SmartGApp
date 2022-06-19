@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
+using SmartG.API.Extensions;
 using SmartG.Contracts;
 using SmartG.Entities.Models;
 using SmartG.Shared.DTOs;
@@ -50,6 +51,16 @@ namespace SmartG.API.Controllers.API.V1
             return Ok(portfolioToReturn);
         }
 
+        [HttpGet("slug/{slug}")]
+        public async Task<IActionResult> GetPortfolioBySlug(string slug)
+        {
+            var portfolio = await _repository.Portfolio.GetPortfolioBySlugNameAsync(slug, trackChanges: false);
+            if (portfolio is null)
+                return NotFound();
+            var pageToReturn = _mapper.Map<PortfolioDto>(portfolio);
+            return Ok(pageToReturn);
+        }
+
 
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -61,7 +72,7 @@ namespace SmartG.API.Controllers.API.V1
             {
                 portfolio.Slug += "-copy";
             }
-
+            portfolio.AuthorId = User.GetUserId();
 
             var portfolioEntity = _mapper.Map<Portfolio>(portfolio);
             _repository.Portfolio.CreatePortfolioAsync(portfolioEntity);
@@ -88,11 +99,9 @@ namespace SmartG.API.Controllers.API.V1
                 DateUpdated = DateTime.Now,
                 Deleted = false,
                 PublicId = result.PublicId,
-                ImageUrl = result.SecureUrl.AbsoluteUri,
-                PortfolioId = portfolioId
+                ImageUrl = result.SecureUrl.AbsoluteUri
             };
-            var imageEntity = _mapper.Map<Image>(image);
-            _repository.Image.CreateImageAsync(imageEntity);
+            portfolioEntity.Image = image;
 
             await _repository.SaveAsync();
 
@@ -109,7 +118,6 @@ namespace SmartG.API.Controllers.API.V1
             if (portfolioEntity is null)
                 return NotFound($"page with id {portfolioId} does not exist");
 
-            contentBlock.PortfolioId = portfolioId;
             var blockEntity = _mapper.Map<ContentBlock>(contentBlock);
             _repository.ContentBlock.CreateContentBlockAsync(blockEntity);
 
@@ -126,6 +134,13 @@ namespace SmartG.API.Controllers.API.V1
         public async Task<IActionResult> UpdatePortfolioById(Guid portfolioId, [FromBody] PortfolioForUpdateDto portfolio)
 
         {
+            var portfolioFromDb = await _repository.Portfolio.GetPortfolioBySlugNameAsync(portfolio.Slug, trackChanges: false);
+
+            if (portfolioFromDb != null && portfolioFromDb.PortfolioId !=portfolioId)
+            {
+                portfolio.Slug += "-copy";
+            }
+            portfolio.AuthorId = User.GetUserId();
 
             var portfolioEntity = await _repository.Portfolio.GetPortfolioByIdAsync(portfolioId, trackChanges: true);
             if (portfolioEntity is null)

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
+using SmartG.API.Extensions;
 using SmartG.Contracts;
 using SmartG.Entities.Models;
 using SmartG.Shared.DTOs;
@@ -50,6 +51,15 @@ namespace SmartG.API.Controllers.API.V1
             var postToReturn = _mapper.Map<PostDto>(post);
             return Ok(postToReturn);
         }
+        [HttpGet("slug/{postSlug}")]
+        public async Task<IActionResult> GetPostBySlug(string postSlug)
+        {
+            var post = await _repository.Post.GetPostBySlugNameAsync(postSlug, trackChanges: false);
+            if (post is null)
+                return NotFound();
+            var pageToReturn = _mapper.Map<PostDto>(post);
+            return Ok(pageToReturn);
+        }
 
         [HttpPost("{postId}/add-image")]
         public async Task<IActionResult> AddImage(IFormFile file, Guid postId)
@@ -68,11 +78,9 @@ namespace SmartG.API.Controllers.API.V1
                 DateUpdated = DateTime.Now,
                 Deleted = false,
                 PublicId = result.PublicId,
-                ImageUrl = result.SecureUrl.AbsoluteUri,
-                PostId = postId
+                ImageUrl = result.SecureUrl.AbsoluteUri
             };
-            var imageEntity = _mapper.Map<Image>(image);
-            _repository.Image.CreateImageAsync(imageEntity);
+            postEntity.Image = image;
 
             await _repository.SaveAsync();
 
@@ -94,6 +102,7 @@ namespace SmartG.API.Controllers.API.V1
                 post.Slug += "-copy";
             }
 
+            post.AuthorId = User.GetUserId();
 
             var postEntity = _mapper.Map<Post>(post);
             _repository.Post.CreatePostAsync(postEntity);
@@ -110,7 +119,6 @@ namespace SmartG.API.Controllers.API.V1
             if (postEntity is null)
                 return NotFound($"Post with id {postId} does not exist.");
 
-            contentBlock.PostId = postId;
             var blockEntity = _mapper.Map<ContentBlock>(contentBlock);
             _repository.ContentBlock.CreateContentBlockAsync(blockEntity);
 
@@ -127,6 +135,13 @@ namespace SmartG.API.Controllers.API.V1
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdatePostById(Guid postId, [FromBody] PostForUpdateDto post)
         {
+            var postFromDb = await _repository.Post.GetPostBySlugNameAsync(post.Slug, trackChanges: false);
+
+            if (postFromDb != null && postFromDb.PostId !=postId)
+            {
+                post.Slug += "-copy";
+            }
+            post.AuthorId = User.GetUserId();
 
             var postEntity = await _repository.Post.GetPostByIdAsync(postId, trackChanges: true);
             if (postEntity is null)

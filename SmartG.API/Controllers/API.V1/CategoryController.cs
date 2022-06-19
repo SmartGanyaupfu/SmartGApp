@@ -80,6 +80,12 @@ namespace SmartG.API.Controllers.API.V1
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateCategoryById(int categoryId, [FromBody] CategoryForUpdateDto category)
         {
+            var categoryFromDb = await _repository.Category.GetCategoryBySlugAsync(category.Slug, trackChanges: false);
+
+            if (categoryFromDb != null && categoryFromDb.CategoryId !=categoryId)
+            {
+                category.Slug += "-copy";
+            }
 
             var categoryEntity = await _repository.Category.GetCategoryByIdAsync(categoryId, trackChanges: true);
             if (categoryEntity is null)

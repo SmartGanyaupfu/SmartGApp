@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
+using SmartG.API.Extensions;
 using SmartG.Contracts;
 using SmartG.Entities.Models;
+using SmartG.Service.Contracts;
 using SmartG.Shared.DTOs;
 using SmartG.Shared.RequestFeatures;
 
@@ -22,12 +26,14 @@ namespace SmartG.API.Controllers.API.V1
         private readonly IRepositoryManager _repository;
         private readonly IMapper _mapper;
         private readonly IImageUploader _imageService;
+        private readonly IServiceManager _service;
 
-        public ImageController(IRepositoryManager repository, IMapper mapper, IImageUploader imageService)
+        public ImageController(IRepositoryManager repository, IMapper mapper, IImageUploader imageService, IServiceManager service)
         {
             _repository = repository;
             _mapper = mapper;
             _imageService = imageService;
+            _service = service;
         }
         // GET: api/values
         [HttpGet]
@@ -50,12 +56,13 @@ namespace SmartG.API.Controllers.API.V1
             var imageToReturn = _mapper.Map<ImageDto>(imageFromDb);
             return Ok(imageToReturn);
         }
-
+        [Authorize]
         [HttpPost("add-image")]
         public async Task<IActionResult> AddImage(IFormFile file)
         {
             
-
+            var userId = User.GetUserId();
+            
             var result = await _imageService.AddImageAsync(file);
             if (result.Error != null)
                 return BadRequest(result.Error.Message);
@@ -67,8 +74,10 @@ namespace SmartG.API.Controllers.API.V1
                 Deleted = false,
                 PublicId = result.PublicId,
                 ImageUrl = result.SecureUrl.AbsoluteUri,
+                AuthorId=userId
                 
             };
+           
             var imageEntity = _mapper.Map<Image>(image);
             _repository.Image.CreateImageAsync(imageEntity);
 

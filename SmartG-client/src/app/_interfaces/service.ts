@@ -12,6 +12,7 @@ export interface Service {
     metaKeyWords: string;
     slug: string;
     image: Image;
+    imageId: number;
     contentBlocks: ContentBlock[];
     dateCreated: Date;
     dateUpdated: Date;

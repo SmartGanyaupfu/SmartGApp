@@ -11,6 +11,7 @@ export interface Page {
         metaDescription: string;
         metaKeyWords: string;
         slug: string;
+        imageId: number;
         image: Image;
         contentBlocks: ContentBlock[];
         dateCreated: Date;

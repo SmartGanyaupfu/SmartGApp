@@ -1,0 +1,56 @@
+mat-toolbar {
+    color: #009cb3; /*buelish color*/
+    background: white;
+    height: fit-content;
+    border-bottom: 2px solid #14344c;
+    border-top: 2px #2dadc6;
+    
+}
+mat-sidenav{
+    margin: 16px;
+    width: 200px;
+    border-right: none;
+    background: #2dadc6; 
+    color: rgb(245, 238, 238);
+    border-radius: 10px;
+  
+    padding-left: 10px;
+}
+
+
+.content {
+   
+    margin: 16px;
+    margin-left: 32px;
+    
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    
+    border-radius: 10px;
+}
+mat-sidenav-container {
+    height: calc(100vh - 65px);
+}
+
+mat-icon {
+    margin-right: 8px;
+    color:#14344c!important;
+}
+
+a {
+    color: azure;
+}
+a:hover {
+    color:#14344c;
+}
+a:active{
+    color:#14344c;
+}
+.nav-link{
+    padding: 0;
+}
+h5 {
+    font-weight: 500;
+}

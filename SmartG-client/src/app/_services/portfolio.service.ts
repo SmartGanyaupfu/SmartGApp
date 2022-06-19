@@ -25,8 +25,8 @@ export class PortfolioService {
       return this.http.get<Portfolio[]>(this.baseurl +'portfolios',{observe:'response',params}).pipe(
         map(response=>{
           this.paginatedResult.result=response.body;
-          if(response.headers.get('pagination')!==null){
-            this.paginatedResult.pagination=JSON.parse(response.headers.get('pagination'));
+          if(response.headers.get('x-pagination')!==null){
+            this.paginatedResult.pagination=JSON.parse(response.headers.get('x-pagination'));
           }
           
           return this.paginatedResult;
@@ -34,8 +34,11 @@ export class PortfolioService {
       )
     }
   
-    getPortfolioById(portfolioId:number){
+    getPortfolioById(portfolioId:any){
       return this.http.get<Portfolio>(this.baseurl + 'portfolios/'+portfolioId )
+    }
+    getPageBySlug(pageSlug:string){
+      return this.http.get<Portfolio>(this.baseurl + 'portfolios/slug/'+pageSlug )
     }
   
    
@@ -43,7 +46,10 @@ export class PortfolioService {
     createPortfolio(portfolio:any){
       return this.http.post<Portfolio>(this.baseurl+ 'portfolios/',portfolio);
     }
-    updatePortfolio(portfolioId:number,portfolio:any){
-      return this.http.put(this.baseurl+ 'pages/'+portfolioId,portfolio);
+    updatePortfolio(portfolioId:any,portfolio:any){
+      return this.http.put(this.baseurl+ 'portfolios/'+portfolioId,portfolio);
+    }
+    deletePortfolio(portfolioId:any){
+      return this.http.delete<Portfolio>(this.baseurl+'portfolios/'+portfolioId);
     }
 }

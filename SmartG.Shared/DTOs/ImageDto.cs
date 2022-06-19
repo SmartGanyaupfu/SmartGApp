@@ -8,9 +8,6 @@ namespace SmartG.Shared.DTOs
         public string? ImageUrl { get; set; }
         public string ?PublicId { get; set; }
 
-        public Guid? PostId { get; set; }
-        public Guid? PortfolioId { get; set; }
-        public int? PageId { get; set; }
     }
 }
 

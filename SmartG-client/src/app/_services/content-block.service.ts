@@ -24,8 +24,8 @@ export class ContentBlockService {
       return this.http.get<ContentBlock[]>(this.baseurl +'content-blocks',{observe:'response',params}).pipe(
         map(response=>{
           this.paginatedResult.result=response.body;
-          if(response.headers.get('pagination')!==null){
-            this.paginatedResult.pagination=JSON.parse(response.headers.get('pagination'));
+          if(response.headers.get('x-pagination')!==null){
+            this.paginatedResult.pagination=JSON.parse(response.headers.get('x-pagination'));
           }
           
           return this.paginatedResult;
@@ -40,7 +40,10 @@ export class ContentBlockService {
     createBlock(block:any){
       return this.http.post<ContentBlock>(this.baseurl+ 'content-blocks/',block);
     }
-    updateBlock(blockId:number,block:any){
+    updateBlock(blockId:any,block:any){
       return this.http.put(this.baseurl+ 'content-blocks/'+blockId,block);
+    }
+    deleteBlock(blockId:any){
+      return this.http.delete<ContentBlock>(this.baseurl+'content-blocks/'+blockId);
     }
 }

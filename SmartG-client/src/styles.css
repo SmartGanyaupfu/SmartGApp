@@ -6,6 +6,9 @@ body, .card{
 a {
     color:#fff;
 }
+th, td {
+    color:#fff;
+}
 a:hover {
     color:#2dadc6;
 }
@@ -33,7 +36,9 @@ padding-right: 15px;
 color:#2dadc6;
 font-size: medium;
 }
-
+.modal-body {
+    background: #2dadc6;
+}
 .social-icons ul li {
   list-style: none;
     }
@@ -48,6 +53,25 @@ font-size: medium;
     background: #fff !important;
     color: #000;
 }
+.card-media-hover {
+    color: #000;
+}
+.card-media-hover .fa-solid {
+    padding-right: 19px;
+
+}
+.fa-solid{
+    padding-right: 19px;  
+}
+
+.card-media-hover:hover{
+   background-color:#2dadc6;
+   color: #fff;
+}
+.card-media-hover .fa-trash-can:hover, .fa-trash-can:hover {
+    color: #911;
+}
+
 
 .footer {
     background: #14344c;
@@ -59,4 +83,21 @@ font-size: medium;
     margin-left: 10px !important;
     background-color: #911;
     color: white;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #2dadc6;
+    border-color: #14344c;
+}
+.page-link {
+   
+    color: #2dadc6;
+}
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+    background-color: #2dadc6;
+}
+.featureImage i:hover {
+color: #2dadc6;
 }

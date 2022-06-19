@@ -25,7 +25,7 @@ namespace SmartG.Repository
 
         public async Task<PagedList<Image>> GetAllImagesAsync(RequestParameters requestParameters, bool trackChanges)
         {
-            var images = await FindAll(trackChanges).ToListAsync();
+            var images = await FindAll(trackChanges).OrderByDescending(p => p.DateCreated).ToListAsync();
 
             return PagedList<Image>.ToPagedList(images, requestParameters.PageNumber, requestParameters.PageSize);
         }

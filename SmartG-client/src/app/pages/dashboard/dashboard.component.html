@@ -1,0 +1,102 @@
+<div class="container-fluid mt-5">
+  
+              
+
+
+      <div class="row" >
+    
+        <mat-toolbar class="mat-elevation-z4">
+            
+            <a  class="ml-auto" mat-icon-a *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+                <mat-icon *ngIf="!sidenav.opened">
+                    <span style="color: black;" >menu</span>
+                </mat-icon>
+                <mat-icon *ngIf="sidenav.opened">
+                    close
+                </mat-icon>
+            </a>
+          </mat-toolbar>
+    
+    </div>
+    
+    <!--End header-->
+    
+    <mat-sidenav-container>
+      
+        <mat-sidenav #sidenav="matSidenav" >
+            <div class="mo-life-nav" >
+                <h4 class="name mt-2">Howdy:Smart</h4>
+                <button >Logout</button>
+               
+                <mat-divider></mat-divider>
+                <a  class="menu-a" routerLink="/admin/dashboard" routerLinkActive="active">
+                    <i class="fa fa-tachometer d-inline mr-2 i-lable" aria-hidden="true"></i> <span>Dashboard</span>
+                </a>
+                <mat-divider></mat-divider>
+                <h3 class="name">MANAGE POSTS</h3>
+                <a  class="nav-link mt-1"  routerLink="/admin/posts" routerLinkActive="active">
+                    <i class="fa fa-folder-open-o mr-2" aria-hidden="true"></i><span>All Posts</span>
+                </a>
+                <a  class="nav-link mt-1" routerLink="/admin/post/new-post" routerLinkActive="active">
+                    <i class="fa fa-plus mr-2" aria-hidden="true"></i><span>New Post</span>
+                </a>
+               
+                <mat-divider></mat-divider>
+                <h3 class="name">MANAGE PAGES</h3>
+                <a  class="nav-link mt-1"  routerLink="/admin/pages" routerLinkActive="active">
+                    <i class="fa fa-folder-open-o mr-2" aria-hidden="true"></i><span>All Pagges</span>
+                </a>
+                <a  class="nav-link mt-1" routerLink="/admin/post/new-page" routerLinkActive="active">
+                    <i class="fa fa-plus mr-2" aria-hidden="true"></i><span>New Page</span>
+                </a>
+                <mat-divider></mat-divider>
+                <h3 class="name">SERVICES</h3>
+                <a  class="nav-link mt-1"  routerLink="/admin/services" routerLinkActive="active">
+                    <i class="fa fa-folder-open-o mr-2" aria-hidden="true"></i><span>All Services</span>
+                </a>
+                <a  class="nav-link mt-1" routerLink="/admin/service/new-service" routerLinkActive="active">
+                    <i class="fa fa-plus mr-2" aria-hidden="true"></i><span>New Service</span>
+                </a>
+                <mat-divider></mat-divider>
+                <h3 class="name">PORTFOLIO</h3>
+                <a  class="nav-link mt-1"  routerLink="/admin/portfolios" routerLinkActive="active">
+                    <i class="fa fa-folder-open-o mr-2" aria-hidden="true"></i><span>All Portfolios</span>
+                </a>
+                <a  class="nav-link mt-1" routerLink="/admin/portfolio/new-portfolio" routerLinkActive="active">
+                    <i class="fa fa-plus mr-2" aria-hidden="true"></i><span>New Portfolio</span>
+                </a>
+                <mat-divider></mat-divider>
+                <h3 class="name">CATEGORIES</h3>
+                <a  class="nav-link mt-1"  routerLink="/admin/categories" routerLinkActive="active">
+                    <i class="fa fa-folder-open-o mr-2" aria-hidden="true"></i><span>All Categories</span>
+                </a>
+                <a  class="nav-link mt-1" routerLink="/admin/category/new-category" routerLinkActive="active">
+                    <i class="fa fa-plus mr-2" aria-hidden="true"></i><span>New Category</span>
+                </a>
+                <mat-divider></mat-divider>
+                <h3 class="name">Content Blocks</h3>
+                <a  class="nav-link mt-1"  routerLink="/admin/content-blocks" routerLinkActive="active">
+                    <i class="fa fa-folder-open-o mr-2" aria-hidden="true"></i><span>All Blocks</span>
+                </a>
+                <a  class="nav-link mt-1" routerLink="/admin/block/new-block" routerLinkActive="active">
+                    <i class="fa fa-plus mr-2" aria-hidden="true"></i><span>New Block</span>
+                </a>
+                <mat-divider></mat-divider>
+                <h3 class="name">ADMIN</h3>
+                <a  class="nav-link mt-1" routerLink="/admin/all-users" routerLinkActive="active">
+                    <i class="fa fa-gear mr-2" aria-hidden="true"></i><span>Manage Users</span>
+                </a>
+                
+                </div>
+        </mat-sidenav>
+    
+      <mat-sidenav-content>
+          <div class="content mat-elevation-z4">
+        
+          </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+        
+      
+     
+</div>

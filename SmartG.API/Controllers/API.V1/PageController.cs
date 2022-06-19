@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
+using SmartG.API.Extensions;
 using SmartG.CloudinaryService;
 using SmartG.Contracts;
 using SmartG.Entities.Models;
@@ -51,10 +52,19 @@ namespace SmartG.API.Controllers.API.V1
             var pageToReturn = _mapper.Map<PageDto>(page);
             return Ok(pageToReturn);
         }
+        [HttpGet("slug/{pageSlug}")]
+        public async Task<IActionResult> GetPageBySlug(string pageSlug)
+        {
+            var page  = await _repository.Page.GetPageBySlugNameAsync(pageSlug, trackChanges: false);
+            if (page is null)
+                return NotFound();
+            var pageToReturn = _mapper.Map<PageDto>(page);
+            return Ok(pageToReturn);
+        }
 
-       
 
-        
+
+
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreatePage([FromBody] PageForCreationDto page)
@@ -65,7 +75,7 @@ namespace SmartG.API.Controllers.API.V1
             {
                 page.Slug += "copy";
             }
-
+            page.AuthorId = User.GetUserId();
 
             var pageEntity = _mapper.Map<Page>(page);
             _repository.Page.CreatePageAsync(pageEntity);
@@ -92,12 +102,10 @@ namespace SmartG.API.Controllers.API.V1
                 DateUpdated = DateTime.Now,
                 Deleted = false,
                 PublicId = result.PublicId,
-                ImageUrl = result.SecureUrl.AbsoluteUri,
-                PageId = pageId
+                ImageUrl = result.SecureUrl.AbsoluteUri
             };
-            var imageEntity = _mapper.Map<Image>(image);
-            _repository.Image.CreateImageAsync(imageEntity);
-          
+            pageEntity.Image = image;
+
             await _repository.SaveAsync();
 
             var pageToReturn = _mapper.Map<PageDto>(pageEntity);
@@ -113,7 +121,7 @@ namespace SmartG.API.Controllers.API.V1
             if (pageEntity is null)
                 return NotFound($"page with id {pageId} does not exist");
 
-            contentBlock.PageId = pageId;
+            
             var blockEntity = _mapper.Map<ContentBlock>(contentBlock);
             _repository.ContentBlock.CreateContentBlockAsync(blockEntity);
 
@@ -130,6 +138,13 @@ namespace SmartG.API.Controllers.API.V1
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdatePageById(int pageId, [FromBody] PageForUpdateDto page)
         {
+            var pageFromDb = await _repository.Page.GetPageBySlugNameAsync(page.Slug, trackChanges: false);
+
+            if (pageFromDb != null && pageFromDb.PageId !=pageId)
+            {
+                page.Slug += "-copy";
+            }
+            page.AuthorId = User.GetUserId();
 
             var pageEntity = await _repository.Page.GetPageByIdAsync(pageId, trackChanges: true);
             if (pageEntity is null)

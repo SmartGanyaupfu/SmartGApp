@@ -224,7 +224,8 @@ namespace SmartG.Service
 
                 new Claim(JwtRegisteredClaimNames.GivenName,_user.UserName),
                 new Claim(JwtRegisteredClaimNames.Email,_user.Email),
-                new Claim(ClaimTypes.Name,_user.UserName)
+                new Claim(ClaimTypes.Name,_user.UserName),
+                new Claim(ClaimTypes.NameIdentifier, _user.Id)
             };
             var roles = await _userManager.GetRolesAsync(_user);
 

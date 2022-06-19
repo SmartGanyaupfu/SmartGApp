@@ -12,6 +12,7 @@ export interface Portfolio {
     metaKeyWords: string;
     slug: string;
     category: Category;
+    imageId: number;
     image: Image;
     contentBlocks: ContentBlock[];
     dateCreated: Date;

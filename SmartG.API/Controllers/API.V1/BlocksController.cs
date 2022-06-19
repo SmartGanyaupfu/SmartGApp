@@ -32,7 +32,7 @@ namespace SmartG.API.Controllers.API.V1
         public async Task<IActionResult> CreateBlock([FromBody] ContentBlockForCreationDto contentBlock)
         {
 
-
+            
             var blockEntity = _mapper.Map<ContentBlock>(contentBlock);
             _repository.ContentBlock.CreateContentBlockAsync(blockEntity);
             await _repository.SaveAsync();

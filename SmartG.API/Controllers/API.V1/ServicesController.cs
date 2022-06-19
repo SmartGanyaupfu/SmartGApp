@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
+using SmartG.API.Extensions;
 using SmartG.Contracts;
 using SmartG.Entities.Models;
 using SmartG.Shared.DTOs;
@@ -49,7 +50,15 @@ namespace SmartG.API.Controllers.API.V1
             var serviceToReturn = _mapper.Map<ServiceDto>(service);
             return Ok(serviceToReturn);
         }
-
+        [HttpGet("slug/{slug}")]
+        public async Task<IActionResult> GetServiceBySlug(string slug)
+        {
+            var service = await _repository.Service.GetServiceBySlugAsync(slug, trackChanges: false);
+            if (service is null)
+                return NotFound();
+            var pageToReturn = _mapper.Map<ServiceDto>(service);
+            return Ok(pageToReturn);
+        }
 
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -62,6 +71,7 @@ namespace SmartG.API.Controllers.API.V1
                 service.Slug += "-copy";
             }
 
+            service.AuthorId= User.GetUserId();
 
             var serviceEntity = _mapper.Map<OfferedService>(service);
             _repository.Service.CreateServiceAsync(serviceEntity);
@@ -110,7 +120,7 @@ namespace SmartG.API.Controllers.API.V1
             if (serviceEntity is null)
                 return NotFound($"Service with id {offeredServiceId} does not exist");
 
-            contentBlock.OfferedServiceId = offeredServiceId;
+            
             var blockEntity = _mapper.Map<ContentBlock>(contentBlock);
             _repository.ContentBlock.CreateContentBlockAsync(blockEntity);
 
@@ -127,6 +137,13 @@ namespace SmartG.API.Controllers.API.V1
         public async Task<IActionResult> UpdateServiceById(Guid offeredServiceId, [FromBody] ServiceForUpdateDto service)
 
         {
+            var serviceFromDb = await _repository.Service.GetServiceBySlugAsync(service.Slug, trackChanges: false);
+
+            if (serviceFromDb != null && serviceFromDb.OfferedServiceId !=offeredServiceId)
+            {
+               service.Slug += "-copy";
+            }
+            service.AuthorId = User.GetUserId();
 
             var serviceEntity = await _repository.Service.GetServiceByIdAsync(offeredServiceId, trackChanges: true);
             if (serviceEntity is null)

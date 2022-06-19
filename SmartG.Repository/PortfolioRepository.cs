@@ -24,7 +24,7 @@ namespace SmartG.Repository
 
         public async Task<PagedList<Portfolio>> GetAllPortfoliosAsync(RequestParameters requestParameters, bool trackChanges)
         {
-            var portfolioList = await FindAll(trackChanges).Include(i => i.Image).Include(c=>c.Category).ToListAsync();
+            var portfolioList = await FindAll(trackChanges).Include(i => i.Image).Include(c=>c.Category).OrderByDescending(p => p.DateCreated).ToListAsync();
             return PagedList<Portfolio>.ToPagedList(portfolioList, requestParameters.PageNumber, requestParameters.PageSize);
         }
 
@@ -36,7 +36,7 @@ namespace SmartG.Repository
         public async Task<Portfolio> GetPortfolioBySlugNameAsync(string slug, bool trackChanges)
         {
 
-            return await FindByCondition(p => p.Slug.Equals(slug), trackChanges).SingleOrDefaultAsync();
+            return await FindByCondition(p => p.Slug.Equals(slug), trackChanges).Include(i => i.Image).Include(b => b.ContentBlocks).SingleOrDefaultAsync();
         }
 
         public void UpdatePortfolioAsync(Portfolio portfolio)

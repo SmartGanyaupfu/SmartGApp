@@ -6,6 +6,14 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor, JwtModule, JWT_OPTIONS } from "@auth0/angular-jwt";
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ModalModule } from 'ngx-bootstrap/modal'; //volar-software
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +40,32 @@ import { EmailConfirmationComponent } from './auth/email-confirmation/email-conf
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SlugifyPipe } from './_pipes/slugify.pipe';
+import { MediaComponent } from './shared/media/media.component';
+import { UploadMediaComponent } from './shared/media/upload-media/upload-media.component';
+import { PageListComponent } from './pages/page-list/page-list.component';
+import { PageDetailComponent } from './pages/page-list/page-detail/page-detail.component';
+import { EditPageComponent } from './pages/page-list/edit-page/edit-page.component';
+import { NewPostComponent } from './pages/post-list/new-post/new-post.component';
+import { PortfolioListComponent } from './pages/portfolio-list/portfolio-list.component';
+import { NewPortfolioComponent } from './pages/portfolio-list/new-portfolio/new-portfolio.component';
+import { EditPortfolioComponent } from './pages/portfolio-list/edit-portfolio/edit-portfolio.component';
+import { PortfolioDetailComponent } from './pages/portfolio-list/portfolio-detail/portfolio-detail.component';
+import { ServiceListComponent } from './pages/service-list/service-list.component';
+import { NewServiceComponent } from './pages/service-list/new-service/new-service.component';
+import { EditServiceComponent } from './pages/service-list/edit-service/edit-service.component';
+import { ServiceDetailComponent } from './pages/service-list/service-detail/service-detail.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { ContentBlockListComponent } from './pages/content-block-list/content-block-list.component';
+import { NewContentBlockComponent } from './pages/content-block-list/new-content-block/new-content-block.component';
+import { EditContentBlockComponent } from './pages/content-block-list/edit-content-block/edit-content-block.component';
+import { CategoryListComponent } from './pages/category-list/category-list.component';
+import { NewCategoryComponent } from './pages/category-list/new-category/new-category.component';
+import { EditCategoryComponent } from './pages/category-list/edit-category/edit-category.component';
+import { CategoryDetailComponent } from './pages/category-list/category-detail/category-detail.component';
+import { CommentListComponent } from './pages/comment-list/comment-list.component';
+import { NewCommentComponent } from './pages/comment-list/new-comment/new-comment.component';
+import { EditCommentComponent } from './pages/comment-list/edit-comment/edit-comment.component';
 
 export function tokenGetter() {
   return localStorage.getItem("mytoken");
@@ -55,7 +89,32 @@ export function tokenGetter() {
     ResetPasswordComponent,
     ForgotPasswordComponent,
     EmailConfirmationComponent,
-    SlugifyPipe
+    SlugifyPipe,
+    MediaComponent,
+    UploadMediaComponent,
+    PageListComponent,
+    PageDetailComponent,
+    EditPageComponent,
+    NewPostComponent,
+    PortfolioListComponent,
+    NewPortfolioComponent,
+    EditPortfolioComponent,
+    PortfolioDetailComponent,
+    ServiceListComponent,
+    NewServiceComponent,
+    EditServiceComponent,
+    ServiceDetailComponent,
+    DashboardComponent,
+    ContentBlockListComponent,
+    NewContentBlockComponent,
+    EditContentBlockComponent,
+    CategoryListComponent,
+    NewCategoryComponent,
+    EditCategoryComponent,
+    CategoryDetailComponent,
+    CommentListComponent,
+    NewCommentComponent,
+    EditCommentComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +126,13 @@ export function tokenGetter() {
     MatIconModule,
     MatButtonModule,
     NgxSpinnerModule,
+    ModalModule.forRoot(),
     EditorModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatProgressBarModule,
+    MatToolbarModule,
+    MatDividerModule,
     TabsModule.forRoot(),
     JwtModule.forRoot({
       config: {
@@ -79,6 +144,9 @@ export function tokenGetter() {
     ToastrModule.forRoot({
       positionClass:'toast-bottom-right'
     }),
+  
+    PaginationModule.forRoot(),
+    
  
   ],
   providers: [SlugifyPipe,

@@ -25,7 +25,7 @@ namespace SmartG.Repository
 
         public async Task<PagedList<Page>> GetAllPagesAsync(PageParameters pageParameters, bool trackChanges)
         {
-            var pages = await FindAll(trackChanges).Include(i => i.Image).Include(b => b.ContentBlocks).ToListAsync();
+            var pages = await FindAll(trackChanges).Include(i => i.Image).Include(b => b.ContentBlocks).OrderByDescending(p=>p.DateCreated).ToListAsync();
             var pr = PagedList<Page>.ToPagedList(pages, pageParameters.PageNumber, pageParameters.PageSize);
             return pr;
         }
@@ -42,7 +42,7 @@ namespace SmartG.Repository
 
         public async Task<Page> GetPageBySlugNameAsync(string slug, bool trackChanges)
         {
-            return await FindByCondition(p => p.Slug.Equals(slug), trackChanges).SingleOrDefaultAsync();
+            return await FindByCondition(p => p.Slug.Equals(slug), trackChanges).Include(i => i.Image).Include(b => b.ContentBlocks).SingleOrDefaultAsync();
         }
     }
 }

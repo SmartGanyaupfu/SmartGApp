@@ -43,4 +43,7 @@ export class CommentService {
     updateComment(postType:string,commentId:number,comment:any){
       return this.http.put(this.baseurl+postType+'/comments/'+commentId,comment);
     }
+    deleteComment(commentId:any){
+      return this.http.delete<Comment>(this.baseurl+'comments/'+commentId);
+    }
 }

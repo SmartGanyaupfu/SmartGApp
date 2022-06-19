@@ -1,4 +1,5 @@
 import { ContentBlock } from "./content-block";
+import { ContentBlockForCreationDto } from "./content-block-for-creation-dto";
 import { Image } from "./image";
 
 export interface PageForCreationDto {
@@ -9,7 +10,7 @@ export interface PageForCreationDto {
     metaDescription: string;
     metaKeyWords: string;
     slug: string;
-    image: Image;
-    contentBlocks: ContentBlock[];
-    authorId?: any;
+    imageId: number;
+    contentBlocks: ContentBlockForCreationDto[];
+    
 }

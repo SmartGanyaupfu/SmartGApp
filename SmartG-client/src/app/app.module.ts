@@ -66,6 +66,9 @@ import { CategoryDetailComponent } from './pages/category-list/category-detail/c
 import { CommentListComponent } from './pages/comment-list/comment-list.component';
 import { NewCommentComponent } from './pages/comment-list/new-comment/new-comment.component';
 import { EditCommentComponent } from './pages/comment-list/edit-comment/edit-comment.component';
+import { PostListComponent } from './pages/post-list/post-list.component';
+import { PostDetailComponent } from './pages/post-list/post-detail/post-detail.component';
+import { EditPostComponent } from './pages/post-list/edit-post/edit-post.component';
 
 export function tokenGetter() {
   return localStorage.getItem("mytoken");
@@ -95,6 +98,9 @@ export function tokenGetter() {
     PageListComponent,
     PageDetailComponent,
     EditPageComponent,
+    PostListComponent,
+    PostDetailComponent,
+    EditPostComponent,
     NewPostComponent,
     PortfolioListComponent,
     NewPortfolioComponent,

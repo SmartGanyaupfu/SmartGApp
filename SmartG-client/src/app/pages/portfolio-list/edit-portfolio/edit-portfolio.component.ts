@@ -104,14 +104,14 @@ export class EditPortfolioComponent implements OnInit {
         })
      }else{
       this.updatePageForm.patchValue({
-        slug:this.slug===''?this.slugify(this.title):this.slugify(this.slug)
+        slug:this.slug===''?this.slugify(this.page.slug):this.slugify(this.slug)
       })
      }
    
      console.log(this.updatePageForm.value)
       this.portService.updatePortfolio(this.page.portfolioId,this.updatePageForm.value).subscribe(res=>{
         this.toaster.success('Portfolio updated.','Success')
-       this.router.navigateByUrl('/portfolios/'+this.slugify(this.slug))
+        this.router.navigateByUrl('/admin/portfolios')
      })
     }
     getCategories(){

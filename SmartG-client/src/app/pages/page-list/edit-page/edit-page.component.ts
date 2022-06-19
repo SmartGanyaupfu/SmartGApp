@@ -111,14 +111,15 @@ export class EditPageComponent implements OnInit {
         })
      }else{
       this.updatePageForm.patchValue({
-        slug:this.slug===''?this.slugify(this.title):this.slugify(this.slug)
+        slug:this.slug===''?this.slugify(this.page.slug):this.slugify(this.slug)
+        
       })
      }
    
      console.log(this.updatePageForm.value)
       this.pageService.updatePage(this.page.pageId,this.updatePageForm.value).subscribe(res=>{
-        this.toaster.success('Page updated.','Success')
-       this.router.navigateByUrl('/pages/'+this.slugify(this.slug))
+        this.toaster.success('Page updated.','Success');
+        this.router.navigateByUrl('/admin/posts');
      })
     }
     addFeatureImage(image:Image){

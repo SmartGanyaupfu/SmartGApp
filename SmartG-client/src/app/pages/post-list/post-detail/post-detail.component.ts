@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Post } from 'src/app/_interfaces/post';
+import { PostService } from 'src/app/_services/post.service';
 
 @Component({
   selector: 'app-post-detail',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostDetailComponent implements OnInit {
 
-  constructor() { }
+  page:Post;
+  pageSlug:string;
+
+  constructor(private postService:PostService,private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
-  }
 
+  
+    this.pageSlug= this.router.url.split('?')[0].split('/').pop();
+    //console.log(this.route.parent.url)
+    if(history.state.postData){
+      localStorage.setItem('postData',JSON.stringify(history.state.postData));
+      this.page=JSON.parse(localStorage.getItem('postData'));
+    }else {
+      localStorage.removeItem('postData');
+      this.postService.getPostBySlug(this.pageSlug).subscribe(res=>{
+        this.page=res;
+      })
+    }
+
+  }
 }

@@ -36,7 +36,7 @@ export class PostService {
     getPostById(postId:any){
       return this.http.get<Post>(this.baseurl + 'posts/'+postId)
     }
-    getPageBySlug(pageSlug:string){
+    getPostBySlug(pageSlug:string){
       return this.http.get<Post>(this.baseurl + 'posts/slug/'+pageSlug )
     }
   

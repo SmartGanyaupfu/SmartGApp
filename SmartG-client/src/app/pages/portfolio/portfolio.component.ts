@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Portfolio } from 'src/app/_interfaces/portfolio';
+import { Widget } from 'src/app/_interfaces/widget';
 import { PortfolioService } from 'src/app/_services/portfolio.service';
+import { WidgetService } from 'src/app/_services/widget.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -13,17 +15,28 @@ export class PortfolioComponent implements OnInit {
   mobilePortfolio:Portfolio[];
   pageNumber:number=1;
   pageSize:number=6;
-  constructor(private portfolioService:PortfolioService) { }
+  widget:Widget;
+  constructor(private portfolioService:PortfolioService, private widgetService:WidgetService) { }
 
   ngOnInit(): void {
-    this.GetPortfolios();
+    this.getWidgets();
   }
   GetPortfolios(){
-    this.portfolioService.getPortfolios(this.pageNumber,this.pageSize).subscribe(response=>{
+    this.portfolioService.getPortfolios(this.pageNumber,this.widget.postPageSize).subscribe(response=>{
       this.portfolios=response.result;
       this.webPortfolio=this.portfolios.filter(x=>x.category.categoryId===1);
       this.mobilePortfolio=this.portfolios.filter(x=>x.category.categoryId===2);
       console.log(this.mobilePortfolio);
+    })
+  }
+
+  getWidgets(){
+    this.widgetService.getWidget().subscribe(res=>{
+      this.widget= res;
+     
+      this.GetPortfolios();
+    
+     
     })
   }
 }

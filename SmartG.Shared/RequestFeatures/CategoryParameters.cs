@@ -6,6 +6,7 @@ namespace SmartG.Shared.RequestFeatures
         public CategoryParameters()
         {
         }
+        public string? SearchTerm { get; set; }
     }
 }
 

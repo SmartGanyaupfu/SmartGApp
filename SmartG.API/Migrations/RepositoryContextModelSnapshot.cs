@@ -51,22 +51,22 @@ namespace SmartG.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "21416a93-154b-4b59-b86f-1b4107cb378c",
-                            ConcurrencyStamp = "83694943-f8f9-4242-87a5-41a3be200408",
+                            Id = "d72e351b-bf7f-4f00-93c7-f0eef74f4e3f",
+                            ConcurrencyStamp = "35599a91-3b8b-40ea-be49-b87079bfc420",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "cd70d506-2842-49d6-85c3-6518444e752d",
-                            ConcurrencyStamp = "a7b79f52-9654-4d8c-93af-33e5f4c9688d",
+                            Id = "6cf2b35d-6dbc-4910-9f7e-9f2626b7a9f0",
+                            ConcurrencyStamp = "0e5b20f1-d6cc-436b-9a8e-39f79f74c34d",
                             Name = "Subscriber",
                             NormalizedName = "SUBSCRIBER"
                         },
                         new
                         {
-                            Id = "09379cc0-9faa-49fd-a584-3fa2de3ffd33",
-                            ConcurrencyStamp = "0ac0b081-2290-46c4-9e9a-2ab2a857ce50",
+                            Id = "a4e65e4b-f68f-4f92-83e1-046157bab3aa",
+                            ConcurrencyStamp = "593ba097-7053-46b6-a6f8-75cebefd4f58",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         });
@@ -295,7 +295,13 @@ namespace SmartG.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImageId"), 1L, 1);
 
+                    b.Property<string>("AltText")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("AuthorId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Caption")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DateCreated")
@@ -308,6 +314,9 @@ namespace SmartG.API.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PublicId")
@@ -416,8 +425,8 @@ namespace SmartG.API.Migrations
                         {
                             PageId = 1,
                             Content = "The innner part of the solar cookker is made of mirroes",
-                            DateCreated = new DateTime(2022, 6, 18, 13, 59, 59, 388, DateTimeKind.Local).AddTicks(9620),
-                            DateUpdated = new DateTime(2022, 6, 18, 13, 59, 59, 388, DateTimeKind.Local).AddTicks(9620),
+                            DateCreated = new DateTime(2022, 6, 22, 17, 13, 10, 108, DateTimeKind.Local).AddTicks(2260),
+                            DateUpdated = new DateTime(2022, 6, 22, 17, 13, 10, 108, DateTimeKind.Local).AddTicks(2260),
                             Deleted = false,
                             MetaDescription = "The inner was the inner",
                             MetaKeyWords = "test,tets,done",
@@ -428,8 +437,8 @@ namespace SmartG.API.Migrations
                         {
                             PageId = 2,
                             Content = "The innner part of the solar cookker is made of mirroes",
-                            DateCreated = new DateTime(2022, 6, 18, 13, 59, 59, 388, DateTimeKind.Local).AddTicks(9630),
-                            DateUpdated = new DateTime(2022, 6, 18, 13, 59, 59, 388, DateTimeKind.Local).AddTicks(9630),
+                            DateCreated = new DateTime(2022, 6, 22, 17, 13, 10, 108, DateTimeKind.Local).AddTicks(2260),
+                            DateUpdated = new DateTime(2022, 6, 22, 17, 13, 10, 108, DateTimeKind.Local).AddTicks(2260),
                             Deleted = false,
                             MetaDescription = "The inner was the inner",
                             MetaKeyWords = "test,tets,done",
@@ -440,8 +449,8 @@ namespace SmartG.API.Migrations
                         {
                             PageId = 3,
                             Content = "The innner part of the solar cookker is made of mirroes",
-                            DateCreated = new DateTime(2022, 6, 18, 13, 59, 59, 388, DateTimeKind.Local).AddTicks(9630),
-                            DateUpdated = new DateTime(2022, 6, 18, 13, 59, 59, 388, DateTimeKind.Local).AddTicks(9630),
+                            DateCreated = new DateTime(2022, 6, 22, 17, 13, 10, 108, DateTimeKind.Local).AddTicks(2270),
+                            DateUpdated = new DateTime(2022, 6, 22, 17, 13, 10, 108, DateTimeKind.Local).AddTicks(2270),
                             Deleted = false,
                             MetaDescription = "The inner was the inner",
                             MetaKeyWords = "test,tets,done",
@@ -627,6 +636,100 @@ namespace SmartG.API.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("SmartG.Entities.Models.Widget", b =>
+                {
+                    b.Property<int>("WidgetId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WidgetId"), 1L, 1);
+
+                    b.Property<string>("ContactPage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CvUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EducationBlock")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FbUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FooterCopyrightBlock")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FooterOne")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FooterThree")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FooterTwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GitHubUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HireMeBlock")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HomePage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HomePageSize")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InstagramUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InterestBlock")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Intro")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LearnToCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkedInUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LogoUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostPageSize")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfilePicture")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SkillBlock")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwitterUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WorkBlock")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YouTubeUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("WidgetId");
+
+                    b.ToTable("Widgets");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -119,7 +119,7 @@ export class EditPageComponent implements OnInit {
      console.log(this.updatePageForm.value)
       this.pageService.updatePage(this.page.pageId,this.updatePageForm.value).subscribe(res=>{
         this.toaster.success('Page updated.','Success');
-        this.router.navigateByUrl('/admin/posts');
+        this.router.navigateByUrl('/admin/pages');
      })
     }
     addFeatureImage(image:Image){

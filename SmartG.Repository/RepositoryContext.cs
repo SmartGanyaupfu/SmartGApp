@@ -68,6 +68,7 @@ namespace SmartG.Repository
         public DbSet<Comment>? Comments { get; set; }
         public DbSet<ContentBlock>? ContentBlocks { get; set; }
         public DbSet<OfferedService> Services { get; set; }
+        public DbSet<Widget> Widgets { get; set; }
     }
 }
 

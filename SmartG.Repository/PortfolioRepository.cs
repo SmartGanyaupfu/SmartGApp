@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SmartG.Contracts;
 using SmartG.Entities.Models;
+using SmartG.Repository.Extensions;
 using SmartG.Shared.RequestFeatures;
 
 namespace SmartG.Repository
@@ -24,7 +25,7 @@ namespace SmartG.Repository
 
         public async Task<PagedList<Portfolio>> GetAllPortfoliosAsync(RequestParameters requestParameters, bool trackChanges)
         {
-            var portfolioList = await FindAll(trackChanges).Include(i => i.Image).Include(c=>c.Category).OrderByDescending(p => p.DateCreated).ToListAsync();
+            var portfolioList = await FindAll(trackChanges).Search(requestParameters.SearchTerm).Include(i => i.Image).Include(c=>c.Category).OrderByDescending(p => p.DateCreated).ToListAsync();
             return PagedList<Portfolio>.ToPagedList(portfolioList, requestParameters.PageNumber, requestParameters.PageSize);
         }
 

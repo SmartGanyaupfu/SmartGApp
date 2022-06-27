@@ -1,0 +1,160 @@
+<div class="container mt-5 mb-5">
+
+    <div >
+        <h3>update Widget</h3>
+        <hr/>
+        
+            <div class="alert alert-info" *ngIf="createPageForm.dirty" >
+                <p><strong>Information: </strong> Changes detected, please note any unsaved changes will be lost!</p>
+            </div>
+            <form [formGroup]="createPageForm" autocomplete="off" (ngSubmit)="updateWidget()" >
+              <div class="row">
+                                  
+                <div class="col-3">
+                    <h4> Skilled Block Id: </h4>
+                    <input type="text" class="form-control"  formControlName="skillBlock" >
+                   
+                </div>
+                <div class="col-4">
+                    <h4> Education Block Id: </h4>
+                    <input type="text" class="form-control"  formControlName="educationBlock" >
+                   
+                </div>
+                <div class="col-4">
+                    <h4> Work Block Id: </h4>
+                    <input type="text" class="form-control"  formControlName="workBlock" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Interests Block Id: </h4>
+                    <input type="text" class="form-control"  formControlName="interestBlock" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Resume Url: </h4>
+                    <input type="text" class="form-control"  formControlName="cvUrl" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Logo Url: </h4>
+                    <input type="text" class="form-control"  formControlName="logoUrl" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Hire Me Block Id: </h4>
+                    <input type="text" class="form-control"  formControlName="hireMeBlock" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Facebook Url: </h4>
+                    <input type="text" class="form-control"  formControlName="fbUrl" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Instagram Url: </h4>
+                    <input type="text" class="form-control"  formControlName="instagramUrl" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> LinkendIn Ur: </h4>
+                    <input type="text" class="form-control"  formControlName="linkedInUrl" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Git Hub Url: </h4>
+                    <input type="text" class="form-control"  formControlName="gitHubUrl" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Twitter Url: </h4>
+                    <input type="text" class="form-control"  formControlName="twitterUrl" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Contact Page Email: </h4>
+                    <input type="text" class="form-control"  formControlName="email" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> YouTube Url: </h4>
+                    <input type="text" class="form-control"  formControlName="youTubeUrl" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Phone Number: </h4>
+                    <input type="text" class="form-control"  formControlName="phone" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Footer One: </h4>
+                    <input type="text" class="form-control"  formControlName="footerOne" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Footer Two: </h4>
+                    <input type="text" class="form-control"  formControlName="footerTwo" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Footer Three: </h4>
+                    <input type="text" class="form-control"  formControlName="footerThree" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Profile Picture Ul: </h4>
+                    <input type="text" class="form-control"  formControlName="profilePicture" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Home Page Id: </h4>
+                    <input type="text" class="form-control"  formControlName="homePage" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Learn To Code Page Id: </h4>
+                    <input type="text" class="form-control"  formControlName="learnToCode" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Contact Page Id: </h4>
+                    <input type="text" class="form-control"  formControlName="contactPage" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Personal Intro: </h4>
+                    <input type="text" class="form-control"  formControlName="intro" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Profession Title: </h4>
+                    <input type="text" class="form-control"  formControlName="title" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Footer Copyright Text Block: </h4>
+                    <input type="text" class="form-control"  formControlName="footerCopyrightBlock" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Home Page Size: </h4>
+                    <input type="text" class="form-control"  formControlName="homePageSize" >
+                   
+                </div>
+                <div class="col-4 mt-1">
+                    <h4> Post Page Size: </h4>
+                    <input type="text" class="form-control"  formControlName="postPageSize" >
+                   
+                </div>
+             
+              
+            </div>
+                <button type="submit" class="mt-5" mat-raised-button>Update</button>
+              </form>
+       
+         
+        
+        {{createPageForm.value|json}}
+      </div>
+      
+ </div>
+

@@ -4,23 +4,19 @@
         <div class="row mt-4">
           <div class="col-md-4 " *ngFor="let service of myServices">
             <div class="card" style="max-width: 100%;">
-                <img src="{{service?.image?.imageUrl}}" class="card-img-top" alt="service name">
-                <div class="card-body">
-                  <h5 class="card-title">{{service?.title}}</h5>
-                  <p class="card-text">{{service?.excerpt}}</p>
-                  <a href="#" mat-raised-button class="mt">Read More</a>
-                </div>
-               
-         
+              <img src="{{service?.image?.imageUrl}}" class="card-img-top" alt="service name" routerLink="/services/{{service.slug}}">
+              <div class="card-body">
+                <h5 class="card-title" routerLink="/services/{{service.slug}}">{{service?.title}}</h5>
+                <p class="card-text">{{service?.excerpt}}</p>
+                <a  mat-raised-button class="mt" routerLink="/services/{{service.slug}}">Read More</a>
               </div>
+             
+       
+            </div>
           </div>
           
         </div>
     </div> <!--close my services-->
 
-     
-   <div class="text-center mt-4">
-    <h3> Let’s work together</h3>
-    <h1><a  href="#">dev@smartganyaupfu.com</a></h1>
-</div>
+  
 </div>

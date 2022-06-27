@@ -1,1 +1,41 @@
-<p>edit-category works!</p>
+<div class="container mt-5 mb-5">
+   
+    <div *ngIf="page" >
+        
+        <hr/>
+        <tabset #staticTabs>
+         
+          <tab heading="Add Category" >
+            <div class="alert alert-info" *ngIf="updatePageForm.dirty" >
+                <p><strong>Information: </strong> Changes detected, please note any unsaved changes will be lost!</p>
+            </div>
+            <form [formGroup]="updatePageForm" autocomplete="off" (ngSubmit)="updateCategory()" >
+              <div class="row">
+                                  
+                <div class="col-4">
+                    <h4> Name: </h4>
+                    <input type="text" class="form-control"  name="name" [(ngModel)]="page.name" [ngModelOptions]="{standalone: true}" >
+                   
+                </div>
+                <div class="col-4" *ngIf="page.name" >
+                    <h4 *ngIf="show;else else_block "> Slug: {{page.slug| slugify}}</h4> <ng-template #else_block><h4> Slug: {{slug | slugify}}</h4></ng-template> 
+                    <span *ngIf="show"><a class="customLink" (click)="editSlug()">edit slug</a></span>
+                    <div *ngIf="slugEdit">
+                        <input type="text" class="form-control" autocomplete="off"  name="slug" [(ngModel)]="slug" [ngModelOptions]="{standalone: true}"  >
+                    </div>
+                   
+                </div>
+             
+              
+            </div>
+                <button type="submit" class="mt-5" mat-raised-button>Publish</button>
+              </form>
+       
+             
+          </tab>
+      
+        </tabset>
+      </div>
+
+     
+ </div>

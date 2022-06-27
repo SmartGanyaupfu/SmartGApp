@@ -69,6 +69,10 @@ import { EditCommentComponent } from './pages/comment-list/edit-comment/edit-com
 import { PostListComponent } from './pages/post-list/post-list.component';
 import { PostDetailComponent } from './pages/post-list/post-detail/post-detail.component';
 import { EditPostComponent } from './pages/post-list/edit-post/edit-post.component';
+import { TrustedUrlPipe } from './_pipes/trusted-url.pipe';
+import { WidgetListComponent } from './pages/widget-list/widget-list.component';
+import { NewWidgetComponent } from './pages/widget-list/new-widget/new-widget.component';
+import { EditWidgetComponent } from './pages/widget-list/edit-widget/edit-widget.component';
 
 export function tokenGetter() {
   return localStorage.getItem("mytoken");
@@ -121,6 +125,10 @@ export function tokenGetter() {
     CommentListComponent,
     NewCommentComponent,
     EditCommentComponent,
+    TrustedUrlPipe,
+    WidgetListComponent,
+    NewWidgetComponent,
+    EditWidgetComponent,
   ],
   imports: [
     BrowserModule,
@@ -155,7 +163,7 @@ export function tokenGetter() {
     
  
   ],
-  providers: [SlugifyPipe,
+  providers: [SlugifyPipe,TrustedUrlPipe,
     {provide: HTTP_INTERCEPTORS,useClass:JwtInterceptor,multi:true},{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi: true},
     {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}],

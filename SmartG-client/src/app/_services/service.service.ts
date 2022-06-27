@@ -36,7 +36,7 @@ export class ServiceService {
     getServiceById(serviceId:any){
       return this.http.get<Service>(this.baseurl + 'services/'+serviceId )
     }
-    getPageBySlug(pageSlug:string){
+    getServiceBySlug(pageSlug:string){
       return this.http.get<Service>(this.baseurl + 'services/slug/'+pageSlug )
     }
     createImageForPage(pageId:number){

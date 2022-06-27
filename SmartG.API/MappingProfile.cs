@@ -44,6 +44,10 @@ namespace SmartG.API
             CreateMap<OfferedService, ServiceDto>();
             CreateMap<ServiceForCreationDto, OfferedService>();
             CreateMap<ServiceForUpdateDto, OfferedService>();
+
+            CreateMap<Widget, WidgetDto>();
+            CreateMap<WidgetForCreationDto, Widget>();
+            CreateMap<WidgetForUpdateDto, Widget>();
         }
     }
 }

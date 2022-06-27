@@ -4,6 +4,8 @@ using SmartG.Contracts;
 using SmartG.Entities.Models;
 using SmartG.Shared.RequestFeatures;
 
+using SmartG.Repository.Extensions;
+
 namespace SmartG.Repository
 {
     public class PostRepository : GenericRepositoryBase<Post>, IPostRepository
@@ -24,7 +26,7 @@ namespace SmartG.Repository
 
         public async Task<PagedList<Post>> GetAllPostsAsync(PostParameters postParameters, bool trackChanges)
         {
-            var posts = await FindAll(trackChanges).Include(i => i.Image).Include(c => c.Category).OrderByDescending(p => p.DateCreated).ToListAsync();
+            var posts = await FindAll(trackChanges).Search(postParameters.SearchTerm).Include(i => i.Image).Include(c => c.Category).OrderByDescending(p => p.DateCreated).ToListAsync();
             return PagedList<Post>.ToPagedList(posts, postParameters.PageNumber, postParameters.PageSize);
         }
 

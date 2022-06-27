@@ -1,0 +1,30 @@
+export interface Widget {
+    widgetId: number;
+    skillBlock: string;
+    educationBlock: string;
+    workBlock: string;
+    interestBlock: string;
+    logoUrl: string;
+    cvUrl: string;
+    hireMeBlock: string;
+    fbUrl: string;
+    gitHubUrl: string;
+    twitterUrl: string;
+    youTubeUrl: string;
+    instagramUrl: string;
+    linkedInUrl: string;
+    email: string;
+    phone: string;
+    footerOne: string;
+    footerTwo: string;
+    footerThree: string;
+    profilePicture?: any;
+        homePage?: any;
+        learnToCode?: any;
+        contactPage?: any;
+        intro?: any;
+        title?: any;
+        footerCopyrightBlock?: any;
+        homePageSize?: any;
+        postPageSize?: any;
+}

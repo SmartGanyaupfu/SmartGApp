@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using SmartG.Contracts;
 using SmartG.Entities.Models;
 using SmartG.Shared.RequestFeatures;
+//using SmartG.Repository.Extensions;
+
 
 namespace SmartG.Repository
 {
@@ -25,6 +27,7 @@ namespace SmartG.Repository
         public async Task<PagedList<Category>> GetAllCategoriesAsync(CategoryParameters categoryParameters, bool trackChanges)
         {
             var categories = await FindAll(trackChanges).ToListAsync();
+           // var result =await  LikeSearch<Category>( "Name", "Smart");
             return  PagedList<Category>.ToPagedList(categories, categoryParameters.PageNumber, categoryParameters.PageSize);
         }
 

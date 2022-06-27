@@ -38,6 +38,9 @@ import { NewServiceComponent } from './pages/service-list/new-service/new-servic
 import { ServiceDetailComponent } from './pages/service-list/service-detail/service-detail.component';
 import { ServiceListComponent } from './pages/service-list/service-list.component';
 import { ServiceComponent } from './pages/service/service.component';
+import { EditWidgetComponent } from './pages/widget-list/edit-widget/edit-widget.component';
+import { NewWidgetComponent } from './pages/widget-list/new-widget/new-widget.component';
+import { WidgetListComponent } from './pages/widget-list/widget-list.component';
 import { MediaComponent } from './shared/media/media.component';
 import { UploadMediaComponent } from './shared/media/upload-media/upload-media.component';
 
@@ -87,6 +90,11 @@ const routes: Routes = [
   { path: 'admin/comment/new-comment', component: NewCommentComponent},
   { path: 'admin/comment/edit/:commentId', component: EditCommentComponent},
   { path: 'admin/comments', component: CommentListComponent},
+
+  { path: 'admin/widget/new-widget', component: NewWidgetComponent},
+  { path: 'admin/widget/edit/:widgetId', component: EditWidgetComponent},
+  { path: 'admin/widgets', component: WidgetListComponent},
+
 
 
   { path:  'auth/login',component:LoginComponent},

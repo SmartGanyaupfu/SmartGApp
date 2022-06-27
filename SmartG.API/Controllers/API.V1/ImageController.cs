@@ -74,7 +74,8 @@ namespace SmartG.API.Controllers.API.V1
                 Deleted = false,
                 PublicId = result.PublicId,
                 ImageUrl = result.SecureUrl.AbsoluteUri,
-                AuthorId=userId
+                AuthorId=userId,
+                Name=file.FileName
                 
             };
            

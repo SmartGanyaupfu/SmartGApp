@@ -1,0 +1,40 @@
+<div class="container mt-5">
+    <h1>Widgets</h1>
+    <button mat-raised-button class="primary-bg-btn"routerLink="/admin/widget/new-widget">And New</button>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Skill Block</th>
+            <th scope="col">Education Block</th>
+            <th scope="col">Work Block</th>
+            <th scope="col">Interests Block</th>
+            <th scope="col">Logo Url</th>
+            <th scope="col">CV Url</th>
+            <th scope="col">HireMe Block</th>
+            <th scope="col">Facebook</th>
+            <th scope="col">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr >
+            <td>{{page?.skillBlock}}</td>
+            <td>{{page?.educationBlock}}</td>
+            <td>{{page?.workBlock}}</td>
+            <td>{{page?.interestBlock}}</td>
+            <td>{{page?.logoUrl}}</td>
+            <td>{{page?.cvUrl}}</td>
+            <td>{{page?.hireMeBlock}}</td>
+            <td>{{page?.fbUrl}}</td>
+            
+            <td><i type="button" class="fa-solid fa-trash-can" (click)="deleteWidget(page)"></i>
+                
+                    <i type="button" class="fa-solid fa-pen " routerLink="/admin/widget/edit/{{page?.widgetId}}" [state]="{widgetData:page}"></i>
+                
+            </td>
+          </tr>
+          <tr>
+           
+        </tbody>
+      </table>
+    
+</div>

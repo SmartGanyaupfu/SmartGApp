@@ -24,8 +24,8 @@ export class CategoryService {
       return this.http.get<Category[]>(this.baseurl +'categories',{observe:'response',params}).pipe(
         map(response=>{
           this.paginatedResult.result=response.body;
-          if(response.headers.get('pagination')!==null){
-            this.paginatedResult.pagination=JSON.parse(response.headers.get('pagination'));
+          if(response.headers.get('x-pagination')!==null){
+            this.paginatedResult.pagination=JSON.parse(response.headers.get('x-pagination'));
           }
           
           return this.paginatedResult;

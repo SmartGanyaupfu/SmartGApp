@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SmartG.Contracts;
 using SmartG.Entities.Models;
+using SmartG.Repository.Extensions;
 using SmartG.Shared.RequestFeatures;
 
 namespace SmartG.Repository
@@ -25,7 +26,7 @@ namespace SmartG.Repository
 
         public async Task<PagedList<Page>> GetAllPagesAsync(PageParameters pageParameters, bool trackChanges)
         {
-            var pages = await FindAll(trackChanges).Include(i => i.Image).Include(b => b.ContentBlocks).OrderByDescending(p=>p.DateCreated).ToListAsync();
+            var pages = await FindAll(trackChanges).Search(pageParameters.SearchTerm).Include(i => i.Image).Include(b => b.ContentBlocks).OrderByDescending(p=>p.DateCreated).ToListAsync();
             var pr = PagedList<Page>.ToPagedList(pages, pageParameters.PageNumber, pageParameters.PageSize);
             return pr;
         }

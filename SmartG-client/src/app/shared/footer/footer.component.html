@@ -2,17 +2,16 @@
     <div class="container">
        <div class=" row">
            <div class="col-md-6">
-            <p class="copy ">© 2022 Smart Ganyanupfu, All Rights Reserved.</p>
+            <p class="float-start footer-copy">© {{year}} </p><p class="copy  "[innerHTML]="footerCopyText?.content"> </p>
            </div>
 
            <div class="col-md-6">
             <div class="social-icons ">
-                <i class="fa-brands fa-linkedin"></i>
-                <i class="fa-brands fa-github"></i>
-                <i class="fa-brands fa-twitter"></i>
-                <i class="fa-brands fa-facebook-f"></i>
-                <i class="fa-brands fa-youtube"></i>
-              </div>
+                <a href="{{widget?.linkedInUrl}}"><i class="fa-brands fa-linkedin"></i></a> 
+                 <a href="{{widget?.gitHubUrl}}"><i class="fa-brands fa-github"></i></a>
+                 <a href="{{widget?.twitterUrl}}"><i class="fa-brands fa-twitter"></i></a>
+                 <a href="{{widget?.youTubeUrl}}"><i class="fa-brands fa-youtube"></i></a>
+               </div>
            </div>
        </div>
   

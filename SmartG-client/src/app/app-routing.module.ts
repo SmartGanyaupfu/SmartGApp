@@ -33,6 +33,8 @@ import { NewPostComponent } from './pages/post-list/new-post/new-post.component'
 import { PostDetailComponent } from './pages/post-list/post-detail/post-detail.component';
 import { PostListComponent } from './pages/post-list/post-list.component';
 import { PostComponent } from './pages/post/post.component';
+import { SearchResultsComponent } from './pages/search-results/search-results.component';
+import { SearchComponent } from './pages/search/search.component';
 import { EditServiceComponent } from './pages/service-list/edit-service/edit-service.component';
 import { NewServiceComponent } from './pages/service-list/new-service/new-service.component';
 import { ServiceDetailComponent } from './pages/service-list/service-detail/service-detail.component';
@@ -102,6 +104,8 @@ const routes: Routes = [
   { path: 'auth/forgot-password', component: ForgotPasswordComponent },
   { path: 'auth/reset-password', component: ResetPasswordComponent },
   { path: 'auth/register', component: RegisterComponent },
+  { path: 'search', component: SearchResultsComponent},
+  { path: 'search-form', component: SearchComponent},
 
   {
     path: '**',

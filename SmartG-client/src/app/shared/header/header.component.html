@@ -25,11 +25,129 @@
             <a  class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="text" placeholder="Search">
-          <button class="btn btn-primary" type="button">Search</button>
+        <form #createSearchForm="ngForm" class="d-flex" >
+        
+          <input class="form-control me-2" type="text" name = "searchTerm" placeholder="Search" [(ngModel)]="searchTerm">
+          <button class="primary-bg-btn " type="button" (click)="getSearchResults(templateSearch)" mat-raised-button>Search</button>
         </form>
       </div>
     </div>
   </nav>
+
+  <ng-template #templateSearch>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Search Results</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+    
+      <div class="container mt-5" *ngIf="gotResults;else else_block">
+        <h1>Search Results</h1>
+      
+      
+        <div>
+            <tabset>
+              <tab heading="Blog" id="tab1" *ngIf="searchResult.posts.length>0">
+      
+                <div class="services-home text-center mt-5"> <!--port all-->
+        
+                    <div class="row mt-4">
+                      <div class="col-md-4 " *ngFor="let post of searchResult.posts">
+                        <div class="card" style="max-width: 100%;">
+                            <img src="{{post?.image?.imageUrl}}" class="card-img-top" alt="{{post.title + ' image'}}">
+                            <div class="card-body">
+                              <h5 class="card-title">{{post?.title}}</h5>
+                              <p class="card-text">{{post?.excerpt}}</p>
+                              <a href="#" mat-raised-button class="mt" routerLink="/blog/{{post.slug}}">Read More</a>
+                            </div>
+                          </div>
+                      </div>
+                       
+                    </div>
+            
+                    
+                </div> <!--port all-->
+              </tab><!--First Tab-->
+    
+              <tab heading="Portfolio" id="tab2" *ngIf="searchResult.portfolios.length>0">
+      
+                <div class="services-home text-center mt-5"> <!--port all-->
+        
+                    <div class="row mt-4">
+                      <div class="col-md-4 " *ngFor="let portfolio of searchResult.portfolios">
+                        <div class="card" style="max-width: 100%;">
+                          <img src="{{portfolio?.image?.imageUrl}}" class="card-img-top" alt="{{portfolio.title + ' image'}}" routerLink="/portfolios/{{portfolio.slug}}">
+                          <div class="card-body">
+                            <h5 class="card-title" routerLink="/portfolios/{{portfolio.slug}}">{{portfolio?.title}}</h5>
+                            <p class="card-text">{{portfolio?.excerpt}}</p>
+                            <a href="#" mat-raised-button class="mt" routerLink="/portfolios/{{portfolio.slug}}">Read More</a>
+                          </div>
+                        </div>
+                      </div>
+                       
+                    </div>
+            
+                    
+                </div> <!--port all-->
+              </tab><!--Second Tab-->
+              <tab heading="Pages" id="tab3" *ngIf="searchResult.pages.length>0">
+      
+                <div class="services-home text-center mt-5"> <!--port all-->
+        
+                    <div class="row mt-4">
+                      <div class="col-md-4 " *ngFor="let page of searchResult.pages">
+                        <div class="card" style="max-width: 100%;">
+                          <img src="{{page?.image?.imageUrl}}" class="card-img-top" alt="{{page.title + ' image'}}" routerLink="/pages/{{page.slug}}">
+                          <div class="card-body">
+                            <h5 class="card-title" routerLink="/pages/{{page.slug}}">{{page?.title}}</h5>
+                            <p class="card-text">{{page?.excerpt}}</p>
+                            <a href="#" mat-raised-button class="mt" routerLink="/pages/{{page.slug}}">Read More</a>
+                          </div>
+                        </div>
+                      </div>
+                       
+                    </div>
+            
+                    
+                </div> <!--port all-->
+              </tab><!--Third Tab-->
+    
+              <tab heading="Service" id="tab4" *ngIf="searchResult.services.length>0">
+      
+                <div class="services-home text-center mt-5"> <!--My services-->
+                    <h2>My Services</h2>
+                    <div class="row mt-4">
+                      <div class="col-md-4 " *ngFor="let service of searchResult.services">
+                        <div class="card" style="max-width: 100%;">
+                          <img src="{{service?.image?.imageUrl}}" class="card-img-top" alt="service name" routerLink="/services/{{service.slug}}">
+                          <div class="card-body">
+                            <h5 class="card-title" routerLink="/services/{{service.slug}}">{{service?.title}}</h5>
+                            <p class="card-text">{{service?.excerpt}}</p>
+                            <a  mat-raised-button class="mt" routerLink="/services/{{service.slug}}">Read More</a>
+                          </div>
+                         
+                   
+                        </div>
+                      </div>
+                      
+                    </div>
+                </div> <!--close my services-->
+              </tab><!--4th Tab-->
+      
+               
+              
+                
+            </tabset>
+          </div>
+      
+       
+      </div>
+      <ng-template #else_block>
+        <p class="alert alert-secondary mt-3"> Oops! Nothing found. </p>
+      </ng-template>
+      
+    </div>
+  </ng-template>
 

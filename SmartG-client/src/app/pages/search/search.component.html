@@ -1,0 +1,7 @@
+<div class="">
+    <form #createSearchForm="ngForm" class="d-flex" >
+        <label>{{searchTerm}}</label>
+        <input class="form-control me-2" type="text" name = "searchTerm" placeholder="Search" [(ngModel)]="searchTerm">
+        <button class="btn btn-primary" type="button" (click)="getSearchResults()">Search</button>
+      </form>
+</div>

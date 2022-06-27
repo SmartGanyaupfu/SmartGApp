@@ -11,13 +11,13 @@
               <div class="row mt-4">
                 <div class="col-md-4 " *ngFor="let post of posts">
                   <div class="card" style="max-width: 100%;">
-                      <img src="{{post?.image?.imageUrl}}" class="card-img-top" alt="{{post.title + ' image'}}">
-                      <div class="card-body">
-                        <h5 class="card-title">{{post?.title}}</h5>
-                        <p class="card-text">{{post?.excerpt}}</p>
-                        <a href="#" mat-raised-button class="mt">Read More</a>
-                      </div>
+                    <img src="{{post?.image?.imageUrl}}" class="card-img-top" alt="{{post.title + ' image'}}">
+                    <div class="card-body">
+                      <h5 class="card-title">{{post?.title}}</h5>
+                      <p class="card-text">{{post?.excerpt}}</p>
+                      <a href="#" mat-raised-button class="mt" routerLink="/blog/{{post.slug}}">Read More</a>
                     </div>
+                  </div>
                 </div>
                  
               </div>

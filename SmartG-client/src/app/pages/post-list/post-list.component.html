@@ -21,11 +21,11 @@
             <td>{{getAuthor(page?.authorId)}}</td>
             <td>{{page?.dateCreated | date:'d/M/yy'}}</td>
             <td>{{page?.dateUpdated | date:'d/M/yy'}}</td>
-            <td><i type="button" class="fa-solid fa-trash-can" (click)="deletePost(page)"></i>
+            <td class="clickable"><i  class="fa-solid fa-trash-can" (click)="deletePost(page)"></i>
                 
-                    <i type="button" class="fa-solid fa-pen " routerLink="/admin/post/edit/{{page.postId}}" [state]="{postData:page}"></i>
+                    <i  class="fa-solid fa-pen " routerLink="/admin/post/edit/{{page.postId}}" [state]="{postData:page}"></i>
                 
-                <i type="button" class="fa-solid fa-eye" routerLink="/blog/{{page.slug}}" [state]="{postData:page}"></i>
+                <i  class="fa-solid fa-eye" routerLink="/blog/{{page.slug}}" [state]="{postData:page}"></i>
             </td>
           </tr>
           <tr>

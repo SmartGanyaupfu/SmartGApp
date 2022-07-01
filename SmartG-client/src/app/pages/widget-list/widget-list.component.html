@@ -26,9 +26,9 @@
             <td>{{page?.hireMeBlock}}</td>
             <td>{{page?.fbUrl}}</td>
             
-            <td><i type="button" class="fa-solid fa-trash-can" (click)="deleteWidget(page)"></i>
+            <td class="clickable"><i  class="fa-solid fa-trash-can" (click)="deleteWidget(page)"></i>
                 
-                    <i type="button" class="fa-solid fa-pen " routerLink="/admin/widget/edit/{{page?.widgetId}}" [state]="{widgetData:page}"></i>
+                    <i  class="fa-solid fa-pen " routerLink="/admin/widget/edit/{{page?.widgetId}}" [state]="{widgetData:page}"></i>
                 
             </td>
           </tr>

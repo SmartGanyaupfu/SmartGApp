@@ -19,11 +19,11 @@
             <td>{{getAuthor(page?.authorId)}}</td>
             <td>{{page?.dateCreated | date:'d/M/yy'}}</td>
             <td>{{page?.dateUpdated | date:'d/M/yy'}}</td>
-            <td><i type="button" class="fa-solid fa-trash-can" (click)="deletePage(page)"></i>
+            <td class="clickable"><i class="fa-solid fa-trash-can" (click)="deletePage(page)"></i>
                 
-                    <i type="button" class="fa-solid fa-pen " routerLink="/admin/page/edit/{{page.pageId}}" [state]="{pageData:page}"></i>
+                    <i class="fa-solid fa-pen " routerLink="/admin/page/edit/{{page.pageId}}" [state]="{pageData:page}"></i>
                 
-                <i type="button" class="fa-solid fa-eye" routerLink="/pages/{{page.slug}}" [state]="{pageData:page}"></i>
+                <i class="fa-solid fa-eye" routerLink="/pages/{{page.slug}}" [state]="{pageData:page}"></i>
             </td>
           </tr>
           <tr>

@@ -1,0 +1,121 @@
+<div class=" container mt-5">
+
+   
+      <div class="heading"> 
+        <h2>Users</h2>
+      </div>
+      <button class="btn primary-bg-btn mt-3" routerLink='/admin/new-user' mat-raised-button> Add User</button>
+     
+        <div class="table-responsive">
+          <table class="table  table-sm">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Fullname</th>
+                <th>Phone</th>
+                <th>emailAddress</th>
+                <th>Role</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let user of users"  >
+                  <td>{{user.userName}}</td>
+                  <td>{{user.firstName +" "+ user.lastName}} </td>
+                  <td>{{user.phoneNumber}}</td>
+                  <td>{{user.email}}</td>
+                 <td>
+                    <section *ngFor="let role of user.roles">
+                   
+                        <td  *ngIf="role.isActive; else elseBlock">{{role.name }}</td>
+                        <ng-template #elseBlock></ng-template>
+                     
+                      
+                    </section>
+                 </td>
+                  
+                  <td><button type="button" class="btn primary-bg-btn"  (click)='openModalUpdateUser(updateUserTemplate,user)' mat-raised-button>Edit</button> 
+                    <button type="button" class="btn btn-danger" (click)="deleteUser(user)" mat-raised-button>Delete</button></td>
+                
+                  
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="d-flex justify-content-center" *ngIf="pagination">
+          <pagination [boundaryLinks]="true"
+           [totalItems]="pagination.TotalCount"
+           [itemsPerPage]="pagination.PageSize"
+           [(ngModel)]="pagination.CurrentPage"
+           (pageChanged)="pageChanged($event)"
+              previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+          </pagination>
+      </div>
+
+            <ng-template #updateUserTemplate bsModal  class="modal fade" tabindex="-1"
+        role="dialog" aria-labelledby="dialog-sizes-name1" > 
+        <div class="modal-header">
+        <h4 class="modal-title pull-left">Update User</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        
+        <form [formGroup]="userUpdateForm" (ngSubmit)="updateUser()" autocomplete="off">
+        <div class="row">
+                        
+            <div class="col-4">
+                <h4> First Name: </h4>
+                <input type="text" class="form-control" name="firstName" formControlName="firstName" >
+            </div>
+            <div class="col-4">
+                <h4> Last Name: </h4>
+                <input type="text" class="form-control" name="lastName" formControlName="lastName" >
+            </div>
+            <div class="col-4">
+                <h4> Username: </h4>
+                <input type="text" class="form-control" autocomplete="off" name="userName" formControlName="userName">
+            </div>
+        
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h4> Email: </h4>
+                <input type="email" class="form-control" name="email" formControlName="email" >
+            </div>
+            <div class="col-6">
+                <h4> Phone: </h4>
+                <input type="text" class="form-control" name="phoneNumber" formControlName="phoneNumber">
+            </div>
+        
+        
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h4> Password: </h4>
+                <input type="password" class="form-control" name="password" autocomplete="off" formControlName="password" >
+            </div>
+            <div class="col-6">
+                <h4> Confirm Password: </h4>
+                <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword" >
+            </div>
+        
+        </div>
+
+        <br>
+
+        <div class="custom-control custom-checkbox">
+            <div class="custom-control custom-checkbox" *ngFor="let data of roles; let j = index" formArrayName="roles">
+                <div [formGroupName]="j">
+                <input type="checkbox" formControlName="isActive" > {{data?.name}}<br>
+                </div>
+            </div>
+        </div>
+        <button  class="btn  mt-3" mat-raised-button> Update</button>
+        </form>
+
+        </div>
+        </ng-template> <!--ENDAppointment UPDATE-->
+   
+</div>

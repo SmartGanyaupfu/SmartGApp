@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { AuthService } from 'src/app/_services/auth.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,10 +11,11 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 })
 export class DashboardComponent implements OnInit {
   @ViewChild(MatSidenav) sidenav!:MatSidenav;
-
-  constructor(public observer: BreakpointObserver) { }
+show:boolean=false;
+  constructor(public observer: BreakpointObserver, private authService:AuthService,public tokenService:TokenStorageService) { }
 
   ngOnInit(): void {
+    this.signedIn();
   }
   ngAfterViewInit() {
     setTimeout(()=>{
@@ -31,6 +34,10 @@ export class DashboardComponent implements OnInit {
          this.sidenav.open();
        }
      });
+   }
+
+   signedIn(){
+   this.show=this.authService.loggedIn();
    }
 
 }

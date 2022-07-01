@@ -21,7 +21,6 @@ namespace SmartG.Shared.DTOs
         public string? ClientURI { get; set; }
 
        
-        public string? ImageUrl { get; set; }
     }
 }
 

@@ -1,0 +1,68 @@
+<div class="container mt-5" >
+ 
+    
+    
+        <div class="heading"> 
+            <h2>Add New User</h2>
+          </div>
+
+        <div class="alert alert-info" *ngIf="userRegisterForm.touched">
+            <p><strong>Information: </strong> Changes dected, please not any unsaved changes will be lost!</p>
+        </div>
+        
+        <form [formGroup]="userRegisterForm" (ngSubmit)="addNewUser()" autocomplete="off">
+            <div class="row">
+                          
+              <div class="col-4">
+                  <h4> First Name: </h4>
+                  <input type="text" class="form-control" name="firstName" formControlName="firstName" >
+              </div>
+              <div class="col-4">
+                  <h4> Last Name: </h4>
+                  <input type="text" class="form-control" name="lastName" formControlName="lastName" >
+              </div>
+              <div class="col-4">
+                  <h4> Username: </h4>
+                  <input type="text" class="form-control" autocomplete="off" name="userName" formControlName="userName">
+              </div>
+            
+          </div>
+          <div class="row">
+              <div class="col-6">
+                  <h4> Email: </h4>
+                  <input type="email" class="form-control" name="email" formControlName="email" >
+              </div>
+              <div class="col-6">
+                  <h4> Phone: </h4>
+                  <input type="text" class="form-control" name="phoneNumber" formControlName="phoneNumber">
+              </div>
+             
+            
+          </div>
+          <div class="row">
+              <div class="col-6">
+                  <h4> Password: </h4>
+                  <input type="password" class="form-control" name="password" autocomplete="off" formControlName="password" >
+              </div>
+              <div class="col-6">
+                  <h4> Confirm Password: </h4>
+                  <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword" >
+              </div>
+            
+          </div>
+          
+          <br>
+          
+            <div class="custom-control custom-checkbox">
+                <div class="custom-control custom-checkbox" *ngFor="let data of roles; let j = index" formArrayName="roles">
+                  <div [formGroupName]="j">
+                    <input type="checkbox" formControlName="isActive" > {{data?.name}}<br>
+                  </div>
+                </div>
+            </div>
+            <button  class="btn primary-bg-btn mt-3"> Add New User</button>
+          </form>
+        <p>{{userRegisterForm.value|json}}</p>
+
+   
+ </div>

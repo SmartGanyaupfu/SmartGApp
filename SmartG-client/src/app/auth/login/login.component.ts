@@ -28,14 +28,14 @@ export class LoginComponent implements OnInit {
   login(){
     this.authenticationService.login(this.model).subscribe(response=>{
     
-      this.router.navigate(['home']);
+      this.router.navigate(['admin/dashboard']);
     }
     );  
   }
   getCurrentUser(){
    this.loggedIn= this.authenticationService.loggedIn();
     if (this.loggedIn){
-      this.router.navigate(['home']);
+      this.router.navigate(['admin/dashboard']);
     }
   }
   

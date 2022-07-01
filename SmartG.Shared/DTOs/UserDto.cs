@@ -11,7 +11,6 @@ namespace SmartG.Shared.DTOs
         public string? PhoneNumber { get; set; }
         
         public ICollection<RoleDto>? Roles { get; set; }
-        public string? ImageUrl { get; set; }
     }
 }
 

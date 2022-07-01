@@ -75,6 +75,8 @@ import { NewWidgetComponent } from './pages/widget-list/new-widget/new-widget.co
 import { EditWidgetComponent } from './pages/widget-list/edit-widget/edit-widget.component';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { SearchComponent } from './pages/search/search.component';
+import { UserListComponent } from './pages/user-list/user-list.component';
+import { NewUserComponent } from './pages/user-list/new-user/new-user.component';
 
 export function tokenGetter() {
   return localStorage.getItem("mytoken");
@@ -133,6 +135,8 @@ export function tokenGetter() {
     EditWidgetComponent,
     SearchResultsComponent,
     SearchComponent,
+    UserListComponent,
+    NewUserComponent,
   ],
   imports: [
     BrowserModule,

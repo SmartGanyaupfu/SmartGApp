@@ -153,8 +153,9 @@ namespace SmartG.Service
                 await _userManager.AddToRolesAsync(user, roles);
 
                 var callback = QueryHelpers.AddQueryString(userForRegistration.ClientURI, param);
-                var message = new EmailMessageDto(new string[] { user.Email }, "Email Confirmation token", "Hi " + user.UserName + "\n Your account has bee created " +
-            "using this email, click on  the link to verify your email \n" + callback + " If you did not request, kindly ignore the email.\n Thanks Digital Team.");
+                var message = new EmailMessageDto(new string[] { user.Email }, "Email Confirmation token", "Hi " + user.UserName + "<br> Your account has bee created " +
+            "using this email, click on  the link to verify your email \n <a href=\"" +callback+ " \">Verify Eamil</a> You can copy the link below directly to your browser." + callback +" If you did not request, kindly ignore the email."+
+            "<br>Thanks Digital Team.");
                 await _emailService.SendEmailAsync(message);
 
             }
@@ -249,7 +250,7 @@ namespace SmartG.Service
                 ValidateIssuer = true,
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyValue)),
-                ValidateLifetime = true,
+                ValidateLifetime = false,
                 ValidIssuer = jwtSettings["validIssuer"],
                 ValidAudience = jwtSettings["validAudience"]
             };
@@ -321,8 +322,9 @@ namespace SmartG.Service
                     {"email", forgotPasswordDto.Email }
                 };
             var callback = QueryHelpers.AddQueryString(forgotPasswordDto.ClientURI, param);
-            var message = new EmailMessageDto(new string[] { user.Email }, "Reset password token", "Hi " + user.UserName + "\n" + " you requested a " +
-            "password reset, for the link to reset your password." + callback + " If you did not request, kindly ignore the email. Thanks,  Digital Team.");
+            var message = new EmailMessageDto(new string[] { user.Email }, "Reset password token", "Hi " + user.UserName + "<br>" + " You requested a " +
+            "password reset, The link to reset your password is <a href=\"" + callback + " \">Reset Password</a> You can copy the link below directly to your browser."
+            + callback + "   < br> If you did not request, kindly ignore the email. Thanks,  Digital Team.");
             await _emailService.SendEmailAsync(message);
 
             return true;

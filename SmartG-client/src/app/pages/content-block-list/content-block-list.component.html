@@ -16,9 +16,9 @@
             <td>{{page.contentBlockId}}</td>
             <td>{{page?.title}}</td>
             <td [innerHtml]="page.content"></td>
-            <td><i type="button" class="fa-solid fa-trash-can" (click)="deleteBlock(page)"></i>
+            <td class="clickable"><i  class="fa-solid fa-trash-can" (click)="deleteBlock(page)"></i>
                 
-                    <i type="button" class="fa-solid fa-pen " routerLink="/admin/block/edit/{{page.contentBlockId}}" [state]="{blockData:page}"></i>
+                    <i  class="fa-solid fa-pen " routerLink="/admin/block/edit/{{page.contentBlockId}}" [state]="{blockData:page}"></i>
                 
                
             </td>

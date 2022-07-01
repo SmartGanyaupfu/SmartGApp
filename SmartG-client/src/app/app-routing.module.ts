@@ -40,11 +40,15 @@ import { NewServiceComponent } from './pages/service-list/new-service/new-servic
 import { ServiceDetailComponent } from './pages/service-list/service-detail/service-detail.component';
 import { ServiceListComponent } from './pages/service-list/service-list.component';
 import { ServiceComponent } from './pages/service/service.component';
+import { NewUserComponent } from './pages/user-list/new-user/new-user.component';
+import { UserListComponent } from './pages/user-list/user-list.component';
 import { EditWidgetComponent } from './pages/widget-list/edit-widget/edit-widget.component';
 import { NewWidgetComponent } from './pages/widget-list/new-widget/new-widget.component';
 import { WidgetListComponent } from './pages/widget-list/widget-list.component';
 import { MediaComponent } from './shared/media/media.component';
 import { UploadMediaComponent } from './shared/media/upload-media/upload-media.component';
+import { AuthGuardService } from './_services/auth-guard.service';
+import { RoleGuardService } from './_services/role-guard.service';
 
 const routes: Routes = [
 
@@ -56,48 +60,50 @@ const routes: Routes = [
   { path: 'blog', component: PostComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'learn-to-code', component: LearnComponent},
-  { path: 'admin/media',component: MediaComponent},
-  { path: 'admin/media/upload',component: UploadMediaComponent},
-  { path: 'admin/dashboard',component: DashboardComponent},
+  { path: 'admin/media',component: MediaComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/media/upload',component: UploadMediaComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/dashboard',component: DashboardComponent,canActivate:[AuthGuardService]},
 
-  { path: 'admin/page/new-page', component: NewPageComponent},
-  { path: 'admin/page/edit/:pageId', component: EditPageComponent},
-  { path: 'admin/pages', component: PageListComponent},
+  { path: 'admin/page/new-page', component: NewPageComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/page/edit/:pageId', component: EditPageComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/pages', component: PageListComponent,canActivate:[AuthGuardService]},
   { path: 'pages/:slug',component:PageDetailComponent},
 
-  { path: 'admin/post/new-post', component: NewPostComponent},
-  { path: 'admin/post/edit/:postId', component: EditPostComponent},
-  { path: 'admin/posts', component: PostListComponent},
+  { path: 'admin/post/new-post', component: NewPostComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/post/edit/:postId', component: EditPostComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/posts', component: PostListComponent,canActivate:[AuthGuardService]},
   { path: 'blog/:slug',component:PostDetailComponent},
 
-  { path: 'admin/portfolio/new-portfolio', component: NewPortfolioComponent},
-  { path: 'admin/portfolio/edit/:portfolioId', component: EditPortfolioComponent},
-  { path: 'admin/portfolios', component: PortfolioListComponent},
+  { path: 'admin/portfolio/new-portfolio', component: NewPortfolioComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/portfolio/edit/:portfolioId', component: EditPortfolioComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/portfolios', component: PortfolioListComponent,canActivate:[AuthGuardService]},
   { path: 'portfolios/:slug',component:PortfolioDetailComponent},
 
-  { path: 'admin/service/new-service', component: NewServiceComponent},
-  { path: 'admin/service/edit/:serviceId', component: EditServiceComponent},
-  { path: 'admin/services', component: ServiceListComponent},
+  { path: 'admin/service/new-service', component: NewServiceComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/service/edit/:serviceId', component: EditServiceComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/services', component: ServiceListComponent,canActivate:[AuthGuardService]},
   { path: 'services/:slug',component:ServiceDetailComponent},
 
-  { path: 'admin/block/new-block', component: NewContentBlockComponent},
-  { path: 'admin/block/edit/:blockId', component: EditContentBlockComponent},
-  { path: 'admin/content-blocks', component: ContentBlockListComponent},
+  { path: 'admin/block/new-block', component: NewContentBlockComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/block/edit/:blockId', component: EditContentBlockComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/content-blocks', component: ContentBlockListComponent,canActivate:[AuthGuardService]},
 
-  { path: 'admin/category/new-category', component: NewCategoryComponent},
-  { path: 'admin/category/edit/:categoryId', component: EditCategoryComponent},
-  { path: 'admin/categories', component: CategoryListComponent},
+  { path: 'admin/category/new-category', component: NewCategoryComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/category/edit/:categoryId', component: EditCategoryComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/categories', component: CategoryListComponent,canActivate:[AuthGuardService]},
   { path: 'category/:slug',component:CategoryDetailComponent},
 
   { path: 'admin/comment/new-comment', component: NewCommentComponent},
   { path: 'admin/comment/edit/:commentId', component: EditCommentComponent},
   { path: 'admin/comments', component: CommentListComponent},
 
-  { path: 'admin/widget/new-widget', component: NewWidgetComponent},
-  { path: 'admin/widget/edit/:widgetId', component: EditWidgetComponent},
-  { path: 'admin/widgets', component: WidgetListComponent},
+  { path: 'admin/widget/new-widget', component: NewWidgetComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/widget/edit/:widgetId', component: EditWidgetComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/widgets', component: WidgetListComponent,canActivate:[AuthGuardService]},
 
 
+  { path: 'admin/users', component:UserListComponent,canActivate:[AuthGuardService,RoleGuardService]},
+  { path: 'admin/new-user',component:NewUserComponent,canActivate:[AuthGuardService,RoleGuardService]},
 
   { path:  'auth/login',component:LoginComponent},
   { path:'auth/email-confirmation', component:EmailConfirmationComponent },

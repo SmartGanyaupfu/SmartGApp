@@ -1,11 +1,15 @@
 <nav class=" sticky-top navbar navbar-expand-lg bg-light">
     <div class="container">
       <a class="navbar-brand" ><img src="{{widget?.logoUrl}}" height="50" alt="Smart Logo" routerLink="/home"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-        <span class="navbar-toggler-icon"></span>
+      
+      <button class="navbar-toggler" mat-icon-button [matMenuTriggerFor]="menu" aria-label=" icon-button with a menu">
+        <mat-icon>menu</mat-icon>
       </button>
       <div class="collapse navbar-collapse" id="mynavbar">
         <ul class="navbar-nav me-auto mx-auto">
+          <li class="nav-item" *ngIf="authService.loggedIn()">
+            <a  class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</a>
+          </li>
           <li class="nav-item">
             <a  class="nav-link " routerLink="/home" routerLinkActive="active">Home</a>
           </li>
@@ -33,7 +37,20 @@
       </div>
     </div>
   </nav>
-
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>dialpad</mat-icon>
+      <span>Redial</span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>voicemail</mat-icon>
+      <span>Check voice mail</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications_off</mat-icon>
+      <span>Disable alerts</span>
+    </button>
+  </mat-menu>
   <ng-template #templateSearch>
     <div class="modal-header">
       <h4 class="modal-title pull-left">Search Results</h4>

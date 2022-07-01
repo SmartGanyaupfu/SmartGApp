@@ -51,7 +51,7 @@ export class AuthService {
   }
   
   loggedIn(): boolean {
-    const token = localStorage.getItem('mytoken');
+    const token = localStorage.getItem('my-token');
     
     
     return !this.helper.isTokenExpired(token);
@@ -83,7 +83,7 @@ export class AuthService {
     return this.http.get(this.url+'authentication/get-user/'+id);
   }
   delete(id:any){
-    return this.http.get(this.url+'authentication/delete-user/'+id);
+    return this.http.delete(this.url+'authentication/delete-user/'+id);
   }
   
   refreshToken(user:any){

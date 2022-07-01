@@ -21,11 +21,11 @@
             <td>{{getAuthor(page?.authorId)}}</td>
             <td>{{page?.dateCreated | date:'d/M/yy'}}</td>
             <td>{{page?.dateUpdated | date:'d/M/yy'}}</td>
-            <td><i type="button" class="fa-solid fa-trash-can" (click)="deletePortfolio(page)"></i>
+            <td class="clickable"><i  class="fa-solid fa-trash-can" (click)="deletePortfolio(page)"></i>
                 
-                    <i type="button" class="fa-solid fa-pen " routerLink="/admin/portfolio/edit/{{page.portfolioId}}" [state]="{portfolioData:page}"></i>
+                    <i  class="fa-solid fa-pen " routerLink="/admin/portfolio/edit/{{page.portfolioId}}" [state]="{portfolioData:page}"></i>
                 
-                <i type="button" class="fa-solid fa-eye" routerLink="/portfolios/{{page.slug}}" [state]="{portfolioData:page}"></i>
+                <i  class="fa-solid fa-eye" routerLink="/portfolios/{{page.slug}}" [state]="{portfolioData:page}"></i>
             </td>
           </tr>
           <tr>

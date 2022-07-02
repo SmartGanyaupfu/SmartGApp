@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
 using SmartG.API.Extensions;
@@ -60,7 +61,7 @@ namespace SmartG.API.Controllers.API.V1
             var pageToReturn = _mapper.Map<PostDto>(post);
             return Ok(pageToReturn);
         }
-
+        [Authorize]
         [HttpPost("{postId}/add-image")]
         public async Task<IActionResult> AddImage(IFormFile file, Guid postId)
         {
@@ -90,7 +91,7 @@ namespace SmartG.API.Controllers.API.V1
             return CreatedAtRoute("postsId", new { postId = postToReturn.PostId }, postToReturn);
         }
 
-
+        [Authorize]
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreatePost([FromBody] PostForCreationDto post)
@@ -112,6 +113,7 @@ namespace SmartG.API.Controllers.API.V1
             //var votesToReturn = await _serviceManager.QualificationService.CreateQualificationForStudyOptionAsync(studyOptionId, qualification, trackChanges: false);
             return CreatedAtRoute("postsId", new { PostId = postToReturn.PostId }, postToReturn);
         }
+        [Authorize]
         [HttpPost("{postId}/add-block")]
         public async Task<IActionResult> AddBlock([FromBody] ContentBlockForCreationDto contentBlock, Guid postId)
         {
@@ -130,7 +132,7 @@ namespace SmartG.API.Controllers.API.V1
             return CreatedAtRoute("postsId", new { postId = postToReturn.PostId }, postToReturn);
         }
 
-
+        [Authorize]
         [HttpPut("{postId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdatePostById(Guid postId, [FromBody] PostForUpdateDto post)
@@ -154,7 +156,7 @@ namespace SmartG.API.Controllers.API.V1
             await _repository.SaveAsync();
             return NoContent();
         }
-
+        [Authorize]
         [HttpDelete("{postId}")]
         public async Task<IActionResult> DeletePost(Guid postId)
         {

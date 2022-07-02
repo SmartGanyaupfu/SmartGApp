@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
 using SmartG.Service.Contracts;
@@ -22,6 +23,7 @@ namespace SmartG.API.Controllers.API.V1
             _service = service;
             //_emailSenderService = emailSenderService;
         }
+        [Authorize]
         [HttpPost("register")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistration)
@@ -75,7 +77,7 @@ namespace SmartG.API.Controllers.API.V1
 
             return Ok();
         }
-
+        
         [HttpPut("{Id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> Update([FromBody] UserForUpdateDto userForUpdate, string Id)
@@ -97,7 +99,7 @@ namespace SmartG.API.Controllers.API.V1
                 return BadRequest("Invalid Request");
             return Ok();
         }
-
+        [Authorize]
         [HttpDelete("delete-user/{Id}")]
         public async Task<IActionResult> DeleteUser(string Id)
         {

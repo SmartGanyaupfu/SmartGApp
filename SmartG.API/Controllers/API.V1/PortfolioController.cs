@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
 using SmartG.API.Extensions;
@@ -61,7 +62,7 @@ namespace SmartG.API.Controllers.API.V1
             return Ok(pageToReturn);
         }
 
-
+        [Authorize]
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreatePortfolio([FromBody] PortfolioForCreationDto portfolio)
@@ -81,7 +82,7 @@ namespace SmartG.API.Controllers.API.V1
 
             return CreatedAtRoute("portfoliosId", new { portfolioId = portfolioToReturn.PortfolioId }, portfolioToReturn);
         }
-
+        [Authorize]
         [HttpPost("{portfolioId}/add-image")]
         public async Task<IActionResult> AddImage(IFormFile file, Guid portfolioId)
         {
@@ -110,7 +111,7 @@ namespace SmartG.API.Controllers.API.V1
 
             return CreatedAtRoute("portfoliosId", new { portfolioId = portfolioToReturn.PortfolioId }, portfolioToReturn);
         }
-
+        [Authorize]
         [HttpPost("{portfolioId}/add-block")]
         public async Task<IActionResult> AddBlock([FromBody] ContentBlockForCreationDto contentBlock, Guid portfolioId)
         {
@@ -128,7 +129,7 @@ namespace SmartG.API.Controllers.API.V1
 
             return CreatedAtRoute("portfoliosId", new { portfolioId = portfolioToReturn.PortfolioId }, portfolioToReturn);
         }
-
+        [Authorize]
         [HttpPut("{portfolioId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdatePortfolioById(Guid portfolioId, [FromBody] PortfolioForUpdateDto portfolio)
@@ -153,7 +154,7 @@ namespace SmartG.API.Controllers.API.V1
             await _repository.SaveAsync();
             return NoContent();
         }
-
+        [Authorize]
         [HttpDelete("{portfolioId}")]
         public async Task<IActionResult> DeletePortfolio(Guid portfolioId)
         {

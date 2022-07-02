@@ -91,7 +91,7 @@ namespace SmartG.API.Controllers.API.V1
         }
 
 
- 
+        [Authorize]
 
         [HttpDelete("{imageId}")]
         public async Task<IActionResult> DeleteImage(int imageId)

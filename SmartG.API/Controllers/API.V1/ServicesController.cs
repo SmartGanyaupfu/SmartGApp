@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
 using SmartG.API.Extensions;
@@ -59,7 +60,7 @@ namespace SmartG.API.Controllers.API.V1
             var pageToReturn = _mapper.Map<ServiceDto>(service);
             return Ok(pageToReturn);
         }
-
+        [Authorize]
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateService([FromBody] ServiceForCreationDto service)
@@ -80,7 +81,7 @@ namespace SmartG.API.Controllers.API.V1
 
             return CreatedAtRoute("offeredServicesId", new { offeredServiceId= serviceToReturn.OfferedServiceId }, serviceToReturn);
         }
-
+        [Authorize]
         [HttpPost("{offeredServiceId}/add-image")]
         public async Task<IActionResult> AddImage(IFormFile file, Guid offeredServiceId)
         {
@@ -112,7 +113,7 @@ namespace SmartG.API.Controllers.API.V1
 
             return CreatedAtRoute("offeredServicesId", new { offeredServiceId = serviceToReturn.OfferedServiceId }, serviceToReturn);
         }
-
+        [Authorize]
         [HttpPost("{offeredServiceId}/add-block")]
         public async Task<IActionResult> AddBlock([FromBody] ContentBlockForCreationDto contentBlock, Guid offeredServiceId)
         {
@@ -131,7 +132,7 @@ namespace SmartG.API.Controllers.API.V1
 
             return CreatedAtRoute("offeredServicesId", new { offeredServiceId = serviceToReturn.OfferedServiceId }, serviceToReturn);
         }
-
+        [Authorize]
         [HttpPut("{offeredServiceId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateServiceById(Guid offeredServiceId, [FromBody] ServiceForUpdateDto service)
@@ -156,7 +157,7 @@ namespace SmartG.API.Controllers.API.V1
             await _repository.SaveAsync();
             return NoContent();
         }
-
+        [Authorize]
         [HttpDelete("{offeredServiceId}")]
         public async Task<IActionResult> DeleteService(Guid offeredServiceId)
         {

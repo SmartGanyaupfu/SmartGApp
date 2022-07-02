@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
 using SmartG.Contracts;
@@ -51,7 +52,7 @@ namespace SmartG.API.Controllers.API.V1
         }
 
 
-
+        [Authorize]
 
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -75,7 +76,7 @@ namespace SmartG.API.Controllers.API.V1
         }
 
 
-
+        [Authorize]
         [HttpPut("{categoryId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateCategoryById(int categoryId, [FromBody] CategoryForUpdateDto category)
@@ -98,7 +99,7 @@ namespace SmartG.API.Controllers.API.V1
             await _repository.SaveAsync();
             return NoContent();
         }
-
+        [Authorize]
         [HttpDelete("{categoryId}")]
         public async Task<IActionResult> DeleteCategory(int categoryId)
         {

@@ -37,19 +37,35 @@
       </div>
     </div>
   </nav>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>dialpad</mat-icon>
-      <span>Redial</span>
-    </button>
-    <button mat-menu-item disabled>
-      <mat-icon>voicemail</mat-icon>
-      <span>Check voice mail</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>notifications_off</mat-icon>
-      <span>Disable alerts</span>
-    </button>
+  <mat-menu #menu="matMenu" class="mobile-nav">
+    <ul class="navbar-nav me-auto mx-auto mobile-nav">
+      <li class="nav-item" *ngIf="authService.loggedIn()">
+        <a  class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link " routerLink="/home" routerLinkActive="active">Home</a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link" routerLink="/service" routerLinkActive="active">What I Offer</a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link" routerLink="/portfolio" routerLinkActive="active">Portfolio</a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link" routerLink="/blog" routerLinkActive="active">Blog</a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link" routerLink="/learn-to-code" routerLinkActive="active">Learn To Code</a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
+      </li>
+    </ul>
+    <form #createSearchForm="ngForm" class="d-flex" >
+    
+      <input class="form-control me-2" type="text" name = "searchTerm" placeholder="Search" [(ngModel)]="searchTerm">
+      <button class="primary-bg-btn " type="button" (click)="getSearchResults(templateSearch)" mat-raised-button>Search</button>
+    </form>
   </mat-menu>
   <ng-template #templateSearch>
     <div class="modal-header">

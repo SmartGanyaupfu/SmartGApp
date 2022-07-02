@@ -104,3 +104,6 @@ font-size: medium;
 .featureImage i:hover {
 color: #2dadc6;
 }
+.mobile-nav {
+    padding: 5px !important;
+}

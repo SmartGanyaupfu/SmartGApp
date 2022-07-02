@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ContentBlock } from 'src/app/_interfaces/content-block';
 import { Page } from 'src/app/_interfaces/page';
 import { Portfolio } from 'src/app/_interfaces/portfolio';
@@ -33,7 +34,8 @@ export class HomeComponent implements OnInit {
   widget:Widget;
   ages = [3, 10, 18, 20];
   constructor(private pageService:PageService, private serviceService:ServiceService,private blockService:ContentBlockService,
-     private portfolioService:PortfolioService, private postService:PostService, private widgetService:WidgetService) { 
+     private portfolioService:PortfolioService, private postService:PostService, private widgetService:WidgetService
+     ,private title:Title) { 
 
 //this.getBlocks();
 //this.getWidgets();
@@ -42,6 +44,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWidgets();
+    this.title.setTitle(this.page?.title);
     
     
 

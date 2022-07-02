@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
 using SmartG.API.Extensions;
@@ -18,7 +19,7 @@ using SmartG.Shared.RequestFeatures;
 namespace SmartG.API.Controllers.API.V1
 {
     [Route("api/pages")]
-    
+
     public class PageController : ControllerBase
     {
         private readonly IRepositoryManager _repository;
@@ -35,7 +36,7 @@ namespace SmartG.API.Controllers.API.V1
         [HttpGet]
         public async Task<IActionResult> GetPages([FromQuery] PageParameters pageParameters)
         {
-           
+
             var pages = await _repository.Page.GetAllPagesAsync(pageParameters, trackChanges: false);
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pages.MetaData));
             var pagesToReturn = _mapper.Map<IEnumerable<PageDto>>(pages);
@@ -55,7 +56,7 @@ namespace SmartG.API.Controllers.API.V1
         [HttpGet("slug/{pageSlug}")]
         public async Task<IActionResult> GetPageBySlug(string pageSlug)
         {
-            var page  = await _repository.Page.GetPageBySlugNameAsync(pageSlug, trackChanges: false);
+            var page = await _repository.Page.GetPageBySlugNameAsync(pageSlug, trackChanges: false);
             if (page is null)
                 return NotFound();
             var pageToReturn = _mapper.Map<PageDto>(page);
@@ -64,7 +65,7 @@ namespace SmartG.API.Controllers.API.V1
 
 
 
-
+        [Authorize ]
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreatePage([FromBody] PageForCreationDto page)
@@ -85,6 +86,7 @@ namespace SmartG.API.Controllers.API.V1
             //var votesToReturn = await _serviceManager.QualificationService.CreateQualificationForStudyOptionAsync(studyOptionId, qualification, trackChanges: false);
             return CreatedAtRoute("pagesId", new { pageId = pageToReturn.PageId }, pageToReturn);
         }
+        [Authorize]
         [HttpPost("{pageId}/add-image")]
         public async Task<IActionResult> AddImage(IFormFile file, int pageId)
         {
@@ -113,7 +115,7 @@ namespace SmartG.API.Controllers.API.V1
            
             return CreatedAtRoute("pagesId", new { pageId = pageToReturn.PageId }, pageToReturn);
         }
-
+        [Authorize]
         [HttpPost("{pageId}/add-block")]
         public async Task<IActionResult> AddBlock([FromBody] ContentBlockForCreationDto contentBlock, int pageId)
         {
@@ -133,7 +135,7 @@ namespace SmartG.API.Controllers.API.V1
             return CreatedAtRoute("pagesId", new { pageId = pageToReturn.PageId }, pageToReturn);
         }
 
-
+        [Authorize]
         [HttpPut("{pageId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdatePageById(int pageId, [FromBody] PageForUpdateDto page)
@@ -157,7 +159,7 @@ namespace SmartG.API.Controllers.API.V1
             await _repository.SaveAsync();
             return NoContent();
         }
-        
+        [Authorize]
         [HttpDelete("{pageId}")]
         public async Task<IActionResult> DeleteValue(int pageId)
         {

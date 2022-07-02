@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
 using SmartG.Contracts;
@@ -28,6 +29,7 @@ namespace SmartG.API.Controllers.API.V1
             _mapper = mapper;
             _imageService = imageService;
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateBlock([FromBody] ContentBlockForCreationDto contentBlock)
         {
@@ -61,6 +63,7 @@ namespace SmartG.API.Controllers.API.V1
             return Ok(blockToReturn);
         }
 
+        [Authorize]
         [HttpPut("{contentBlockId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateBlockById(Guid contentBlockId, [FromBody] ContentBlockForUpdateDto contentBlock)
@@ -78,7 +81,7 @@ namespace SmartG.API.Controllers.API.V1
             return NoContent();
         }
 
-
+        [Authorize]
         [HttpDelete("{contentBlockId}")]
         public async Task<IActionResult> DeleteImage(Guid contentBlockId)
         {

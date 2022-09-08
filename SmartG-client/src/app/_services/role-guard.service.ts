@@ -19,10 +19,10 @@ CheckAccess(){
   let hasAccess:boolean=false;
   let data:string[]= [];
 
-  if(this.tokenService.getUserRoles()==='Admin' || this.tokenService.getUserRoles()==='Editor')
-  {
-    hasAccess=true;
-  }
+  // if(this.tokenService.getUserRoles()==='Admin' || this.tokenService.getUserRoles()==='Editor')
+  // {
+  //   hasAccess=true;
+  // }
 
   
   if(Array.isArray(data)){

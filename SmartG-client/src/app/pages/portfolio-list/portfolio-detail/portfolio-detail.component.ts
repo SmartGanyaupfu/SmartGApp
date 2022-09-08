@@ -20,6 +20,7 @@ export class PortfolioDetailComponent implements OnInit {
   
     this.pageSlug= this.router.url.split('?')[0].split('/').pop();
     //console.log(this.route.parent.url)
+ /*
     if(history.state.portfolioData){
       localStorage.setItem('portfolioData',JSON.stringify(history.state.portfolioData));
       this.page=JSON.parse(localStorage.getItem('portfolioData'));
@@ -29,6 +30,7 @@ export class PortfolioDetailComponent implements OnInit {
         this.page=res;
       })
     }
+ */
 
   }
 

@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
+import { Inject, NgModule, PLATFORM_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatIconModule} from '@angular/material/icon';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor, JwtModule, JWT_OPTIONS } from "@auth0/angular-jwt";
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ModalModule } from 'ngx-bootstrap/modal'; //volar-software
@@ -31,7 +30,6 @@ import { PostComponent } from './pages/post/post.component';
 import { LearnComponent } from './pages/learn/learn.component';
 import { NewPageComponent } from './pages/new-page/new-page.component';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
-import { TokenInterceptor } from './_interceptors/token.interceptor';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
@@ -78,9 +76,8 @@ import { SearchComponent } from './pages/search/search.component';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { NewUserComponent } from './pages/user-list/new-user/new-user.component';
 
-export function tokenGetter() {
-  return localStorage.getItem("mytoken");
-}
+
+
 
 @NgModule({
   declarations: [
@@ -139,7 +136,7 @@ export function tokenGetter() {
     NewUserComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -156,13 +153,6 @@ export function tokenGetter() {
     MatToolbarModule,
     MatDividerModule,
     TabsModule.forRoot(),
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:7212","localhost:5001"],
-        disallowedRoutes: []
-      }
-    }),
     ToastrModule.forRoot({
       positionClass:'toast-bottom-right'
     }),
@@ -171,9 +161,8 @@ export function tokenGetter() {
     
  
   ],
-  providers: [SlugifyPipe,TrustedUrlPipe,
-    {provide: HTTP_INTERCEPTORS,useClass:JwtInterceptor,multi:true},{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi: true},
+  providers: [SlugifyPipe,TrustedUrlPipe,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+   ,
     {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })

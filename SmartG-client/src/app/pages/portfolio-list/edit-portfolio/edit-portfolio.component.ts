@@ -74,7 +74,8 @@ export class EditPortfolioComponent implements OnInit {
       
      this.getCategories();
      this.portfolioId= this.router.url.split('?')[0].split('/').pop();
-     if(history.state.portfolioData){
+ /*
+    if(history.state.portfolioData){
       localStorage.setItem('portfolioData',JSON.stringify(history.state.portfolioData));
     this.page=JSON.parse(localStorage.getItem('portfolioData'));
     this.initialiseForm();
@@ -87,7 +88,8 @@ export class EditPortfolioComponent implements OnInit {
         this.initialiseForm();
     this.setUpdatePageFromValue();
       })
-    } }
+    } 
+*/}
 
     editSlug(){
       this.slugEdit= true;

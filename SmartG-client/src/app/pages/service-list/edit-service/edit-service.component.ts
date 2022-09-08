@@ -68,6 +68,7 @@ export class EditServiceComponent implements OnInit {
     ngOnInit(): void {
       
      this.serviceId= this.router.url.split('?')[0].split('/').pop();
+  /*
      if(history.state.serviceData){
       localStorage.setItem('serviceData',JSON.stringify(history.state.serviceData));
     this.page=JSON.parse(localStorage.getItem('serviceData'));
@@ -81,7 +82,9 @@ export class EditServiceComponent implements OnInit {
         this.initialiseForm();
     this.setUpdatePageFromValue();
       })
-    } }
+    }
+  */
+    }
 
     editSlug(){
       this.slugEdit= true;

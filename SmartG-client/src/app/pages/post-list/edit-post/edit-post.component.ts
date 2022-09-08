@@ -74,6 +74,7 @@ export class EditPostComponent implements OnInit {
       
      this.getCategories();
      this.postId= this.router.url.split('?')[0].split('/').pop();
+/*
      if(history.state.postData){
       localStorage.setItem('postData',JSON.stringify(history.state.postData));
     this.page=JSON.parse(localStorage.getItem('postData'));
@@ -87,7 +88,9 @@ export class EditPostComponent implements OnInit {
         this.initialiseForm();
     this.setUpdatePageFromValue();
       })
-    } }
+    }
+*/
+    }
 
     editSlug(){
       this.slugEdit= true;

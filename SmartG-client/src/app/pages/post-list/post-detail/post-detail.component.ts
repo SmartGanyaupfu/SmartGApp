@@ -20,6 +20,7 @@ export class PostDetailComponent implements OnInit {
   
     this.pageSlug= this.router.url.split('?')[0].split('/').pop();
     //console.log(this.route.parent.url)
+  /*
     if(history.state.postData){
       localStorage.setItem('postData',JSON.stringify(history.state.postData));
       this.page=JSON.parse(localStorage.getItem('postData'));
@@ -29,6 +30,7 @@ export class PostDetailComponent implements OnInit {
         this.page=res;
       })
     }
+  */
 
   }
 }

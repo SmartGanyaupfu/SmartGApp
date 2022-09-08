@@ -1,4 +1,5 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -43,7 +44,7 @@ export class EditPageComponent implements OnInit {
 
   constructor(private pageService:PageService,private slugifyPipe:SlugifyPipe
     ,private toaster:ToastrService, 
-      private modalService: BsModalService, private router:Router, private route:ActivatedRoute) { 
+      private modalService: BsModalService, private router:Router, @Inject (PLATFORM_ID) private platformId) { 
     
     }
 
@@ -75,26 +76,27 @@ export class EditPageComponent implements OnInit {
   }
   
     ngOnInit(): void {
-      
-     //this.user= history.state.data;
      this.pageId= this.router.url.split('?')[0].split('/').pop();
-     if(history.state.pageData){
-      localStorage.setItem('pageData',JSON.stringify(history.state.pageData));
-    this.page=JSON.parse(localStorage.getItem('pageData'));
-    this.initialiseForm();
-    this.setUpdatePageFromValue();
-    this.slug=this.page.slug;
-    }else {
-      localStorage.removeItem('pageData');
-      this.pageService.getPageById(this.pageId).subscribe(res=>{
-        this.page=res;
-        this.slug=this.page.slug;
-        console.log(this.page);
-        this.initialiseForm();
-    this.setUpdatePageFromValue();
-    console.log(this.slug)
-      })
-    } }
+     if(isPlatformBrowser(this.platformId)){
+      if(history.state.pageData){
+        localStorage.setItem('pageData',JSON.stringify(history.state.pageData));
+      this.page=JSON.parse(localStorage.getItem('pageData'));
+      this.initialiseForm();
+      this.setUpdatePageFromValue();
+      this.slug=this.page.slug;
+      }else {
+        localStorage.removeItem('pageData');
+        this.pageService.getPageById(this.pageId).subscribe(res=>{
+          this.page=res;
+          this.slug=this.page.slug;
+          console.log(this.page);
+          this.initialiseForm();
+      this.setUpdatePageFromValue();
+      console.log(this.slug)
+        })
+      }
+     }
+      }
 
     editSlug(){
       this.slugEdit= true;

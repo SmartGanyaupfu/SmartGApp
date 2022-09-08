@@ -42,7 +42,7 @@ export class NewPageComponent implements OnInit {
  
 
     constructor(private pageService:PageService,private tokenService:TokenStorageService,private slugifyPipe:SlugifyPipe,
-      private route:Router,private toaster:ToastrService, private jwtHelper:JwtHelperService,
+      private route:Router,private toaster:ToastrService,
       private modalService: BsModalService, private router:Router) { 
     
     }

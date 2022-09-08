@@ -55,6 +55,7 @@ export class EditContentBlockComponent implements OnInit {
     ngOnInit(): void {
       
      this.blockId= this.router.url.split('?')[0].split('/').pop();
+  /*
      if(history.state.blockData){
       localStorage.setItem('blockData',JSON.stringify(history.state.blockData));
     this.page=JSON.parse(localStorage.getItem('blockData'));
@@ -68,6 +69,7 @@ export class EditContentBlockComponent implements OnInit {
     this.setUpdatePageFromValue();
       })
     }
+  */
    }
 
 

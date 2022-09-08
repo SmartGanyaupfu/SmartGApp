@@ -16,7 +16,7 @@ export class PageDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-  
+  /*
     this.pageSlug= this.router.url.split('?')[0].split('/').pop();
     //console.log(this.route.parent.url)
     if(history.state.pageData){
@@ -27,7 +27,7 @@ export class PageDetailComponent implements OnInit {
       this.pageService.getPageBySlug(this.pageSlug).subscribe(res=>{
         this.page=res;
       })
-    }
+    }*/
 
   }
 

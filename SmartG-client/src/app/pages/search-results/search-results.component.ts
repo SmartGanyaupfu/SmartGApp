@@ -19,13 +19,10 @@ gotResults=false;
   ngOnInit(): void {
 
  
-    if(localStorage.getItem('searchResult')){
+    /*if(localStorage.getItem('searchResult')){
       this.searchResult= JSON.parse(localStorage.getItem('searchResult'));
-      this.gotResults=true;
+      this.gotResults=true;*/
     }
-
-
-  }
 
 
 }

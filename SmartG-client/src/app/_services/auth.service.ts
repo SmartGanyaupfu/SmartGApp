@@ -1,5 +1,6 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs';
@@ -19,7 +20,7 @@ export class AuthService {
   private readonly token = "mytoken";
   private readonly currentUser= "currentUser";
   
-  constructor(private http:HttpClient,private router:Router,private tokenStorageService:TokenStorageService) { }
+  constructor(private http:HttpClient,private router:Router,private tokenStorageService:TokenStorageService, @Inject (PLATFORM_ID) private platformId) { }
     getAllUsers(){
       return this.http.get<User[]>(this.url+'authentication/get-all-users');
     }
@@ -38,10 +39,11 @@ export class AuthService {
         
         if(user){
           
-          //localStorage.setItem()
+          
+         if(isPlatformBrowser(this.platformId)){
           this.tokenStorageService.saveToken(user.accessToken);
           this.tokenStorageService.saveUser(user);
-          //localStorage.setItem('currentUser',JSON.stringify(user));
+         }
          
           return user;
         }
@@ -51,14 +53,16 @@ export class AuthService {
   }
   
   loggedIn(): boolean {
-    const token = localStorage.getItem('my-token');
+    if(isPlatformBrowser(this.platformId)){
+      const token = localStorage.getItem('my-token');
     
     
     return !this.helper.isTokenExpired(token);
+    }
   }
   
   public logout = () => {
-     localStorage.removeItem('mytoken');
+     localStorage.removeItem('my-token');
      localStorage.removeItem('currentUser');
      this.router.navigate(['auth/login'])
      
@@ -92,6 +96,8 @@ export class AuthService {
       
    }
    getJwtToken() {
+   if(isPlatformBrowser(this.platformId)){
     return localStorage.getItem(this.token);
+   }
   }
 }

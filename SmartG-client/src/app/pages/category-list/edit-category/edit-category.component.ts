@@ -56,6 +56,7 @@ editSlug(){
       this.url = this.domSanitizer.bypassSecurityTrustUrl(this.Murl);
       
       this.catId= this.router.url.split('?')[0].split('/').pop();
+/*
       if(history.state.categoryData){
        localStorage.setItem('categoryData',JSON.stringify(history.state.categoryData));
      this.page=JSON.parse(localStorage.getItem('categoryData'));
@@ -67,6 +68,7 @@ editSlug(){
          this.initialiseForm();
        })
      }
+*/
         this.initialiseForm();
    
     } 

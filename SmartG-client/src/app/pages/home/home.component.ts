@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWidgets();
-    this.title.setTitle(this.page?.title);
+    this.title.setTitle('Zvaita');
     
     
 

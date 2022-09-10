@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SlugifyPipe } from 'src/app/_pipes/slugify.pipe';
@@ -20,7 +20,7 @@ export class NewCategoryComponent implements OnInit {
   pageSize:number=20;
 
 
-  createPageForm:FormGroup=new FormGroup({});
+  createPageForm:UntypedFormGroup=new UntypedFormGroup({});
 
   constructor(private catService:CategoryService
     ,private toaster:ToastrService, private slugifyPipe:SlugifyPipe,
@@ -29,9 +29,9 @@ export class NewCategoryComponent implements OnInit {
     }
 
   initialiseForm(){
-    this.createPageForm=new FormGroup({
-      name: new FormControl(),
-      slug: new FormControl(),
+    this.createPageForm=new UntypedFormGroup({
+      name: new UntypedFormControl(),
+      slug: new UntypedFormControl(),
      
     });
   }

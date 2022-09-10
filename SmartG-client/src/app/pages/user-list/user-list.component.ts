@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
@@ -21,7 +21,7 @@ export class UserListComponent implements OnInit {
   searchTerm?:string=null;
   user:User;
   selectedUser?:User;
-  userUpdateForm:FormGroup;
+  userUpdateForm:UntypedFormGroup;
   
   
   arr2:any=[];
@@ -31,7 +31,7 @@ export class UserListComponent implements OnInit {
   
 
   constructor(private  authenticationService: AuthService,private modalService:BsModalService,
-    private toastService:ToastrService,private fb: FormBuilder,private router:Router) { 
+    private toastService:ToastrService,private fb: UntypedFormBuilder,private router:Router) { 
     
   }
 
@@ -83,14 +83,14 @@ export class UserListComponent implements OnInit {
       });
     });
   
-    this.userUpdateForm= new FormGroup({
-      firstName:new FormControl(),
-      lastName: new FormControl(),
-      userName: new FormControl(),
-      password: new FormControl(),
-      confirmPassword: new FormControl(),
-      email: new FormControl(),
-      phoneNumber: new FormControl(),
+    this.userUpdateForm= new UntypedFormGroup({
+      firstName:new UntypedFormControl(),
+      lastName: new UntypedFormControl(),
+      userName: new UntypedFormControl(),
+      password: new UntypedFormControl(),
+      confirmPassword: new UntypedFormControl(),
+      email: new UntypedFormControl(),
+      phoneNumber: new UntypedFormControl(),
       roles:  this.fb.array(rolesFGs)
     })
   }

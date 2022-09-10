@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
@@ -31,7 +31,7 @@ export class EditPortfolioComponent implements OnInit {
   page:Portfolio;
   modalRef?: BsModalRef | null;
 
-  updatePageForm:FormGroup=new FormGroup({});
+  updatePageForm:UntypedFormGroup=new UntypedFormGroup({});
 
   @ViewChild('staticTabs', { static: false }) staticTabs?: TabsetComponent;
 
@@ -46,15 +46,15 @@ export class EditPortfolioComponent implements OnInit {
   }
 
   initialiseForm(){
-    this.updatePageForm=new FormGroup({
-      title: new FormControl(),
-      content: new FormControl(),
-      slug: new FormControl(),
-  excerpt: new FormControl(),
-  metaDescription: new FormControl(),
-  metaKeyWords: new FormControl(),
-  imageId:new FormControl(),
-  categoryId:new FormControl()
+    this.updatePageForm=new UntypedFormGroup({
+      title: new UntypedFormControl(),
+      content: new UntypedFormControl(),
+      slug: new UntypedFormControl(),
+  excerpt: new UntypedFormControl(),
+  metaDescription: new UntypedFormControl(),
+  metaKeyWords: new UntypedFormControl(),
+  imageId:new UntypedFormControl(),
+  categoryId:new UntypedFormControl()
     });
   }
   setUpdatePageFromValue(){

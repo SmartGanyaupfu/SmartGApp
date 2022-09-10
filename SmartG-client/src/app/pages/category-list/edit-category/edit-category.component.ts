@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -24,7 +24,7 @@ export class EditCategoryComponent implements OnInit {
 
 url:any;
 Murl='https://www.youtube.com/embed/IQjg2Y440l8';
-  updatePageForm:FormGroup=new FormGroup({});
+  updatePageForm:UntypedFormGroup=new UntypedFormGroup({});
 
   constructor(private catService:CategoryService
     ,private toaster:ToastrService, private slugifyPipe:SlugifyPipe,
@@ -35,9 +35,9 @@ Murl='https://www.youtube.com/embed/IQjg2Y440l8';
 
 
   initialiseForm(){
-    this.updatePageForm=new FormGroup({
-      name: new FormControl(),
-      slug: new FormControl(),
+    this.updatePageForm=new UntypedFormGroup({
+      name: new UntypedFormControl(),
+      slug: new UntypedFormControl(),
      
     });
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ForgotPassword } from 'src/app/_interfaces/forgot-password';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -11,7 +11,7 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
-  public forgotPasswordForm: FormGroup
+  public forgotPasswordForm: UntypedFormGroup
   public successMessage: string;
   public errorMessage: string;
   public showSuccess: boolean;
@@ -19,8 +19,8 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(private _authService: AuthService, public tokenSorvice:TokenStorageService, private route:Router) { }
   ngOnInit(): void {
     this.getToken();
-    this.forgotPasswordForm = new FormGroup({
-      email: new FormControl("", [Validators.required])
+    this.forgotPasswordForm = new UntypedFormGroup({
+      email: new UntypedFormControl("", [Validators.required])
     })
   }
   public validateControl = (controlName: string) => {

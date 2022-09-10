@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
@@ -24,7 +24,7 @@ export class NewContentBlockComponent implements OnInit {
 
   modalRef?: BsModalRef | null;
 
-  createPageForm:FormGroup=new FormGroup({});
+  createPageForm:UntypedFormGroup=new UntypedFormGroup({});
 
 
   @ViewChild('staticTabs', { static: false }) staticTabs?: TabsetComponent;
@@ -35,9 +35,9 @@ export class NewContentBlockComponent implements OnInit {
     }
 
   initialiseForm(){
-    this.createPageForm=new FormGroup({
-      title: new FormControl(),
-      content: new FormControl(),
+    this.createPageForm=new UntypedFormGroup({
+      title: new UntypedFormControl(),
+      content: new UntypedFormControl(),
      
     });
   }

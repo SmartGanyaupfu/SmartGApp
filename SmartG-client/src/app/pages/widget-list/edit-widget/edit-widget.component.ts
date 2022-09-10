@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Widget } from 'src/app/_interfaces/widget';
@@ -15,7 +15,7 @@ export class EditWidgetComponent implements OnInit {
  page:Widget;
   
 widgetId:any='';
-  createPageForm:FormGroup=new FormGroup({});
+  createPageForm:UntypedFormGroup=new UntypedFormGroup({});
 
   constructor(private widgetService:WidgetService
     ,private toaster:ToastrService, 
@@ -24,36 +24,36 @@ widgetId:any='';
     }
 
   initialiseForm(){
-    this.createPageForm=new FormGroup({
+    this.createPageForm=new UntypedFormGroup({
      
    
-    skillBlock: new FormControl(),
-    educationBlock: new FormControl(),
-    workBlock: new FormControl(),
-    interestBlock:new FormControl(),
-    logoUrl: new FormControl(),
-    cvUrl: new FormControl(),
-    hireMeBlock: new FormControl(),
-    fbUrl: new FormControl(),
-    gitHubUrl: new FormControl(),
-    twitterUrl: new FormControl(),
-    youTubeUrl: new FormControl(),
-    instagramUrl:new FormControl(),
-    linkedInUrl:new FormControl(),
-    email: new FormControl(),
-    phone: new FormControl(),
-    footerOne: new FormControl(),
-    footerTwo: new FormControl(),
-    footerThree: new FormControl(),
-    profilePicture: new FormControl(),
-    homePage: new FormControl(),
-    learnToCode: new FormControl(),
-    contactPage: new FormControl(),
-    intro: new FormControl(),
-    title: new FormControl(),
-    footerCopyrightBlock: new FormControl(),
-    homePageSize: new FormControl(),
-    postPageSize: new FormControl()
+    skillBlock: new UntypedFormControl(),
+    educationBlock: new UntypedFormControl(),
+    workBlock: new UntypedFormControl(),
+    interestBlock:new UntypedFormControl(),
+    logoUrl: new UntypedFormControl(),
+    cvUrl: new UntypedFormControl(),
+    hireMeBlock: new UntypedFormControl(),
+    fbUrl: new UntypedFormControl(),
+    gitHubUrl: new UntypedFormControl(),
+    twitterUrl: new UntypedFormControl(),
+    youTubeUrl: new UntypedFormControl(),
+    instagramUrl:new UntypedFormControl(),
+    linkedInUrl:new UntypedFormControl(),
+    email: new UntypedFormControl(),
+    phone: new UntypedFormControl(),
+    footerOne: new UntypedFormControl(),
+    footerTwo: new UntypedFormControl(),
+    footerThree: new UntypedFormControl(),
+    profilePicture: new UntypedFormControl(),
+    homePage: new UntypedFormControl(),
+    learnToCode: new UntypedFormControl(),
+    contactPage: new UntypedFormControl(),
+    intro: new UntypedFormControl(),
+    title: new UntypedFormControl(),
+    footerCopyrightBlock: new UntypedFormControl(),
+    homePageSize: new UntypedFormControl(),
+    postPageSize: new UntypedFormControl()
     });
   }
   

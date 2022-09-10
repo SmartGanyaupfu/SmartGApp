@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResetPassword } from 'src/app/_interfaces/reset-password';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -11,7 +11,7 @@ import { PasswordConfirmationValidatorService } from 'src/app/_services/password
   styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit {
-  public resetPasswordForm: FormGroup;
+  public resetPasswordForm: UntypedFormGroup;
   public showSuccess: boolean;
   public showError: boolean;
   public errorMessage: string;
@@ -20,9 +20,9 @@ export class ResetPasswordComponent implements OnInit {
   constructor(private _authService: AuthService, private _passConfValidator: PasswordConfirmationValidatorService, 
     private _route: ActivatedRoute,private route:Router) { }
   ngOnInit(): void {
-    this.resetPasswordForm = new FormGroup({
-      password: new FormControl('', [Validators.required]),
-      confirm: new FormControl('')
+    this.resetPasswordForm = new UntypedFormGroup({
+      password: new UntypedFormControl('', [Validators.required]),
+      confirm: new UntypedFormControl('')
     });
     this.resetPasswordForm.get('confirm').setValidators([Validators.required,
       this._passConfValidator.validateConfirmPassword(this.resetPasswordForm.get('password'))]);

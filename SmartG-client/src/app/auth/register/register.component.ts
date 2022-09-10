@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Role } from 'src/app/_interfaces/role';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -15,8 +15,8 @@ export class RegisterComponent implements OnInit {
   showSuccess:boolean=false;
   successMessage="";
   roles : Role[]=[];
-  createUserForm:FormGroup=new FormGroup({});
-    constructor(private authService:AuthService,private fb: FormBuilder,
+  createUserForm:UntypedFormGroup=new UntypedFormGroup({});
+    constructor(private authService:AuthService,private fb: UntypedFormBuilder,
       private _passConfValidator: PasswordConfirmationValidatorService,private toastr:ToastrService) { 
       this.initialiseForm();
     }
@@ -43,18 +43,18 @@ export class RegisterComponent implements OnInit {
         });
       });
 
-      this.createUserForm=new FormGroup({
+      this.createUserForm=new UntypedFormGroup({
  
-        firstName: new FormControl('',[Validators.required]),
-        lastName:new FormControl('',[Validators.required]),
+        firstName: new UntypedFormControl('',[Validators.required]),
+        lastName:new UntypedFormControl('',[Validators.required]),
        
-        userName: new FormControl('',[Validators.required]),
-        email: new FormControl('',[Validators.required, Validators.email]),
-        phoneNumber:new FormControl('',[Validators.required]),
+        userName: new UntypedFormControl('',[Validators.required]),
+        email: new UntypedFormControl('',[Validators.required, Validators.email]),
+        phoneNumber:new UntypedFormControl('',[Validators.required]),
        
-        password: new FormControl('',[Validators.required]),
-        confirmPassword: new FormControl(),
-        clientURI:  new FormControl(environment.clientUrl),
+        password: new UntypedFormControl('',[Validators.required]),
+        confirmPassword: new UntypedFormControl(),
+        clientURI:  new UntypedFormControl(environment.clientUrl),
       
         roles:  this.fb.array(rolesFGs)
         

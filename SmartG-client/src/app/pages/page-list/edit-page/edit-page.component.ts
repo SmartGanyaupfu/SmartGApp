@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID, TemplateRef, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -38,7 +38,7 @@ export class EditPageComponent implements OnInit {
   page:Page;
   modalRef?: BsModalRef | null;
 
-  updatePageForm:FormGroup=new FormGroup({});
+  updatePageForm:UntypedFormGroup=new UntypedFormGroup({});
 
   @ViewChild('staticTabs', { static: false }) staticTabs?: TabsetComponent;
 
@@ -53,14 +53,14 @@ export class EditPageComponent implements OnInit {
   }
 
   initialiseForm(){
-    this.updatePageForm=new FormGroup({
-      title: new FormControl(),
-      content: new FormControl(),
-      slug: new FormControl(this.slug),
-  excerpt: new FormControl(),
-  metaDescription: new FormControl(),
-  metaKeyWords: new FormControl(),
-  imageId:new FormControl()
+    this.updatePageForm=new UntypedFormGroup({
+      title: new UntypedFormControl(),
+      content: new UntypedFormControl(),
+      slug: new UntypedFormControl(this.slug),
+  excerpt: new UntypedFormControl(),
+  metaDescription: new UntypedFormControl(),
+  metaKeyWords: new UntypedFormControl(),
+  imageId:new UntypedFormControl()
     });
   }
   setUpdatePageFromValue(){

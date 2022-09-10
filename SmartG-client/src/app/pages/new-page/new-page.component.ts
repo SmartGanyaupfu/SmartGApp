@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -34,7 +34,7 @@ export class NewPageComponent implements OnInit {
   contentBlock: ContentBlockForCreationDto={content:'',title:''};
   contentBlocks: ContentBlockForCreationDto[]=[];
   authorId?: any;
-  createPageForm:FormGroup=new FormGroup({});
+  createPageForm:UntypedFormGroup=new UntypedFormGroup({});
   page:Page;
   modalRef?: BsModalRef | null;
 
@@ -67,12 +67,12 @@ export class NewPageComponent implements OnInit {
     
      
 
-      this.createPageForm=new FormGroup({
+      this.createPageForm=new UntypedFormGroup({
  
-        title: new FormControl(),
-        content: new FormControl(),
-        author: new FormControl(),
-        slug: new FormControl(this.slug),
+        title: new UntypedFormControl(),
+        content: new UntypedFormControl(),
+        author: new UntypedFormControl(),
+        slug: new UntypedFormControl(this.slug),
       }
         
       );

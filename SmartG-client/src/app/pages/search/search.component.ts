@@ -15,10 +15,10 @@ searchTerm:string='';
   ngOnInit(): void {
   }
   getSearchResults(){
-    /*this.searchService.getSearchResults(1,15,this.searchTerm).subscribe(res=>{
+    this.searchService.getSearchResults(1,15,this.searchTerm).subscribe(res=>{
       localStorage.setItem('searchResult', JSON.stringify(res));
       this.route.navigate(['/search']);
       
-    })*/
+    })
   }
 }

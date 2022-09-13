@@ -16,18 +16,10 @@ export class PageDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-  /*
-    this.pageSlug= this.router.url.split('?')[0].split('/').pop();
-    //console.log(this.route.parent.url)
-    if(history.state.pageData){
-      localStorage.setItem('pageDetail',JSON.stringify(history.state.pageData));
-      this.page=JSON.parse(localStorage.getItem('pageDetail'));
-    }else {
-      localStorage.removeItem('pageDetail');
-      this.pageService.getPageBySlug(this.pageSlug).subscribe(res=>{
-        this.page=res;
-      })
-    }*/
+  
+    this.route.data.subscribe(data=>{
+      this.page=data.page;
+    })
 
   }
 

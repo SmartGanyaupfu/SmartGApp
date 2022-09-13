@@ -37,7 +37,7 @@ export class PortfolioService {
     getPortfolioById(portfolioId:any){
       return this.http.get<Portfolio>(this.baseurl + 'portfolios/'+portfolioId )
     }
-    getPageBySlug(pageSlug:string){
+    getPortfolioBySlug(pageSlug:string){
       return this.http.get<Portfolio>(this.baseurl + 'portfolios/slug/'+pageSlug )
     }
   

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Widget } from '../_interfaces/widget';
 
@@ -12,7 +13,7 @@ export class WidgetService {
     constructor(private http:HttpClient) { }
 
 
-    getWidget(){
+    getWidget():Observable<Widget>{
       return this.http.get<Widget>(this.baseurl +'widgets' )
     }
   

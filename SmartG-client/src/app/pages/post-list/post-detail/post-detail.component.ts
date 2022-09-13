@@ -17,8 +17,9 @@ export class PostDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-  
-    this.pageSlug= this.router.url.split('?')[0].split('/').pop();
+    this.route.data.subscribe(data=>{
+      this.page=data.post;
+    })
     //console.log(this.route.parent.url)
   /*
     if(history.state.postData){

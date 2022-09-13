@@ -92,7 +92,7 @@ export class EditPageComponent implements OnInit {
           console.log(this.page);
           this.initialiseForm();
       this.setUpdatePageFromValue();
-      console.log(this.slug)
+      
         })
       }
      }

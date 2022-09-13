@@ -47,6 +47,11 @@ import { NewWidgetComponent } from './pages/widget-list/new-widget/new-widget.co
 import { WidgetListComponent } from './pages/widget-list/widget-list.component';
 import { MediaComponent } from './shared/media/media.component';
 import { UploadMediaComponent } from './shared/media/upload-media/upload-media.component';
+import { BlogResolver } from './_resolver/blog.resolver';
+import { DetailedViewResolver } from './_resolver/detailed-view.resolver';
+import { HomeResolver } from './_resolver/home.resolver';
+import { PortfolioResolver } from './_resolver/portfolio.resolver';
+import { ServiceResolver } from './_resolver/service.resolver';
 import { AuthGuardService } from './_services/auth-guard.service';
 import { RoleGuardService } from './_services/role-guard.service';
 
@@ -54,7 +59,7 @@ const routes: Routes = [
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
-  { path: 'home', component: HomeComponent},
+  { path: 'home', component: HomeComponent,resolve:{home:DetailedViewResolver}},
   { path: 'service', component: ServiceComponent},
   { path: 'portfolio', component: PortfolioComponent},
   { path: 'blog', component: PostComponent},
@@ -67,22 +72,22 @@ const routes: Routes = [
   { path: 'admin/page/new-page', component: NewPageComponent,canActivate:[AuthGuardService]},
   { path: 'admin/page/edit/:pageId', component: EditPageComponent,canActivate:[AuthGuardService]},
   { path: 'admin/pages', component: PageListComponent,canActivate:[AuthGuardService]},
-  { path: 'pages/:slug',component:PageDetailComponent},
+  { path: 'pages/:slug',component:PageDetailComponent, resolve:{page:HomeResolver}},
 
   { path: 'admin/post/new-post', component: NewPostComponent,canActivate:[AuthGuardService]},
   { path: 'admin/post/edit/:postId', component: EditPostComponent,canActivate:[AuthGuardService]},
   { path: 'admin/posts', component: PostListComponent,canActivate:[AuthGuardService]},
-  { path: 'blog/:slug',component:PostDetailComponent},
+  { path: 'blog/:slug',component:PostDetailComponent,resolve:{post:BlogResolver}},
 
   { path: 'admin/portfolio/new-portfolio', component: NewPortfolioComponent,canActivate:[AuthGuardService]},
   { path: 'admin/portfolio/edit/:portfolioId', component: EditPortfolioComponent,canActivate:[AuthGuardService]},
   { path: 'admin/portfolios', component: PortfolioListComponent,canActivate:[AuthGuardService]},
-  { path: 'portfolios/:slug',component:PortfolioDetailComponent},
+  { path: 'portfolios/:slug',component:PortfolioDetailComponent, resolve:{portfolio:PortfolioResolver}},
 
   { path: 'admin/service/new-service', component: NewServiceComponent,canActivate:[AuthGuardService]},
   { path: 'admin/service/edit/:serviceId', component: EditServiceComponent,canActivate:[AuthGuardService]},
   { path: 'admin/services', component: ServiceListComponent,canActivate:[AuthGuardService]},
-  { path: 'services/:slug',component:ServiceDetailComponent},
+  { path: 'services/:slug',component:ServiceDetailComponent,resolve:{service:ServiceResolver}},
 
   { path: 'admin/block/new-block', component: NewContentBlockComponent,canActivate:[AuthGuardService]},
   { path: 'admin/block/edit/:blockId', component: EditContentBlockComponent,canActivate:[AuthGuardService]},

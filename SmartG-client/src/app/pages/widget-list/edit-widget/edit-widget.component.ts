@@ -93,7 +93,7 @@ widgetId:any='';
     ngOnInit(): void {
       
      this.widgetId= this.router.url.split('?')[0].split('/').pop();
-     /*
+     
      if(history.state.widgetData){
       localStorage.setItem('widgetData',JSON.stringify(history.state.widgetData));
     this.page=JSON.parse(localStorage.getItem('widgetData'));
@@ -107,7 +107,7 @@ widgetId:any='';
     this.setUpdatePageFromValue();
       })
     } 
-     */
+     
  
         this.initialiseForm();
         this.setUpdatePageFromValue();

@@ -17,12 +17,15 @@ export class ServiceDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
- 
+    this.route.data.subscribe(data=>{
+      this.page=data.service;
+      console.log(data.service);
+    })
     this.pageSlug= this.router.url.split('?')[0].split('/').pop();
     
-    this.serviceService.getServiceBySlug(this.pageSlug).subscribe(res=>{
+    /*this.serviceService.getServiceBySlug(this.pageSlug).subscribe(res=>{
       this.page=res;
-    })
+    })*/
 
 
   }

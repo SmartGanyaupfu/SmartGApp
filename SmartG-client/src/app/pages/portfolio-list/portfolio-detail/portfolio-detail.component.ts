@@ -17,14 +17,9 @@ export class PortfolioDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-  
-    this.pageSlug= this.router.url.split('?')[0].split('/').pop();
-    //console.log(this.route.parent.url)
- 
-   
-      this.portfolioService.getPageBySlug(this.pageSlug).subscribe(res=>{
-        this.page=res;
-      })
+    this.route.data.subscribe(data=>{
+      this.page=data.portfolio;
+    })
     }
  
 

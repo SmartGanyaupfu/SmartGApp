@@ -6,13 +6,12 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { TokenStorageService } from '../_services/token-storage.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private tokenService: TokenStorageService,private router:Router, private toastrService:ToastrService) { }
+  constructor(private router:Router, private toastrService:ToastrService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(catchError(err => {
@@ -37,7 +36,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         }
 
         const error = (err && err.error && err.error.message) || err.statusText;
-        this.toastrService.error(error,'Error');
+       // this.toastrService.error(error,'Error');
         return throwError(err);
     }))
     }

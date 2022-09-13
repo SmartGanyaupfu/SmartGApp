@@ -17,7 +17,7 @@ import { TokenStorageService } from './token-storage.service';
 export class AuthService {
   url=environment.baseUrl;
   helper = new JwtHelperService();
-  private readonly token = "mytoken";
+  private readonly token = "my-token";
   private readonly currentUser= "currentUser";
   
   constructor(private http:HttpClient,private router:Router,private tokenStorageService:TokenStorageService, @Inject (PLATFORM_ID) private platformId) { }
@@ -62,9 +62,12 @@ export class AuthService {
   }
   
   public logout = () => {
-     localStorage.removeItem('my-token');
+    if(isPlatformBrowser){
+      localStorage.removeItem('my-token');
      localStorage.removeItem('currentUser');
      this.router.navigate(['auth/login'])
+    }
+     
      
    }
   

@@ -17,20 +17,14 @@ export class ServiceDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-  
+ 
     this.pageSlug= this.router.url.split('?')[0].split('/').pop();
-    //console.log(this.route.parent.url)
-/*
-    if(history.state.postData){
-      localStorage.setItem('postData',JSON.stringify(history.state.postData));
-      this.page=JSON.parse(localStorage.getItem('postData'));
-    }else {
-      localStorage.removeItem('postData');
-      this.serviceService.getServiceBySlug(this.pageSlug).subscribe(res=>{
-        this.page=res;
-      })
-    }
-*/
+    
+    this.serviceService.getServiceBySlug(this.pageSlug).subscribe(res=>{
+      this.page=res;
+    })
+
 
   }
+  
 }

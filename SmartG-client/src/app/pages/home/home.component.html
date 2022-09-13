@@ -54,7 +54,7 @@
                   <div class="row mt-4">
                       <div class="col-md-4 " *ngFor="let service of myServices">
                         <div class="card" style="max-width: 100%;">
-                            <img src="{{service?.image?.imageUrl}}" class="card-img-top" alt="service name" routerLink="/services/{{service.slug}}">
+                            <img src="{{service?.image?.imageUrl}}" class="card-img-top" alt="service name" routerLink="/services/{{service.slug}}" >
                             <div class="card-body">
                               <h5 class="card-title" routerLink="/services/{{service.slug}}">{{service?.title}}</h5>
                               <p class="card-text">{{service?.excerpt}}</p>

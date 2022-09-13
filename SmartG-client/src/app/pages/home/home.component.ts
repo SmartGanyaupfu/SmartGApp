@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { ContentBlock } from 'src/app/_interfaces/content-block';
 import { Page } from 'src/app/_interfaces/page';
 import { Portfolio } from 'src/app/_interfaces/portfolio';
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   ages = [3, 10, 18, 20];
   constructor(private pageService:PageService, private serviceService:ServiceService,private blockService:ContentBlockService,
      private portfolioService:PortfolioService, private postService:PostService, private widgetService:WidgetService
-     ,private title:Title) { 
+     ,private metaTagService:Meta, private metaTitle:Title) { 
 
 //this.getBlocks();
 //this.getWidgets();
@@ -43,11 +43,30 @@ export class HomeComponent implements OnInit {
      }
 
   ngOnInit(): void {
+
     this.getWidgets();
-    this.title.setTitle('Zvaita');
+    
     
     
 
+  }
+  addMetaTags(){
+    this.metaTagService.addTags([
+      {
+        name:'keywords',
+    content:this.page?.metaKeyWords
+    },
+    { name: 'robots', content: 'index, follow' },
+    { name: 'author', content: 'Digamber Singh' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { name: 'date', content: '2019-10-31', scheme: 'YYYY-MM-DD' },
+    { charset: 'UTF-8' },
+    {name:'description', content:this.page?.metaDescription}
+    ])
+
+    this.metaTitle.setTitle('Hard Coded');
+    
+    
   }
 
   getBlocks(){
@@ -67,6 +86,7 @@ export class HomeComponent implements OnInit {
       this.page= pageReturned;
       
       console.log(this.page);
+      this.addMetaTags();
    
     })
   }

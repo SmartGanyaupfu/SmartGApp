@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, EventEmitter, Inject, OnInit, Output, PLATFORM_ID, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { SearchDto } from 'src/app/_interfaces/search-dto';
 import { Widget } from 'src/app/_interfaces/widget';
@@ -12,6 +13,7 @@ import { WidgetService } from 'src/app/_services/widget.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+ @Inject(PLATFORM_ID) private platformId;
 widget:Widget;
 show:boolean=false;
   constructor(private widgetService:WidgetService, private searchService:SearchService, public authService:AuthService,
@@ -21,16 +23,21 @@ modalRef?: BsModalRef | null;
 searchResult:SearchDto;
 gotResults=false;
   ngOnInit(): void {
+  
     this.getWidget();
    
   }
+  
   getWidget(){
     this.widgetService.getWidget().subscribe(res=>{
       this.widget=res;
     })
   }
   signedIn(){
-    this.show=this.authService.loggedIn();
+    if(isPlatformBrowser(this.platformId)){
+      this.show=this.authService.loggedIn();
+    }
+    
     }
 
   getSearchResults(template: TemplateRef<any>){

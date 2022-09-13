@@ -17,7 +17,8 @@ export class RoleGuardService {
 }
 CheckAccess(){
   let hasAccess:boolean=false;
-  let data:string[]= [];
+  let data:string[]= this.tokenService.getUserRoles();
+  
 
   // if(this.tokenService.getUserRoles()==='Admin' || this.tokenService.getUserRoles()==='Editor')
   // {

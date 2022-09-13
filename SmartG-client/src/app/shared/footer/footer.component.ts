@@ -32,7 +32,7 @@ export class FooterComponent implements OnInit {
       this.blocks=res.result;
      // this.getWidgets();
      this.footerCopyText= this.blocks?.find(x=>x.contentBlockId===this.widget?.footerCopyrightBlock);
-     console.log(this.footerCopyText)
+    // console.log(this.footerCopyText)
     })
   }
 

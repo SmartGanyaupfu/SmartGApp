@@ -8,7 +8,6 @@ import { AuthService } from './_services/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'SmartG-client';
-  constructor(public authService:AuthService){}
   ngOnInit(): void {
     
   }

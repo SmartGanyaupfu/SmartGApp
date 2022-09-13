@@ -75,9 +75,13 @@ import { SearchResultsComponent } from './pages/search-results/search-results.co
 import { SearchComponent } from './pages/search/search.component';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { NewUserComponent } from './pages/user-list/new-user/new-user.component';
+import { JwtInterceptor, JwtModule } from '@auth0/angular-jwt';
+import { TokenInterceptor } from './_interceptors/token.interceptor';
 
 
-
+export function tokenGetter() {
+  return localStorage.getItem("mytoken");
+}
 
 @NgModule({
   declarations: [
@@ -158,11 +162,18 @@ import { NewUserComponent } from './pages/user-list/new-user/new-user.component'
     }),
   
     PaginationModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:5000","localhost:5001"],
+        disallowedRoutes: []
+      }
+    })
     
  
   ],
   providers: [SlugifyPipe,TrustedUrlPipe,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
-   ,
+   ,{provide: HTTP_INTERCEPTORS,useClass:JwtInterceptor,multi:true},{ provide: HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi: true},
     {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })

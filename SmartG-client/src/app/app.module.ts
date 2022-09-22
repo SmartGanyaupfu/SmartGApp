@@ -11,6 +11,7 @@ import { ModalModule } from 'ngx-bootstrap/modal'; //volar-software
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 
 
@@ -156,6 +157,7 @@ export function tokenGetter() {
     MatProgressBarModule,
     MatToolbarModule,
     MatDividerModule,
+    CarouselModule.forRoot(),
     TabsModule.forRoot(),
     ToastrModule.forRoot({
       positionClass:'toast-bottom-right'

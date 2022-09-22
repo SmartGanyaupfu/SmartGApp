@@ -11,5 +11,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     
   }
+  constructor(public authService:AuthService){
+
+  }
   
 }

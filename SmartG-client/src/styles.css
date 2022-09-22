@@ -1,7 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 body, .card{
-    background: #000;
-    color: #fff;
+    background: rgba(246, 246,246, 1);
+    color: rgb(32, 30, 30);
+}
+/* Main headings*/
+.sg-title{
+  
+color: #14344c;
+text-transform: uppercase;
+font-family: monospace !important;
+font-weight:700 !important;
+font-size: 36px !important;
+
+}
+.sg-title::before{
+    content:'[';
+   color: #2dadc6;
+   font-size: 42px !important;
+}
+.sg-title:after{
+    content:']';
+   color: #2dadc6;
+   font-size: 42px !important;
+}
+.sg-card-title {
+    background-color: #0c0c0c22;
+}
+/* headings end*/
+
+/* Side bar home and widgets Section*/
+.sg-title-widget {
+text-transform: uppercase ;
+font-family: monospace !important;
+font-weight: 700;
+font-size: 24px !important;
+}
+/* Slide Images*/
+a h2:hover{
+    color: #2dadc6 !important;
+}
+
+a img:hover{
+    transform: scale(0.95);
+    color: #2dadc6;
+}
+
+/* end slide */
+/* end of title*/
+.sg-card-link a:hover{
+    background: rgba(0, 0, 0, 0.539) !important;
+    
 }
 a {
     color:#fff;
@@ -15,21 +65,24 @@ a:hover {
 .primary-color {
     color:#2dadc6;
 }
+/* Buttons */
 .primary-bg-btn {
 background: #2dadc6;
 color: #fff;
 padding: 0 5px!important;
 }
-a.nav-link {
-    color:#2dadc6;
-}
+
+.primary-bg-btn:hover {
+    background: #14344c;
+   
+    }
+/* Btn end */
 
 .bg-light {
     background: #fff !important;
     color: #000 !important;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 
 /* Social Icons*/
 .social-icons i {
@@ -75,10 +128,15 @@ font-size: medium;
     color: #911;
 }
 
-
+/* footer */
 .footer {
     background: #14344c;
+    color: #fff Im !important;
 }
+.footer-copy, .footer-copy p {
+    color:#2dadc6 !important;
+}
+/* footer end*/
 .hireMeEmail {
     font-size: 40px;
 }
@@ -104,6 +162,27 @@ font-size: medium;
 .featureImage i:hover {
 color: #2dadc6;
 }
+/* Nav Start */
 .mobile-nav {
     padding: 5px !important;
+}
+
+a.nav-link {
+    color:#14344c;
+    font-size:larger;
+    font-weight:700;
+    text-transform: uppercase;
+    font-family: monospace;
+}
+a.nav-link:hover {
+    color: #2dadc6;
+    border-top: 2px solid #14344c;
+}
+
+/* Nav End */
+/* Bootstrap Card*/
+.card {
+   
+    border: 0px solid rgba(0,0,0);
+    border-radius: 0rem;
 }

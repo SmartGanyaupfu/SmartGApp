@@ -76,7 +76,7 @@ const routes: Routes = [
 
   { path: 'admin/post/new-post', component: NewPostComponent,canActivate:[AuthGuardService]},
   { path: 'admin/post/edit/:postId', component: EditPostComponent,canActivate:[AuthGuardService]},
-  { path: 'admin/posts', component: PostListComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/posts', component: PostListComponent,outlet:"dashboard",canActivate:[AuthGuardService]},
   { path: 'blog/:slug',component:PostDetailComponent,resolve:{post:BlogResolver}},
 
   { path: 'admin/portfolio/new-portfolio', component: NewPortfolioComponent,canActivate:[AuthGuardService]},

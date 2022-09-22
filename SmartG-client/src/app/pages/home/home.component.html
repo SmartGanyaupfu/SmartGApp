@@ -11,7 +11,7 @@
           <div class="col-md-9">
             <div class="card-body">
               <h4 class="card-title primary-color">{{widget?.intro}}</h4>
-              <h1>{{widget?.title}}</h1>
+              <h2 class="sg-title">{{widget?.title}}</h2>
               <div class="social-icons ">
                <a href="{{widget?.linkedInUrl}}"><i class="fa-brands fa-linkedin"></i></a> 
                 <a href="{{widget?.gitHubUrl}}"><i class="fa-brands fa-github"></i></a>
@@ -29,7 +29,7 @@
             <div class="card mb-3" style="max-width: 100%;" *ngIf="page;else else_block_page">
               
                     <div class="card-body">
-                      <h4 class="card-title primary-color">{{page?.title}}</h4>
+                      <h2 class="card-title primary-color sg-title-widget">{{page?.title}}</h2>
                       <div [innerHTML]="page?.content | trustedUrl"></div>
                       
                      <a href="mailto:{{widget?.cvUrl}}" mat-raised-button class="mt-3"> Resume/CV Request</a> 
@@ -50,25 +50,34 @@
 
             </ng-template>
               <div class="services-home text-center mt-5" *ngIf="myServices;else else_block"> <!--My services-->
-                  <h2>My Services</h2>
+                  <h2 class="sg-title">My Services</h2>
                   <div class="row mt-4">
-                      <div class="col-md-4 " *ngFor="let service of myServices">
-                        <div class="card" style="max-width: 100%;">
-                            <img src="{{service?.image?.imageUrl}}" class="card-img-top" alt="service name" routerLink="/services/{{service.slug}}" >
+                      <div class="col-md-6 mt-2" *ngFor="let service of myServices">
+                         <!--<div class="card bg-dark text-white p-2" style="max-width: 100%;">
+                            <img src="{{service?.image?.imageUrl}}" class="card-img-topx" width="100px" alt="service name" routerLink="/services/{{service.slug}}" >
                             <div class="card-body">
-                              <h5 class="card-title" routerLink="/services/{{service.slug}}">{{service?.title}}</h5>
+                              <h2 class="card-title" routerLink="/services/{{service.slug}}">{{service?.title}}</h2>
                               <p class="card-text">{{service?.excerpt}}</p>
                               <a  mat-raised-button class="mt" routerLink="/services/{{service.slug}}">Read More</a>
                             </div>
                            
                      
+                          </div>-->
+                         
+                          <div class="card text-white sg-card-link">
+                           <a routerLink="/services/{{service.slug}}"> <img src="{{service?.image?.imageUrl}}" class="card-img rounded" alt="Smart Services" routerLink="/services/{{service.slug}}">
+                            <div class="card-img-overlay">
+                              <h2 class="card-title sg-card-title" routerLink="/services/{{service.slug}}">{{service?.title}}</h2>
+                             
+                            </div></a>
                           </div>
+
                       </div>
                    
                    
                   </div>
-                  <div class="text-center mb-3">
-                    <button mat-raised-button routerLink="/service"> Load More</button>
+                  <div class="text-center mb-3 mt-3">
+                    <a mat-raised-button routerLink="/service"> Load More</a>
                   </div>
               </div> 
               <ng-template #else_block>
@@ -79,23 +88,25 @@
               <!--close my services-->
               <hr>
               <div class="services-home text-center mt-5" *ngIf="portfolios; else else_block"> <!--My Portifolio-->
-                <h2>Portfolio</h2>
-                <div class="row mt-4">
-                    <div class="col-md-4 " *ngFor="let portfolio of portfolios">
-                      <div class="card" style="max-width: 100%;">
-                          <img src="{{portfolio?.image?.imageUrl}}" class="card-img-top" alt="{{portfolio.title + ' image'}}" routerLink="/portfolios/{{portfolio.slug}}">
-                          <div class="card-body">
-                            <h5 class="card-title" routerLink="/portfolios/{{portfolio.slug}}">{{portfolio?.title}}</h5>
-                            <p class="card-text">{{portfolio?.excerpt}}</p>
-                            <a href="#" mat-raised-button class="mt" routerLink="/portfolios/{{portfolio.slug}}">Read More</a>
-                          </div>
-                        </div>
-                    </div>
-                 
-                </div>
+                <h2 class="sg-title">Portfolio</h2>
+                
+                <carousel [itemsPerSlide]="itemsPerSlide"
+                          [singleSlideOffset]="singleSlideOffset"
+                          [interval]="0"
+                          [noWrap]="noWrap"
+                          [pauseOnFocus]="true"
+                          >
+                  <slide *ngFor="let slide of portfolios; let index=index">
+                    <a class="sg-slide" routerLink="/portfolios/{{slide.slug}}">
+                       <img [src]="slide?.image?.imageUrl" alt="{{slide.title + ' image'}}" style="display: block; width: 100%;">
+                    <div class="carousel-caption">
+                      <h2 class="card-title sg-card-title" >{{slide?.title}}</h2>
+                    </div></a>
+                  </slide>
+                </carousel>
 
-                <div class="text-center mb-3">
-                  <button mat-raised-button routerLink="/portfolio"> Load More</button>
+                <div class="text-center mt-3 mb-3">
+                  <a mat-raised-button routerLink="/portfolio"> Load More</a>
                 </div>
             </div> <!--close my portifolio-->
 
@@ -104,8 +115,8 @@
             <div class="card mb-3 card-light widgets" style="max-width: 100%;"> <!--My skills-->
               
                 <div class="card-body widget-image">
-                  <h4 class="card-title primary-color">My Skills</h4>
-                  <div [innerHtml]="skillBlock?.content" >
+                  <h4 class="card-title primary-color sg-title-widget">My Skills</h4>
+                  <div [innerHtml]="skillBlock?.content" class="sg-list">
 
                   </div>
                   
@@ -116,7 +127,7 @@
           <div class="card mb-3 card-light" style="max-width: 100%;"> <!--Blog-->
               
             <div class="card-body" >
-              <h4 class="card-title primary-color">Blog</h4>
+              <h4 class="card-title primary-color sg-title-widget">Blog</h4>
               <div class="list-group">
                 <a routerLink="/blog/{{post.slug}}" class="list-group-item list-group-item-action " aria-current="true" *ngFor="let post of posts">
                   <div class="d-flex w-100 justify-content-between">
@@ -137,7 +148,7 @@
             <div class="card mb-3 card-light" style="max-width: 100%;"> <!-- Work Experience-->
                     
                 <div class="card-body">
-                <h4 class="card-title primary-color">Work Experience</h4>
+                <h4 class="card-title primary-color sg-title-widget">Work Experience</h4>
                 <p [innerHtml]="workBlock?.content">
                     </p>
                 
@@ -148,7 +159,7 @@
             <div class="card mb-3 card-light" style="max-width: 100%;"> <!--Education-->
                     
                 <div class="card-body">
-                <h4 class="card-title primary-color">Education</h4>
+                <h4 class="card-title primary-color sg-title-widget">Education</h4>
                 <p [innerHtml]="eduBlock?.content">  </p>
                 
                 </div>
@@ -159,7 +170,7 @@
             <div class="card mb-3 card-light" style="max-width: 100%;"> <!--Hobbies-->
                     
                 <div class="card-body">
-                <h4 class="card-title primary-color">Interests</h4>
+                <h4 class="card-title primary-color sg-title-widget">Interests</h4>
                 <p [innerHtml]="InterestBlock?.content">  </p>
                 
                 </div>

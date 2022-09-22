@@ -34,6 +34,12 @@ export class HomeComponent implements OnInit {
   blocks:ContentBlock[];
   widget:Widget;
   ages = [3, 10, 18, 20];
+
+  // Slide for portfolio
+  itemsPerSlide = 3;
+  singleSlideOffset = true;
+  noWrap = false;
+
   constructor(private pageService:PageService, private serviceService:ServiceService,private blockService:ContentBlockService,
      private portfolioService:PortfolioService, private postService:PostService, private widgetService:WidgetService
      ,private metaTagService:Meta, private metaTitle:Title, private route: ActivatedRoute) { 
@@ -46,26 +52,18 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     
-    
     this.route.data.subscribe(data=>{
       this.page=data.home;
       this.getWidgets();
-      console.log(this.page)
     })
     
 
   }
   addMetaTags(){
-    this.metaTagService.addTags([
-      {
-        name:'keywords',
-    content:this.page?.metaKeyWords
-    },
     
-    {name:'description', content:this.page?.metaDescription}
-    ])
-
-    this.metaTitle.setTitle('Hard Coded');
+    this.metaTagService.updateTag({name:'keywords', content:"Xamarin, Xamarin Forms, C# Developer, .net, javascript,webiste Design, rest api"})
+this.metaTagService.updateTag({name:'description', content:"A professional, results-driven, and dedicated full-stack web developer who is experienced in developing REST APIs using .Net Core. In addition to my academic qualifications, I am experienced in various programming & scripting languages such as C#, PHP, JavaScript and TypeScript"})
+    this.metaTitle.setTitle('Home | Smart Ganyaupfu - Web and Mobile App Developer');
     
     
   }
@@ -85,8 +83,7 @@ export class HomeComponent implements OnInit {
   GetHomePage(){
     this.pageService.getPageById(this.widget?.homePage).subscribe(pageReturned=>{
       this.page= pageReturned;
-      
-      console.log(this.page);
+     
       this.addMetaTags();
    
     })
@@ -108,21 +105,18 @@ export class HomeComponent implements OnInit {
   GetServices(){
 this.serviceService.getServices(this.pageNumber,this.widget?.homePageSize).subscribe(response=>{
   this.myServices=response.result;
-  console.log(this.myServices);
 })
   }
 
   GetPortfolios(){
     this.portfolioService.getPortfolios(this.pageNumber,this.widget.homePageSize).subscribe(response=>{
       this.portfolios=response.result;
-      console.log(this.portfolios);
     })
   }
 
 getBlogs(){
 this.postService.getPosts(this.pageNumber,this.widget?.homePageSize).subscribe(response=>{
 this.posts=response.result;
-console.log(this.posts);
 })
 }
 

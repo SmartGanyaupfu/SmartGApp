@@ -90,20 +90,38 @@
               <div class="services-home text-center mt-5" *ngIf="portfolios; else else_block"> <!--My Portifolio-->
                 <h2 class="sg-title">Portfolio</h2>
                 
+               <div class="sg-desktop">
                 <carousel [itemsPerSlide]="itemsPerSlide"
-                          [singleSlideOffset]="singleSlideOffset"
-                          [interval]="0"
-                          [noWrap]="noWrap"
-                          [pauseOnFocus]="true"
-                          >
-                  <slide *ngFor="let slide of portfolios; let index=index">
-                    <a class="sg-slide" routerLink="/portfolios/{{slide.slug}}">
-                       <img [src]="slide?.image?.imageUrl" alt="{{slide.title + ' image'}}" style="display: block; width: 100%;">
-                    <div class="carousel-caption">
-                      <h2 class="card-title sg-card-title" >{{slide?.title}}</h2>
-                    </div></a>
-                  </slide>
-                </carousel>
+                [singleSlideOffset]="singleSlideOffset"
+                [interval]="0"
+                [noWrap]="noWrap"
+                [pauseOnFocus]="true"
+                >
+                <slide *ngFor="let slide of portfolios; let index=index">
+                  <a class="sg-slide" routerLink="/portfolios/{{slide.slug}}">
+                    <img [src]="slide?.image?.imageUrl" alt="{{slide.title + ' image'}}" style="display: block; width: 100%;">
+                  <div class="carousel-caption">
+                    <h2 class="card-title sg-card-title" >{{slide?.title}}</h2>
+                  </div></a>
+                </slide>
+              </carousel>
+               </div>
+               <div class="sg-mobile">
+                <carousel [itemsPerSlide]="1"
+                [singleSlideOffset]="singleSlideOffset"
+                [interval]="0"
+                [noWrap]="noWrap"
+                [pauseOnFocus]="true"
+                >
+                <slide *ngFor="let slide of portfolios; let index=index">
+                  <a class="sg-slide" routerLink="/portfolios/{{slide.slug}}">
+                    <img [src]="slide?.image?.imageUrl" alt="{{slide.title + ' image'}}" style="display: block; width: 100%;">
+                  <div class="carousel-caption">
+                    <h2 class="card-title sg-card-title" >{{slide?.title}}</h2>
+                  </div></a>
+                </slide>
+              </carousel>
+            </div>
 
                 <div class="text-center mt-3 mb-3">
                   <a mat-raised-button routerLink="/portfolio"> Load More</a>
@@ -131,16 +149,16 @@
               <div class="list-group">
                 <a routerLink="/blog/{{post.slug}}" class="list-group-item list-group-item-action " aria-current="true" *ngFor="let post of posts">
                   <div class="d-flex w-100 justify-content-between">
-                    <h3 class="mb-1" routerLink="/blog/{{post.slug}}">{{post?.title}}</h3>
+                    <h2 class="mb-1" routerLink="/blog/{{post.slug}}">{{post?.title}}</h2>
                     <small>{{post?.dateCreated | date:'d/M/yy'}}</small>
                   </div>
                   <p class="mb-1">{{post.excerpt}}</p>
-                  <small routerLink="/blog/{{post.slug}}">Read More</small>
+                  <a class="sg-widget-link" routerLink="/blog/{{post.slug}}">Read More</a>
                 </a>
                 
               </div>
               
-             <button class="mt-3" routerLink="/blog">Load More</button>
+             <a mat-raised-button class="mt-3" routerLink="/blog">Load More</a>
             </div>
          
       </div>

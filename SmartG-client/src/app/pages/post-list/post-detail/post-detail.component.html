@@ -1,8 +1,9 @@
-<div class="container mt-3">
+<div class="container mt-3 post-content text-center">
     <button routerLink="/admin/post/edit/{{page?.postId}}">Edit</button>
-    <h1>{{page?.title}} </h1>
-    <img src="{{page?.image?.imageUrl}}" class="img-fluid" alt="page image">
+    <h1 class="sg-title">{{page?.title}} </h1>
+    <!--img src="{{page?.image?.imageUrl}}" class="img-fluid" alt="page image"-->
     <div class="" [innerHtml]="page?.content | trustedUrl">
 
     </div>
+    <app-share-buttons></app-share-buttons>
 </div>

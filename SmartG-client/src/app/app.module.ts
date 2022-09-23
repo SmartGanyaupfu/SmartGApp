@@ -12,6 +12,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
 
 
@@ -78,6 +80,7 @@ import { UserListComponent } from './pages/user-list/user-list.component';
 import { NewUserComponent } from './pages/user-list/new-user/new-user.component';
 import { JwtInterceptor, JwtModule } from '@auth0/angular-jwt';
 import { TokenInterceptor } from './_interceptors/token.interceptor';
+import { ShareButtonsComponent } from './shared/share-buttons/share-buttons.component';
 
 
 export function tokenGetter() {
@@ -139,6 +142,7 @@ export function tokenGetter() {
     SearchComponent,
     UserListComponent,
     NewUserComponent,
+    ShareButtonsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -162,6 +166,8 @@ export function tokenGetter() {
     ToastrModule.forRoot({
       positionClass:'toast-bottom-right'
     }),
+    ShareButtonsModule,
+    ShareIconsModule,
   
     PaginationModule.forRoot(),
     JwtModule.forRoot({

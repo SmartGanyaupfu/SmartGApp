@@ -1,38 +1,37 @@
-<div class="container mt-5">
-  <h1>Blog</h1>
+<div class="container mt-5 mb-3">
+  <h1 class="sg-title">Blog</h1>
 
 
   <div>
-      <tabset>
-        <tab heading="Articles" id="tab1">
+      
 
           <div class="services-home text-center mt-5"> <!--port all-->
   
               <div class="row mt-4">
-                <div class="col-md-4 " *ngFor="let post of posts">
+                <div class="col-md-6 mb-3 " *ngFor="let post of posts">
                   <div class="card" style="max-width: 100%;">
-                    <a href="#" mat-raised-button class="mt" routerLink="/blog/{{post.slug}}">
+                    <a   routerLink="/blog/{{post.slug}}">
                        <img src="{{post?.image?.imageUrl}}" class="card-img-top" alt="{{post.title + ' image'}}">
                     <div class="card-body">
-                      <h5 class="card-title">{{post?.title}}</h5>
-                      <p class="card-text">{{post?.excerpt}}</p>
-                      <a href="#" mat-raised-button class="mt" routerLink="/blog/{{post.slug}}">Read More</a>
-                    </div></a>
-                  </div>
+                      <h2 class="card-title">{{post?.title}}</h2>
+                    </div>
+                      <p class="card-text">{{post?.excerpt}}</p></a>
+                     
+                    </div>
+                    <a  mat-raised-button  routerLink="/blog/{{post.slug}}">Read More</a>
                 </div>
                  
               </div>
       
               
           </div> <!--port all-->
-        </tab><!--First Tab-->
+       
 
           <ng-template #else_block>
             <p class="alert alert-secondary mt-3"> Oops! Nothing found. </p>
           </ng-template>
         
-          
-      </tabset>
+      
     </div>
 
  

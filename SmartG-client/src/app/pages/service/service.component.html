@@ -1,18 +1,24 @@
 <div class="container mt-5">
     <div class="services-home text-center mt-5"> <!--My services-->
-        <h2>My Services</h2>
-        <div class="row mt-4">
-          <div class="col-md-4 " *ngFor="let service of myServices">
-            <div class="card" style="max-width: 100%;">
+        <h2 class="sg-title">My Services</h2>
+        <div class="row mt-4 mb-3">
+          <div class="col-md-6 mt-3" *ngFor="let service of myServices">
+            <!--div class="card" style="max-width: 100%;">
               <img src="{{service?.image?.imageUrl}}" class="card-img-top" alt="service name" routerLink="/services/{{service.slug}}">
               <div class="card-body">
                 <h5 class="card-title" routerLink="/services/{{service.slug}}">{{service?.title}}</h5>
                 <p class="card-text">{{service?.excerpt}}</p>
                 <a  mat-raised-button class="mt" routerLink="/services/{{service.slug}}">Read More</a>
               </div>
-             
-       
-            </div>
+            </div-->
+
+            <div class="card text-white sg-card-link">
+              <a routerLink="/services/{{service.slug}}"> <img src="{{service?.image?.imageUrl}}" class="card-img rounded" alt="Smart Services" routerLink="/services/{{service.slug}}">
+               <div class="card-img-overlay">
+                 <h2 class="card-title sg-card-title" routerLink="/services/{{service.slug}}">{{service?.title}}</h2>
+                
+               </div></a>
+             </div>
           </div>
           
         </div>

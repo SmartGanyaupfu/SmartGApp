@@ -1,0 +1,12 @@
+.card, .card-title {
+    background-color: #14344c;
+}
+.card img:hover {
+    transform: scale(0.95);
+}
+a {
+    text-decoration: none;
+}
+a {
+    color: #fff;
+}

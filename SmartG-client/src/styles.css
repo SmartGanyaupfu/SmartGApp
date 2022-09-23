@@ -5,6 +5,7 @@ body, .card{
     background: rgba(246, 246,246, 1);
     color: rgb(32, 30, 30);
 }
+
 /* Main headings*/
 .sg-title{
   
@@ -30,6 +31,13 @@ font-size: 36px !important;
 }
 /* headings end*/
 
+/* Paragraphs start*/
+p, li {
+    font-size: medium;
+    line-height: 1.5rem;
+}
+
+
 /* Side bar home and widgets Section*/
 .sg-title-widget {
 text-transform: uppercase ;
@@ -37,6 +45,15 @@ font-family: monospace !important;
 font-weight: 700;
 font-size: 24px !important;
 }
+
+.sg-widget-link {
+    color: #2dadc6;
+}
+.sg-widget-link:hover {
+    color:#14344c;
+}
+
+/* end widget section*/
 /* Slide Images*/
 a h2:hover{
     color: #2dadc6 !important;
@@ -53,17 +70,16 @@ a img:hover{
     background: rgba(0, 0, 0, 0.539) !important;
     
 }
-a {
-    color:#fff;
-}
-th, td {
-    color:#fff;
-}
+
+
 a:hover {
     color:#2dadc6;
 }
 .primary-color {
     color:#2dadc6;
+}
+.customLink {
+    color: #14344c;
 }
 /* Buttons */
 .primary-bg-btn {
@@ -186,3 +202,59 @@ a.nav-link:hover {
     border: 0px solid rgba(0,0,0);
     border-radius: 0rem;
 }
+
+/* POst Page Content */
+.post-content {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Share Icons */ 
+.sb-whatsapp {
+    background-color: #25D366 !important;
+}
+.sb-whatsapp .sb-text{
+    background-color:#0ea846 !important;
+}
+.sb-twitter {
+    background-color: #00acee !important;
+}
+.sb-twitter .sb-text {
+    background-color: #0795ce;
+}
+.sb-telegram {
+    background-color: #0088cc !important;
+}
+.sb-telegram .sb-text {
+    background-color: #0678b0;
+}
+.sb-linkedin {
+    background-color:#006fa6 !important;
+}
+.sb-linkedin .sb-text {
+    background-color: #026393;
+}
+.sb-facebook {
+    background-color:#006fa6 !important;
+}
+.sb-facebook .sb-text {
+    background-color: #026393;
+}
+.sb-copy {
+    background-color:#2dadc6 !important;
+}
+.sb-copy .sb-text {
+    background-color: #14344c;
+}
+/* media queries */
+@media only screen and (min-width: 769px) {
+.sg-mobile{
+    display: none;
+}
+}
+@media only screen and (max-width: 768px) {
+    .sg-desktop{
+        display: none;
+    }
+    }

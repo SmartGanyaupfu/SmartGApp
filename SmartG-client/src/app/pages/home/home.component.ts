@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
     
     this.route.data.subscribe(data=>{
       this.page=data.home;
+    
       this.getWidgets();
     })
     
@@ -105,12 +106,14 @@ this.metaTagService.updateTag({name:'description', content:"A professional, resu
   GetServices(){
 this.serviceService.getServices(this.pageNumber,this.widget?.homePageSize).subscribe(response=>{
   this.myServices=response.result;
+  console.log(this.myServices);
 })
   }
 
   GetPortfolios(){
     this.portfolioService.getPortfolios(this.pageNumber,this.widget.homePageSize).subscribe(response=>{
       this.portfolios=response.result;
+      console.log(this.portfolios)
     })
   }
 

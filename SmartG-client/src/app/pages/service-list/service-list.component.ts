@@ -16,7 +16,7 @@ export class ServiceListComponent implements OnInit {
 
   public pagination:Pagination;
   pageNumber:number=1;
-pageSize:number=3;
+pageSize:number=10;
 pages:Service[];
 users:User[];
   constructor(private serviceService:ServiceService, private toastr:ToastrService, private authService: AuthService) { }

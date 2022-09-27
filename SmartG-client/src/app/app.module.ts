@@ -81,6 +81,7 @@ import { NewUserComponent } from './pages/user-list/new-user/new-user.component'
 import { JwtInterceptor, JwtModule } from '@auth0/angular-jwt';
 import { TokenInterceptor } from './_interceptors/token.interceptor';
 import { ShareButtonsComponent } from './shared/share-buttons/share-buttons.component';
+import { GoogleAnalytics4Component } from './shared/google-analytics4/google-analytics4.component';
 
 
 export function tokenGetter() {
@@ -143,6 +144,7 @@ export function tokenGetter() {
     UserListComponent,
     NewUserComponent,
     ShareButtonsComponent,
+    GoogleAnalytics4Component,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

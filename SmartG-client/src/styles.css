@@ -27,7 +27,7 @@ font-size: 36px !important;
    font-size: 42px !important;
 }
 .sg-card-title {
-    background-color: #0c0c0c22;
+    background-color: #0c0c0ca0;
 }
 /* headings end*/
 
@@ -37,6 +37,15 @@ p, li {
     line-height: 1.5rem;
 }
 
+/* paragrapgh end*/
+
+/* The Content Section */
+.the-content a {
+    color:#120495;
+}
+.the-content a:hover{
+    color: #2dadc6;
+}
 
 /* Side bar home and widgets Section*/
 .sg-title-widget {
@@ -195,7 +204,7 @@ a.nav-link:hover {
     border-top: 2px solid #14344c;
 }
 a {
-    color: #fff;
+    color: rgb(250, 249, 252);
 }
 /* Nav End */
 /* Bootstrap Card*/
@@ -258,5 +267,9 @@ a {
 @media only screen and (max-width: 768px) {
     .sg-desktop{
         display: none;
+    }
+    /*Images*/
+    .the-content img{
+        width: 100%;
     }
     }

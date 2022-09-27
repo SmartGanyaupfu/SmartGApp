@@ -30,13 +30,13 @@
               
                     <div class="card-body">
                       <h2 class="card-title primary-color sg-title-widget">{{page?.title}}</h2>
-                      <div [innerHTML]="page?.content | trustedUrl"></div>
+                      <div class="the-content" [innerHTML]="page?.content | trustedUrl"></div>
                       
                      <a href="mailto:{{widget?.cvUrl}}" mat-raised-button class="mt-3"> Resume/CV Request</a> 
 
-                     <div class="lets-work text-center" [innerHtml]="widget?.hireMeBlock">
+                     <!--div class="lets-work text-center" [innerHtml]="widget?.hireMeBlock">
                       
-                     </div>
+                     </div-->
                     </div>
                  
               </div>

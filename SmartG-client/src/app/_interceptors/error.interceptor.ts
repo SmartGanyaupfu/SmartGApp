@@ -31,7 +31,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           return;
         }
         if([500].includes(err.status)){
-          this.toastrService.error(err.error,'Error');
+          this.toastrService.error("Error code 500, Something went wrong. Please try again later or contact the webmaster.",'Error');
           return;
         }
 

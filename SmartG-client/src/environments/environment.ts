@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   baseUrl:"https://localhost:7212/api/",
-  clientUrl:"http://localhost:4200/auth/email-confirmation"
+  clientUrl:"http://localhost:4200/auth/email-confirmation",
+  googleAnalyticsTrackingCode:"G-4EY0LY9CS7"
 };
 
 

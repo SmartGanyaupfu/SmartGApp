@@ -81,7 +81,7 @@ namespace SmartG.API.Controllers.API.V1
 
             return CreatedAtRoute("offeredServicesId", new { offeredServiceId= serviceToReturn.OfferedServiceId }, serviceToReturn);
         }
-        [Authorize]
+      /*  [Authorize]
         [HttpPost("{offeredServiceId}/add-image")]
         public async Task<IActionResult> AddImage(IFormFile file, Guid offeredServiceId)
         {
@@ -112,7 +112,7 @@ namespace SmartG.API.Controllers.API.V1
 
 
             return CreatedAtRoute("offeredServicesId", new { offeredServiceId = serviceToReturn.OfferedServiceId }, serviceToReturn);
-        }
+        }*/
         [Authorize]
         [HttpPost("{offeredServiceId}/add-block")]
         public async Task<IActionResult> AddBlock([FromBody] ContentBlockForCreationDto contentBlock, Guid offeredServiceId)

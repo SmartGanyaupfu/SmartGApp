@@ -84,6 +84,7 @@ import { ShareButtonsComponent } from './shared/share-buttons/share-buttons.comp
 import { GoogleAnalytics4Component } from './shared/google-analytics4/google-analytics4.component';
 
 
+
 export function tokenGetter() {
   return localStorage.getItem("mytoken");
 }

@@ -18,20 +18,28 @@ namespace SmartG.CloudinaryService
             _cloudinary = new Cloudinary(acc);
         }
 
-        public async Task<ImageUploadResult> AddImageAsync(IFormFile file)
+        public async Task<List<ImageUploadResult>> AddImageAsync(IFormFile[] files)
         {
             var uploadResult = new ImageUploadResult();
-            if (file.Length > 0)
+            List<ImageUploadResult> imageUploads = new List<ImageUploadResult>();
+            foreach(var file in files)
             {
-                using var stream = file.OpenReadStream();
-                var uploadParams = new ImageUploadParams
+                if (file.Length > 0)
                 {
-                    File = new FileDescription(file.FileName, stream)
-                };
-                uploadResult = await _cloudinary.UploadAsync(uploadParams);
+                    using var stream = file.OpenReadStream();
+                    var uploadParams = new ImageUploadParams
+                    {
+                        File = new FileDescription(file.FileName, stream),
+                        Transformation = new Transformation().Width(0.5)
+                    };
+                    uploadResult = await _cloudinary.UploadAsync(uploadParams);
+                    imageUploads.Add(uploadResult);
+                    
+                }
             }
+           
 
-            return uploadResult;
+            return imageUploads;
         }
 
         public async Task<DeletionResult> DeleteImageAsync(string publicId)

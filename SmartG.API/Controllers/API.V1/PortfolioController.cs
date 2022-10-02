@@ -82,27 +82,32 @@ namespace SmartG.API.Controllers.API.V1
 
             return CreatedAtRoute("portfoliosId", new { portfolioId = portfolioToReturn.PortfolioId }, portfolioToReturn);
         }
-        [Authorize]
+       /* [Authorize]
         [HttpPost("{portfolioId}/add-image")]
-        public async Task<IActionResult> AddImage(IFormFile file, Guid portfolioId)
+        public async Task<IActionResult> AddImage(IFormFile[] files, Guid portfolioId)
         {
             var portfolioEntity = await _repository.Portfolio.GetPortfolioByIdAsync( portfolioId, trackChanges: true);
             if (portfolioEntity is null)
                 return NotFound($"page with id {portfolioEntity} does not exist");
 
-            var result = await _imageService.AddImageAsync(file);
-            if (result.Error != null)
-                return BadRequest(result.Error.Message);
-
-            var image = new Image()
+            var results = await _imageService.AddImageAsync(files);
+            foreach (var result in results)
             {
-                DateCreated = DateTime.Now,
-                DateUpdated = DateTime.Now,
-                Deleted = false,
-                PublicId = result.PublicId,
-                ImageUrl = result.SecureUrl.AbsoluteUri
-            };
-            portfolioEntity.Image = image;
+                if (result.Error != null)
+                    return BadRequest(result.Error.Message);
+
+                var image = new Image()
+                {
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
+                    Deleted = false,
+                    PublicId = result.PublicId,
+                    ImageUrl = result.SecureUrl.AbsoluteUri
+                };
+                
+                portfolioEntity.Images?.Add(image);
+            }
+          
 
             await _repository.SaveAsync();
 
@@ -110,7 +115,7 @@ namespace SmartG.API.Controllers.API.V1
 
 
             return CreatedAtRoute("portfoliosId", new { portfolioId = portfolioToReturn.PortfolioId }, portfolioToReturn);
-        }
+        }*/
         [Authorize]
         [HttpPost("{portfolioId}/add-block")]
         public async Task<IActionResult> AddBlock([FromBody] ContentBlockForCreationDto contentBlock, Guid portfolioId)

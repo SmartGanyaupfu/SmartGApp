@@ -21,6 +21,7 @@ export class MediaComponent implements OnInit {
     uploadSub: Subscription;
     baseUrl=environment.baseUrl;
     fileToUpload:File|null=null;
+    filesToUpload:File[]=null;
     public images:Image[];
     public pagination:Pagination;
     pageNumber:number=1;
@@ -28,6 +29,7 @@ export class MediaComponent implements OnInit {
   modalRef?: BsModalRef | null;
   modalRef2?: BsModalRef;
   selectecdImage:Image;
+  imageUploads:any
     constructor(private mediaService: MediaService, private toastr:ToastrService,private modalService: BsModalService) {}
     ngOnInit(): void {
       this.getImages();
@@ -35,12 +37,20 @@ export class MediaComponent implements OnInit {
 
     onFileSelected(event) {
         this.fileToUpload = event.target.files[0];
+        this.filesToUpload= event.target.files;
         this.fileName=this.fileToUpload.name;
 
     }
     uploadFile() {
-      this.mediaService.uploadFile(this.fileToUpload).subscribe(data => {
-       this.images.push(data);
+      this.mediaService.uploadFile(this.filesToUpload).subscribe(data => {
+       for(let i=0;i<data.length;i++){
+        this.images.unshift(data[i])
+       }
+       //this.images=data;
+       console.log(this.imageUploads)
+       this.filesToUpload=null;
+       this.pagination.CurrentPage=1;
+       this.toastr.success("All images uploaded", "Success")
         });
     }
     getImages(){
@@ -55,7 +65,7 @@ export class MediaComponent implements OnInit {
       this.mediaService.deleteImage(imageId).subscribe(res=>{
         this.toastr.success('Image deleted.', 'Deleted');
         //let imageDeleted= this.images.find(i=>i.imageId===imageId);
-        this.images.splice(this.images.indexOf(image));
+        this.images.splice(this.images.indexOf(image),1);
       
       })
     }

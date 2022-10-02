@@ -13,6 +13,7 @@ namespace SmartG.Contracts
 		IContentBlockRepository ContentBlock { get; }
 		IServiceRepository Service { get; }
 		IWidgetRepository Widget { get; }
+		IGalleryRepository Gallery { get; }
 	}
 }
 

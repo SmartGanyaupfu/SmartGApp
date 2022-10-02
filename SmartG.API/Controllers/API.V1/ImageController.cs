@@ -58,36 +58,44 @@ namespace SmartG.API.Controllers.API.V1
         }
         [Authorize]
         [HttpPost("add-image")]
-        public async Task<IActionResult> AddImage(IFormFile file)
+        public async Task<IActionResult> AddImage(IFormFile [] files)
         {
             
             var userId = User.GetUserId();
-            
-            var result = await _imageService.AddImageAsync(file);
-            if (result.Error != null)
-                return BadRequest(result.Error.Message);
 
-            var image = new Image()
+            var images = new List<Image>();
+
+            var results = await _imageService.AddImageAsync(files);
+            foreach (var result in results)
             {
-                DateCreated = DateTime.Now,
-                DateUpdated = DateTime.Now,
-                Deleted = false,
-                PublicId = result.PublicId,
-                ImageUrl = result.SecureUrl.AbsoluteUri,
-                AuthorId=userId,
-                Name=file.FileName
-                
-            };
-           
-            var imageEntity = _mapper.Map<Image>(image);
-            _repository.Image.CreateImageAsync(imageEntity);
+                if (result.Error != null)
+                    return BadRequest(result.Error.Message);
+
+                var image = new Image()
+                {
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
+                    Deleted = false,
+                    PublicId = result.PublicId,
+                    ImageUrl = result.SecureUrl.AbsoluteUri,
+                    AuthorId= userId
+                };
+
+                images.Add(image);
+            }
+            
+
+
+            //var imageEntity = _mapper.Map<Image>(image);
+            _repository.Image.CreateImagesAsync(images);
 
             await _repository.SaveAsync();
 
-            var imageToReturn = _mapper.Map<ImageDto>(imageEntity);
+             var imagesToReturn = _mapper.Map<IEnumerable<ImageDto>>(images);
 
 
-            return CreatedAtRoute("imagesId", new { imageId = imageToReturn.ImageId }, imageToReturn);
+            //return CreatedAtRoute("imagesId", new { imageId = imageToReturn.ImageId }, imageToReturn);
+            return Ok(images);
         }
 
 

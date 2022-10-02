@@ -41,11 +41,15 @@ export class MediaService {
   deleteImage(imageId:number){
     return this.http.delete(this.baseurl+'media/'+imageId);
   }
-    uploadFile(fileToUpload: File) {
+    uploadFile(filesToUpload: File[]) {
       const endpoint = this.baseurl+'media/add-image';
       const formData: FormData = new FormData();
-      formData.append('file', fileToUpload, fileToUpload.name);
-      return this.http.post<Image>(endpoint, formData);
+     // filesToUpload.forEach(x=>formData.append('files', x,x.name))
+      for(let i=0;i<filesToUpload.length;i++){
+        formData.append('files', filesToUpload[i], filesToUpload[i].name);
+      }
+      //formData.append('files', filesToUpload, fileToUpload.name);
+      return this.http.post<Image[]>(endpoint, formData);
   }
     updateImage(imageId:number,image:any){
       return this.http.put(this.baseurl+ 'media/'+imageId,image);

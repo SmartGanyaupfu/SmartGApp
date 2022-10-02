@@ -13,9 +13,13 @@ namespace SmartG.Repository
         {
         }
 
-        public void CreateImageAsync(Image image)
+        public void CreateImagesAsync(List<Image> images)
         {
-            Create(image);
+            foreach(var image in images)
+            {
+                Create(image);
+            }
+            
         }
 
         public void DeleteImageAsync(Image image)

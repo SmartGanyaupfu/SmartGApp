@@ -61,7 +61,7 @@ namespace SmartG.API.Controllers.API.V1
             var pageToReturn = _mapper.Map<PostDto>(post);
             return Ok(pageToReturn);
         }
-        [Authorize]
+        /*[Authorize]
         [HttpPost("{postId}/add-image")]
         public async Task<IActionResult> AddImage(IFormFile file, Guid postId)
         {
@@ -89,7 +89,7 @@ namespace SmartG.API.Controllers.API.V1
 
 
             return CreatedAtRoute("postsId", new { postId = postToReturn.PostId }, postToReturn);
-        }
+        }*/
 
         [Authorize]
         [HttpPost]

@@ -86,7 +86,7 @@ namespace SmartG.API.Controllers.API.V1
             //var votesToReturn = await _serviceManager.QualificationService.CreateQualificationForStudyOptionAsync(studyOptionId, qualification, trackChanges: false);
             return CreatedAtRoute("pagesId", new { pageId = pageToReturn.PageId }, pageToReturn);
         }
-        [Authorize]
+       /* [Authorize]
         [HttpPost("{pageId}/add-image")]
         public async Task<IActionResult> AddImage(IFormFile file, int pageId)
         {
@@ -114,7 +114,7 @@ namespace SmartG.API.Controllers.API.V1
 
            
             return CreatedAtRoute("pagesId", new { pageId = pageToReturn.PageId }, pageToReturn);
-        }
+        }*/
         [Authorize]
         [HttpPost("{pageId}/add-block")]
         public async Task<IActionResult> AddBlock([FromBody] ContentBlockForCreationDto contentBlock, int pageId)

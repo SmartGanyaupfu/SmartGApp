@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartG.Repository;
 
@@ -11,9 +12,10 @@ using SmartG.Repository;
 namespace SmartG.API.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20221002125457_removedPortfolioGallery")]
+    partial class removedPortfolioGallery
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,22 +53,22 @@ namespace SmartG.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "332a1c46-841f-4463-a21d-3ceb630f873f",
-                            ConcurrencyStamp = "df4fb6e9-8d49-4cf0-a51f-ac167f753cc9",
+                            Id = "d5c02194-9fb2-478b-8dba-8f7149f0b573",
+                            ConcurrencyStamp = "64ac0e49-55b4-44d0-a759-892dfac4e3a4",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "b2d798a1-39a1-4cf0-8eab-e07a33d73d67",
-                            ConcurrencyStamp = "4f2f1a54-92fb-4bff-a99b-c283cdcb2082",
+                            Id = "6a64afd0-840c-4b79-91ff-aa84344357df",
+                            ConcurrencyStamp = "cb76f9a2-12ca-426b-97cc-baa481c67e0e",
                             Name = "Subscriber",
                             NormalizedName = "SUBSCRIBER"
                         },
                         new
                         {
-                            Id = "00c5866c-e484-445e-b101-86bdb18f2d5a",
-                            ConcurrencyStamp = "ed2fc427-c064-45f7-8faf-89a3379afd39",
+                            Id = "0d4d461f-f901-43d5-b423-200a95301e69",
+                            ConcurrencyStamp = "b1583748-f1c0-4065-9706-7bab903ac13e",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         });
@@ -287,22 +289,6 @@ namespace SmartG.API.Migrations
                     b.ToTable("ContentBlocks");
                 });
 
-            modelBuilder.Entity("SmartG.Entities.Models.Gallery", b =>
-                {
-                    b.Property<int>("GalleryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GalleryId"), 1L, 1);
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("GalleryId");
-
-                    b.ToTable("Gallery");
-                });
-
             modelBuilder.Entity("SmartG.Entities.Models.Image", b =>
                 {
                     b.Property<int>("ImageId")
@@ -329,9 +315,6 @@ namespace SmartG.API.Migrations
                     b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("GalleryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -345,8 +328,6 @@ namespace SmartG.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ImageId");
-
-                    b.HasIndex("GalleryId");
 
                     b.ToTable("Image");
                 });
@@ -449,8 +430,8 @@ namespace SmartG.API.Migrations
                         {
                             PageId = 1,
                             Content = "The innner part of the solar cookker is made of mirroes",
-                            DateCreated = new DateTime(2022, 10, 3, 0, 27, 43, 511, DateTimeKind.Local).AddTicks(7100),
-                            DateUpdated = new DateTime(2022, 10, 3, 0, 27, 43, 511, DateTimeKind.Local).AddTicks(7100),
+                            DateCreated = new DateTime(2022, 10, 2, 14, 54, 56, 966, DateTimeKind.Local).AddTicks(5750),
+                            DateUpdated = new DateTime(2022, 10, 2, 14, 54, 56, 966, DateTimeKind.Local).AddTicks(5750),
                             Deleted = false,
                             MetaDescription = "The inner was the inner",
                             MetaKeyWords = "test,tets,done",
@@ -461,8 +442,8 @@ namespace SmartG.API.Migrations
                         {
                             PageId = 2,
                             Content = "The innner part of the solar cookker is made of mirroes",
-                            DateCreated = new DateTime(2022, 10, 3, 0, 27, 43, 511, DateTimeKind.Local).AddTicks(7110),
-                            DateUpdated = new DateTime(2022, 10, 3, 0, 27, 43, 511, DateTimeKind.Local).AddTicks(7110),
+                            DateCreated = new DateTime(2022, 10, 2, 14, 54, 56, 966, DateTimeKind.Local).AddTicks(5760),
+                            DateUpdated = new DateTime(2022, 10, 2, 14, 54, 56, 966, DateTimeKind.Local).AddTicks(5760),
                             Deleted = false,
                             MetaDescription = "The inner was the inner",
                             MetaKeyWords = "test,tets,done",
@@ -473,8 +454,8 @@ namespace SmartG.API.Migrations
                         {
                             PageId = 3,
                             Content = "The innner part of the solar cookker is made of mirroes",
-                            DateCreated = new DateTime(2022, 10, 3, 0, 27, 43, 511, DateTimeKind.Local).AddTicks(7110),
-                            DateUpdated = new DateTime(2022, 10, 3, 0, 27, 43, 511, DateTimeKind.Local).AddTicks(7120),
+                            DateCreated = new DateTime(2022, 10, 2, 14, 54, 56, 966, DateTimeKind.Local).AddTicks(5760),
+                            DateUpdated = new DateTime(2022, 10, 2, 14, 54, 56, 966, DateTimeKind.Local).AddTicks(5760),
                             Deleted = false,
                             MetaDescription = "The inner was the inner",
                             MetaKeyWords = "test,tets,done",
@@ -841,13 +822,6 @@ namespace SmartG.API.Migrations
                         .HasForeignKey("PostId");
                 });
 
-            modelBuilder.Entity("SmartG.Entities.Models.Image", b =>
-                {
-                    b.HasOne("SmartG.Entities.Models.Gallery", null)
-                        .WithMany("Images")
-                        .HasForeignKey("GalleryId");
-                });
-
             modelBuilder.Entity("SmartG.Entities.Models.OfferedService", b =>
                 {
                     b.HasOne("SmartG.Entities.Models.Image", "Image")
@@ -901,11 +875,6 @@ namespace SmartG.API.Migrations
                     b.Navigation("Portfolios");
 
                     b.Navigation("Posts");
-                });
-
-            modelBuilder.Entity("SmartG.Entities.Models.Gallery", b =>
-                {
-                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("SmartG.Entities.Models.OfferedService", b =>

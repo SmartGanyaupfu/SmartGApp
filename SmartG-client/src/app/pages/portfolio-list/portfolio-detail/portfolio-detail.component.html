@@ -7,4 +7,31 @@
     </div>
 
     <app-share-buttons></app-share-buttons>
+
+   <div class="row">
+    <div class="col-md-5" *ngFor="let item of images">
+        <a (click)="openModal(template)"><img src="{{item}}" width="100%"/> </a>
+ 
+        <ng-template #template>
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">Modal</h4>
+            <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+              <span aria-hidden="true" class="visually-hidden">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+
+            <carousel>
+                <slide *ngFor="let image of images">
+                    <img src="{{image}}" width="100%"/>
+                </slide>
+               
+              </carousel>
+
+          </div>
+        </ng-template>
+
+    </div>
+   </div>
 </div>

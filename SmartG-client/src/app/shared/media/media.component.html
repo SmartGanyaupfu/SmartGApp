@@ -1,24 +1,28 @@
    <div class="container mt-5 mb-5">
   
     <input type="file" class="file-input"   
-       (change)="onFileSelected($event)" #fileUpload>
+       (change)="onFileSelected($event)" #fileUpload multiple>
   <div class="row">
       <div class="col-6">
         <div class="card card-light" style="max-width: 500px;"  >
             <div class="card-body">
-              <h1 class="card-title">Upload File</h1>
+              <h1 class="card-title">Upload Files</h1>
               <div class="file-upload">
     
-                {{fileName || "No file uploaded yet."}}
+                
+                <div *ngFor="let file of filesToUpload">
+                  
+                  <p>{{file.name||  "No files uploaded yet."}} </p>
+                </div>
              
-                 <button mat-raised-button color="primary" class="upload-btn"
+                 <button   mat-raised-button color="primary" class="upload-btn"
                    (click)="fileUpload.click()">
-                   <i class="fa-solid fa-upload"></i>
+                   <i *ngIf="filesToUpload===null" class="fa-solid fa-upload"></i>
                  </button>
              </div>
             </div>
           </div>
-          <button mat-raised-button (click)="uploadFile()" class="mt-3">Upload</button>
+          <button *ngIf="filesToUpload" mat-raised-button (click)="uploadFile()" class="mt-3">Upload All Files</button>
       </div>
       <div class="col-6">
         
@@ -29,7 +33,7 @@
       <div class="col-md-3 col-sm-4 col-lg-2" *ngFor="let image of images">
        
         <div class="card card-media-hover" style="width: 100%" >
-            <img type="button" src="{{image.imageUrl}}" class="img-thumbnail" alt="{{image.imageId}}">
+            <img type="button" src="{{image?.imageUrl}}" class="img-thumbnail" alt="{{image.imageId}}">
             <div class="card-body  text-center">
                 <i type="button" class="fa-solid fa-trash-can" (click)="deleteImage(image)"></i>
                 <a>

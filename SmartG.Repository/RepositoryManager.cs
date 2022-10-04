@@ -19,6 +19,7 @@ namespace SmartG.Repository
         private readonly Lazy<IContentBlockRepository> _contentBlockRepository;
         private readonly Lazy<IServiceRepository> _serviceRepository;
         private readonly Lazy<IGalleryRepository> _galleryRepository;
+        private readonly Lazy<IGalleryImageRepository> _galleryImageRepository;
 
         public RepositoryManager( RepositoryContext repositoryContext)
         {
@@ -33,6 +34,7 @@ namespace SmartG.Repository
             _serviceRepository = new Lazy<IServiceRepository>(() => new ServiceRepository(repositoryContext));
             _widgetRepository = new Lazy<IWidgetRepository>(() => new WidgetRepository(repositoryContext));
             _galleryRepository = new Lazy<IGalleryRepository>(() => new GalleryRepository(repositoryContext));
+            _galleryImageRepository = new Lazy<IGalleryImageRepository>(() => new GalleryImageRepository(repositoryContext));
 
         }
 
@@ -55,6 +57,8 @@ namespace SmartG.Repository
         public IWidgetRepository Widget => _widgetRepository.Value;
 
         public IGalleryRepository Gallery => _galleryRepository.Value;
+
+        public IGalleryImageRepository GalleryImage => _galleryImageRepository.Value;
 
         public async Task SaveAsync()
         {

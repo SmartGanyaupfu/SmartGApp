@@ -14,6 +14,7 @@ namespace SmartG.Contracts
 		IServiceRepository Service { get; }
 		IWidgetRepository Widget { get; }
 		IGalleryRepository Gallery { get; }
+		IGalleryImageRepository GalleryImage { get; }
 	}
 }
 

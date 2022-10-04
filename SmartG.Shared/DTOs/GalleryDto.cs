@@ -7,7 +7,7 @@ namespace SmartG.Shared.DTOs
     {
         public int GalleryId { get; set; }
         public string? Title { get; set; }
-        public ICollection<ImageDto>? Images { get; set; }
+        public ICollection<GalleryImageDto>? Images { get; set; }
     }
 }
 

@@ -35,7 +35,8 @@ namespace SmartG.API
 
             CreateMap<Image, ImageDto>();
             CreateMap<ImageForCreationDto, Image>();
-            CreateMap<ImageDto, ImageDto>();
+            CreateMap<ImageForUpdateDto, Image>();
+            CreateMap<ImageDto, Image>();
 
             CreateMap<ContentBlock, ContentBlockDto>();
             CreateMap<ContentBlockForCreationDto, ContentBlock>();
@@ -48,6 +49,14 @@ namespace SmartG.API
             CreateMap<Widget, WidgetDto>();
             CreateMap<WidgetForCreationDto, Widget>();
             CreateMap<WidgetForUpdateDto, Widget>();
+
+            CreateMap<Gallery, GalleryDto>();
+            CreateMap<GalleryForCreationDto, Gallery>();
+            CreateMap<GalleryForUpdateDto, Gallery>();
+
+            CreateMap<GalleryImage, GalleryImageDto>();
+            CreateMap<GalleryImageForCreationDto, GalleryImage>();
+            CreateMap< GalleryImageForUpdateDto, GalleryImage>();
         }
     }
 }

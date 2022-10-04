@@ -5,7 +5,7 @@ namespace SmartG.Entities.Models
     {
         public int GalleryId { get; set; }
         public string? Title { get; set; }
-        public ICollection<Image>? Images { get; set; }
+        public ICollection<GalleryImage>? Images { get; set; }
         
     }
 }

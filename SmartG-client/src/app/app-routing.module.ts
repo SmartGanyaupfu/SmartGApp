@@ -45,6 +45,8 @@ import { UserListComponent } from './pages/user-list/user-list.component';
 import { EditWidgetComponent } from './pages/widget-list/edit-widget/edit-widget.component';
 import { NewWidgetComponent } from './pages/widget-list/new-widget/new-widget.component';
 import { WidgetListComponent } from './pages/widget-list/widget-list.component';
+import { GalleryListComponent } from './shared/gallery-list/gallery-list.component';
+import { NewGalleryComponent } from './shared/gallery-list/new-gallery/new-gallery.component';
 import { MediaComponent } from './shared/media/media.component';
 import { UploadMediaComponent } from './shared/media/upload-media/upload-media.component';
 import { BlogResolver } from './_resolver/blog.resolver';
@@ -65,9 +67,6 @@ const routes: Routes = [
   { path: 'blog', component: PostComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'learn-to-code', component: LearnComponent},
-  { path: 'admin/media',component: MediaComponent,canActivate:[AuthGuardService]},
-  { path: 'admin/media/upload',component: UploadMediaComponent,canActivate:[AuthGuardService]},
-  { path: 'admin/dashboard',component: DashboardComponent,canActivate:[AuthGuardService]},
 
   { path: 'admin/page/new-page', component: NewPageComponent,canActivate:[AuthGuardService]},
   { path: 'admin/page/edit/:pageId', component: EditPageComponent,canActivate:[AuthGuardService]},
@@ -105,6 +104,15 @@ const routes: Routes = [
   { path: 'admin/widget/new-widget', component: NewWidgetComponent,canActivate:[AuthGuardService]},
   { path: 'admin/widget/edit/:widgetId', component: EditWidgetComponent,canActivate:[AuthGuardService]},
   { path: 'admin/widgets', component: WidgetListComponent,canActivate:[AuthGuardService]},
+
+
+  { path: 'admin/media',component: MediaComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/media/upload',component: UploadMediaComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/dashboard',component: DashboardComponent,canActivate:[AuthGuardService]},
+
+
+  { path: 'admin/gallery',component: GalleryListComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/new-gallery',component: NewGalleryComponent,canActivate:[AuthGuardService]},
 
 
   { path: 'admin/users', component:UserListComponent,canActivate:[AuthGuardService,RoleGuardService]},

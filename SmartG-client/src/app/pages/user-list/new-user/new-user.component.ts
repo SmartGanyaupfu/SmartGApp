@@ -22,12 +22,7 @@ export class NewUserComponent implements OnInit {
   constructor(private formBuilder:UntypedFormBuilder,private authenticationService:AuthService,private fb: UntypedFormBuilder,
     private toastService:ToastrService,private route:Router) {
     this.initialiseUserRegistrationForm();
-    //this.addRolesCheckboxes();
-    this.toppings = formBuilder.group({
-      pepperoni: false,
-      extracheese: false,
-      mushroom: false
-    });
+   
   }
 
   ngOnInit(): void {

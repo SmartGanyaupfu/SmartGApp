@@ -54,3 +54,11 @@ a:active{
 h5 {
     font-weight: 500;
 }
+
+/* Nav */
+.nav-link span {
+    text-transform: capitalize;
+}
+.nav-link .name {
+    text-transform:uppercase !important;
+}

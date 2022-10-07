@@ -48,14 +48,7 @@ export class NewGalleryComponent implements OnInit {
   initialiseGalleryForm(){
     
     let mySelectedImages=  JSON.parse(localStorage.getItem("selectedImages" ));
-    /*let imagesFGs = this.arr2.map(x => {
-      return this.fb.group({
-        
-        imageUrl: x?.imageUrl,
-        caption: x?.caption,
-        altText:x?.altText
-      });
-    });*/
+   
   
     this.galleryForm= new UntypedFormGroup({
      title:new UntypedFormControl(),
@@ -65,10 +58,7 @@ export class NewGalleryComponent implements OnInit {
 
 
   addGallery() {
-   /*this.authenticationService.createUser(this.galleryForm.value).subscribe(response=>{
-     
-     this.toastService.success("Success","Gallery Successfully registered");
-   });*/
+  
    console.log(this.galleryForm.value);
   this.arr2=null;
    console.log(this.arr2)

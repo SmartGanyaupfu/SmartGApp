@@ -1,4 +1,9 @@
 <div class="container mt-3 mb-3  ">
+  <div class="gallery" *ngFor="let image of gallery?.images" >
+    <img src="{{image?.imageUrl}}" alt="{{image?.altText}}" width="150">
+
+  </div>
+
     <form [formGroup]="galleryForm" (ngSubmit)="addGallery()" autocomplete="off">
         <div class="row">
                       

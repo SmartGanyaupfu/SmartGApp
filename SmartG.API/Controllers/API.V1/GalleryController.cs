@@ -116,6 +116,7 @@ namespace SmartG.API.Controllers.API.V1
             var galleryImages = await _repository.GalleryImage.GetGalleryImagesAsync(galleryId, trackChanges: false);
             foreach(var image in galleryImages)
             {
+                // we want to delete all iamges linked to this gallery
                  _repository.GalleryImage.DeleteGalleryImageAsync(image);
 
             }
@@ -134,7 +135,7 @@ namespace SmartG.API.Controllers.API.V1
 
 
             var galleryEntity = await _repository.Gallery.GetGalleryByIdAsync(galleryId, trackChanges: false);
-            if (galleryEntity is null)
+           /* if (galleryEntity is null)
                 return NotFound($"Gallery with id {galleryId} does not exist");
 
             var galleryImages = await _repository.GalleryImage.GetGalleryImagesAsync(galleryId, trackChanges: false);
@@ -142,7 +143,7 @@ namespace SmartG.API.Controllers.API.V1
             {
                 _repository.GalleryImage.DeleteGalleryImageAsync(image);
 
-            }
+            }*/
 
 
             _repository.Gallery.DeleteGalleryAsync(galleryEntity);

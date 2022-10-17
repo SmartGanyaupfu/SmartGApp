@@ -84,6 +84,7 @@ import { ShareButtonsComponent } from './shared/share-buttons/share-buttons.comp
 import { GoogleAnalytics4Component } from './shared/google-analytics4/google-analytics4.component';
 import { GalleryListComponent } from './shared/gallery-list/gallery-list.component';
 import { NewGalleryComponent } from './shared/gallery-list/new-gallery/new-gallery.component';
+import { GalleryDetailComponent } from './shared/gallery-list/gallery-detail/gallery-detail.component';
 
 
 
@@ -150,6 +151,7 @@ export function tokenGetter() {
     GoogleAnalytics4Component,
     GalleryListComponent,
     NewGalleryComponent,
+    GalleryDetailComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

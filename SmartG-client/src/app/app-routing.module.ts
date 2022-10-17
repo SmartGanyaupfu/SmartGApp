@@ -45,6 +45,7 @@ import { UserListComponent } from './pages/user-list/user-list.component';
 import { EditWidgetComponent } from './pages/widget-list/edit-widget/edit-widget.component';
 import { NewWidgetComponent } from './pages/widget-list/new-widget/new-widget.component';
 import { WidgetListComponent } from './pages/widget-list/widget-list.component';
+import { GalleryDetailComponent } from './shared/gallery-list/gallery-detail/gallery-detail.component';
 import { GalleryListComponent } from './shared/gallery-list/gallery-list.component';
 import { NewGalleryComponent } from './shared/gallery-list/new-gallery/new-gallery.component';
 import { MediaComponent } from './shared/media/media.component';
@@ -112,7 +113,8 @@ const routes: Routes = [
 
 
   { path: 'admin/gallery',component: GalleryListComponent,canActivate:[AuthGuardService]},
-  { path: 'admin/new-gallery',component: NewGalleryComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/gallery/new-gallery',component: NewGalleryComponent,canActivate:[AuthGuardService]},
+  { path: 'admin/gallery/edit/:galleryId',component: GalleryDetailComponent,canActivate:[AuthGuardService]},
 
 
   { path: 'admin/users', component:UserListComponent,canActivate:[AuthGuardService,RoleGuardService]},

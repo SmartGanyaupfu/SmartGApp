@@ -28,7 +28,7 @@ Murl='https://www.youtube.com/embed/IQjg2Y440l8';
 
   constructor(private catService:CategoryService
     ,private toaster:ToastrService, private slugifyPipe:SlugifyPipe,
-      private router:Router, private route:ActivatedRoute, private domSanitizer:DomSanitizer) { 
+      private router:Router,  private domSanitizer:DomSanitizer) { 
     
     }
 

@@ -1,1 +1,29 @@
-<p>gallery-list works!</p>
+<div class=" container mt-3 mb-3 post-content">
+    <h1>Galleries</h1>
+    <button mat-raised-button class="primary-bg-btn"routerLink="/admin/gallery/new-gallery">And New</button>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col"># Images</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let gallery of galleries">
+            <td>{{gallery?.galleryId}}</td>
+            <td>{{gallery?.title}}</td>
+            <td >{{gallery?.images.length}}</td>
+            <td><i type="button" class="fa-solid fa-trash-can" (click)="deleteGallery(gallery)"></i>
+                
+                    <i type="button" class="fa-solid fa-pen" routerLink="/admin/gallery/edit/{{gallery.galleryId}}" [state]="{galleryData:gallery}"></i>
+                
+               
+            </td>
+          </tr>
+          <tr>
+           
+        </tbody>
+      </table>
+</div>

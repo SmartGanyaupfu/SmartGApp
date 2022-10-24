@@ -31,6 +31,7 @@ export class NewPostComponent implements OnInit {
   metaKeyWords: string='';
   image: Image;
   categories:Category[]=[];
+  galleryId:number=1;
   contentBlock: ContentBlockForCreationDto={content:'',title:''};
   contentBlocks: ContentBlockForCreationDto[]=[];
   pageNumber:number=1;
@@ -67,7 +68,7 @@ export class NewPostComponent implements OnInit {
       
       let newPost:PostForCreationDto= {title:this.title,slug:this.slug===''?this.slugify(this.title):this.slugify(this.slug),
        excerpt:this.excerpt,imageId:this.image?.imageId,metaDescription:this.metaDescription,contentBlocks:this.contentBlocks,metaKeyWords:this.metaKeyWords,
-      content:this.content,categoryId:this.categoryId}
+      content:this.content,categoryId:this.categoryId, galleryId:this.galleryId}
    console.log(newPost);
       this.postService.createPost(newPost).subscribe(res=>{
         this.toaster.success('Post Created.', 'Success')

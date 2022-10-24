@@ -20,6 +20,7 @@ namespace SmartG.Shared.DTOs
         public string? AuthorId { get; set; }
         public int? ImageId { get; set; }
         public int CategoryId { get; set; }
+        public int? GalleryId { get; set; }
     }
 }
 

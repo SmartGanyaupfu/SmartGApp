@@ -43,6 +43,17 @@
                  </div>
                   
                    <i class="fa-solid fa-upload image-upload-icon" (click)="selectTab(1)" style="font-size: 30px;" ></i>
+
+                   
+                   <div class="mt-2" >
+                   <span></span>
+                    <select   class="form-control" formControlName="galleryId">
+                        <option   *ngFor="let gallery of galleries" [ngValue]="gallery?.galleryId"> {{gallery?.title}}
+                          
+                        </option>
+                  
+                      </select>
+                  </div> 
                    
                </div>
                 <div class="col-12 mt-2">
@@ -102,13 +113,15 @@
          
                      </div> 
                 </div>
+
+             
                 
                
               
             </div>
                 <button type="submit" class="mt-5 primary-bg-btn" mat-raised-button>Update</button>
               </form>
-       
+       {{updatePageForm.value|json}}
              
           </tab>
           <tab heading="Images">

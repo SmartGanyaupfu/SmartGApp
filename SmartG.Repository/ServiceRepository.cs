@@ -25,17 +25,19 @@ namespace SmartG.Repository
 
         public async Task<OfferedService> GetServiceByIdAsync(Guid serviceId, bool trackChanges)
         {
-            return await FindByCondition(s => s.OfferedServiceId.Equals(serviceId), trackChanges).Include(i=>i.Image).Include(b=>b.ContentBlocks).SingleOrDefaultAsync();
+            return await FindByCondition(s => s.OfferedServiceId.Equals(serviceId), trackChanges).Include(i=>i.Image).Include(b=>b.ContentBlocks).Include(g => g.Gallery).ThenInclude(i => i.Images)
+                .SingleOrDefaultAsync();
         }
 
         public async Task<OfferedService> GetServiceBySlugAsync(string slug, bool trackChanges)
         {
-            return await FindByCondition(s => s.Slug.Equals(slug), trackChanges).Include(i => i.Image).Include(b => b.ContentBlocks).SingleOrDefaultAsync();
+            return await FindByCondition(s => s.Slug.Equals(slug), trackChanges).Include(i => i.Image).Include(b => b.ContentBlocks).Include(g => g.Gallery).ThenInclude(i => i.Images)
+                .SingleOrDefaultAsync();
         }
 
         public async Task<PagedList<OfferedService>> GetServicesAsync(RequestParameters requestParameters, bool trackChanges)
         {
-            var services = await FindAll(trackChanges).Search(requestParameters.SearchTerm).Include(i => i.Image).Include(b => b.ContentBlocks).OrderByDescending(p => p.DateCreated).ToListAsync();
+            var services = await FindAll(trackChanges).Search(requestParameters.SearchTerm).Include(g => g.Gallery).ThenInclude(i => i.Images).Include(i => i.Image).Include(b => b.ContentBlocks).OrderByDescending(p => p.DateCreated).ToListAsync();
 
             return PagedList<OfferedService>.ToPagedList(services, requestParameters.PageNumber, requestParameters.PageSize);
         }

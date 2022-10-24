@@ -26,14 +26,16 @@ namespace SmartG.Repository
 
         public async Task<PagedList<Page>> GetAllPagesAsync(PageParameters pageParameters, bool trackChanges)
         {
-            var pages = await FindAll(trackChanges).Search(pageParameters.SearchTerm).Include(i => i.Image).Include(b => b.ContentBlocks).OrderByDescending(p=>p.DateCreated).ToListAsync();
+            var pages = await FindAll(trackChanges).Search(pageParameters.SearchTerm).Include(i => i.Image).Include(b => b.ContentBlocks).Include(g => g.Gallery).ThenInclude(i => i.Images)
+                .OrderByDescending(p=>p.DateCreated).ToListAsync();
             var pr = PagedList<Page>.ToPagedList(pages, pageParameters.PageNumber, pageParameters.PageSize);
             return pr;
         }
 
         public async Task<Page> GetPageByIdAsync(int pageId, bool trackChanges)
         {
-            return await FindByCondition(p => p.PageId.Equals(pageId), trackChanges).Include(i=>i.Image).Include(b=>b.ContentBlocks).SingleOrDefaultAsync();
+            return await FindByCondition(p => p.PageId.Equals(pageId), trackChanges).Include(i=>i.Image).Include(b=>b.ContentBlocks).Include(g => g.Gallery).ThenInclude(i => i.Images)
+                .SingleOrDefaultAsync();
         }
 
         public void UpdatePageAsync(Page page)
@@ -43,7 +45,8 @@ namespace SmartG.Repository
 
         public async Task<Page> GetPageBySlugNameAsync(string slug, bool trackChanges)
         {
-            return await FindByCondition(p => p.Slug.Equals(slug), trackChanges).Include(i => i.Image).Include(b => b.ContentBlocks).SingleOrDefaultAsync();
+            return await FindByCondition(p => p.Slug.Equals(slug), trackChanges).Include(i => i.Image).Include(b => b.ContentBlocks).Include(g => g.Gallery).ThenInclude(i => i.Images)
+                .SingleOrDefaultAsync();
         }
     }
 }

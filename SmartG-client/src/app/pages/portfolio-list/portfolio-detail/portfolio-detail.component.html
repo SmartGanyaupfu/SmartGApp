@@ -6,15 +6,17 @@
 
     </div>
 
-    <app-share-buttons></app-share-buttons>
+   
 
-   <div class="row">
-    <div class="col-md-5" *ngFor="let item of images">
-        <a (click)="openModal(template)"><img src="{{item}}" width="100%"/> </a>
+   <div class="row" *ngIf="page.gallery">
+
+    <h2> </h2>
+    <div class="col-md-5" *ngFor="let image of page?.gallery.images">
+        <a (click)="openModal(template)"><img src="{{image?.imageUrl}}" width="100%"/> </a>
  
         <ng-template #template>
           <div class="modal-header">
-            <h4 class="modal-title pull-left">Modal</h4>
+            <h4 class="modal-title pull-left">Gallery</h4>
             <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
               <span aria-hidden="true" class="visually-hidden">&times;</span>
             </button>
@@ -23,8 +25,8 @@
             
 
             <carousel>
-                <slide *ngFor="let image of images">
-                    <img src="{{image}}" width="100%"/>
+                <slide *ngFor="let image of page?.gallery.images">
+                    <img src="{{image.imageUrl}}" width="100%"/>
                 </slide>
                
               </carousel>
@@ -34,4 +36,5 @@
 
     </div>
    </div>
+   <app-share-buttons></app-share-buttons>
 </div>

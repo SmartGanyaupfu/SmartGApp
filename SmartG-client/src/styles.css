@@ -95,6 +95,7 @@ a:hover {
 background: #2dadc6;
 color: #fff;
 padding: 0 5px!important;
+margin-right: 15px !important;
 }
 
 .primary-bg-btn:hover {
@@ -257,6 +258,31 @@ a {
 }
 .sb-copy .sb-text {
     background-color: #14344c;
+}
+
+/* Carosel  icons*/
+
+.carousel-control-next-icon {
+ 
+    background: transparent;
+    border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+   
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.carousel-control-prev-icon {
+    background: transparent;
+    border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+    transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+
 }
 /* media queries */
 @media only screen and (min-width: 769px) {

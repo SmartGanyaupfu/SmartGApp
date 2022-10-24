@@ -22,6 +22,7 @@ namespace SmartG.Shared.DTOs
         public int? ImageId { get; set; }
         public int CategoryId { get; set; }
         public ICollection<ContentBlockForCreationDto>? ContentBlocks { get; set; }
+        public int? GalleryId { get; set; }
     }
 }
 

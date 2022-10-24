@@ -1,14 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { ToastrService } from 'ngx-toastr';
 import { Category } from 'src/app/_interfaces/category';
+import { Gallery } from 'src/app/_interfaces/gallery';
 import { Image } from 'src/app/_interfaces/image';
 import { Portfolio } from 'src/app/_interfaces/portfolio';
 import { SlugifyPipe } from 'src/app/_pipes/slugify.pipe';
 import { CategoryService } from 'src/app/_services/category.service';
+import { GalleryService } from 'src/app/_services/gallery.service';
 import { PortfolioService } from 'src/app/_services/portfolio.service';
 
 @Component({
@@ -27,6 +29,7 @@ export class EditPortfolioComponent implements OnInit {
   categories:Category[]=[];
   pageNumber:number=1;
   pageSize:number=20;
+  galleries:Gallery[]=[];
 
   page:Portfolio;
   modalRef?: BsModalRef | null;
@@ -37,7 +40,7 @@ export class EditPortfolioComponent implements OnInit {
 
   constructor(private portService:PortfolioService,private slugifyPipe:SlugifyPipe
     ,private toaster:ToastrService, private categoryService:CategoryService,
-      private router:Router, private route:ActivatedRoute) { 
+      private router:Router, private route:ActivatedRoute,private galleryService:GalleryService) { 
     
     }
 
@@ -54,6 +57,7 @@ export class EditPortfolioComponent implements OnInit {
   metaDescription: new UntypedFormControl(),
   metaKeyWords: new UntypedFormControl(),
   imageId:new UntypedFormControl(),
+  galleryId: new FormControl(),
   categoryId:new UntypedFormControl()
     });
   }
@@ -66,6 +70,7 @@ export class EditPortfolioComponent implements OnInit {
   metaDescription:this.page?.metaDescription,
   metaKeyWords: this.page?.metaKeyWords,
   imageId:this.page?.imageId,
+  galleryId:this.page?.galleryId,
   categoryId:this.page.category.categoryId
     })
   }
@@ -73,6 +78,7 @@ export class EditPortfolioComponent implements OnInit {
     ngOnInit(): void {
       
      this.getCategories();
+     this.getGalleries();
      this.portfolioId= this.router.url.split('?')[0].split('/').pop();
  
     if(history.state.portfolioData){
@@ -121,6 +127,13 @@ export class EditPortfolioComponent implements OnInit {
         this.categories=res.result;
         console.log(this.categories);
       })
+    }
+    getGalleries(){
+      this.galleryService.getGalleryList().subscribe(res=>{
+        this.galleries=res;
+        
+      })
+    
     }
     addFeatureImage(image:Image){
       this.image=image;

@@ -9,5 +9,7 @@ export interface ServiceForCreationDto {
     metaKeyWords: string;
     slug: string;
     imageId: number;
+
+    galleryId:number;
     contentBlocks: ContentBlockForCreationDto[];
 }

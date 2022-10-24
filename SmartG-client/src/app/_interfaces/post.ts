@@ -1,5 +1,6 @@
 import { Category } from "./category";
 import { ContentBlock } from "./content-block";
+import { Gallery } from "./gallery";
 import { Image } from "./image";
 
     export interface Post {
@@ -12,11 +13,14 @@ import { Image } from "./image";
         slug: string;
         category: Category;
         imageId: number;
+
+    galleryId:number;
         image: Image;
         contentBlocks: ContentBlock[];
         dateCreated: Date;
         dateUpdated: Date;
         deleted: boolean;
         authorId: string;
+        gallery:Gallery;
     }
 

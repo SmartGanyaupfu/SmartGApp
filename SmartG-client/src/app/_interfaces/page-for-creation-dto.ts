@@ -11,6 +11,8 @@ export interface PageForCreationDto {
     metaKeyWords: string;
     slug: string;
     imageId: number;
+
+    galleryId:number;
     contentBlocks: ContentBlockForCreationDto[];
     
 }

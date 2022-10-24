@@ -6,6 +6,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.Contracts;
 using SmartG.Entities.Models;
+using SmartG.Shared.DTOs;
+using static System.Net.Mime.MediaTypeNames;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -42,6 +44,20 @@ namespace SmartG.API.Controllers.API.V1
 
             return NoContent();
         }
+
+        [HttpPut ("{id}")]
+        public async Task <IActionResult> UpdateImage(int id, [FromBody] GalleryImageForUpdateDto image)
+        {
+
+            var imageEntity = await _repository.GalleryImage.GetGalleryImageByIdAsync(id, trackChanges: true);
+            if (imageEntity is null)
+                return NotFound($"Image with id {id} does not exist.");
+
+            _mapper.Map(image, imageEntity);
+        
+        await _repository.SaveAsync();
+            return NoContent();
+    }
     }
 }
 

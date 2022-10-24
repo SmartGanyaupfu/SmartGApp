@@ -20,6 +20,8 @@ namespace SmartG.Entities.Models
         public int? ImageId { get; set; }
         public Image? Image { get; set; }
         public ICollection<ContentBlock>? ContentBlocks { get; set; }
+        public int? GalleryId { get; set; }
+        public Gallery? Gallery { get; set; }
     }
 
 }

@@ -64,11 +64,21 @@
   <div class="modal-body">
    <div class="row">
        <div class="col-md-5">
-           <img src="{{selectecdImage?.imageUrl}}" class="img-fluid" >
+           <img src="{{selectedImage?.imageUrl}}" class="img-fluid" >
        </div>
 
        <div class="col-md-7">
-        <p>Link {{" "+selectecdImage.imageUrl}}</p>
+        
+        <label>Link </label>
+        <input type="text" class="form-control" value="{{selectedImage.imageUrl}}">
+        <br>
+        <label>Alt Text</label>
+        <input type="text" class="form-control" [(ngModel)]="selectedImage.altText">
+        <label>Caption</label>
+        <input type="text" class="form-control" [(ngModel)]="selectedImage.caption">
+
+        <button class="primary-bg-btn mt-2" mat-raised-button (click)="updateImage()"> Save</button>
+      
     </div>
    </div>
     

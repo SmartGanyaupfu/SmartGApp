@@ -98,6 +98,25 @@ namespace SmartG.API.Controllers.API.V1
             return Ok(images);
         }
 
+        [Authorize]
+
+        [HttpPut("{imageId}")]
+
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        public async Task<IActionResult> UpdateImage(int imageId, [FromBody] ImageForUpdateDto image)
+        {
+
+
+            var imageEntity = await _repository.Image.GetImageByIdAsync(imageId, trackChanges: true);
+            if (imageEntity is null)
+                return NotFound($"Image with id {imageId} does not exist.");
+
+
+            _mapper.Map(image, imageEntity);
+            await _repository.SaveAsync();
+
+            return NoContent();
+        }
 
         [Authorize]
 

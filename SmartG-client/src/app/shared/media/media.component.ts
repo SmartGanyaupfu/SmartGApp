@@ -28,7 +28,7 @@ export class MediaComponent implements OnInit {
   pageSize:number=10;
   modalRef?: BsModalRef | null;
   modalRef2?: BsModalRef;
-  selectecdImage:Image;
+  selectedImage:Image;
   imageUploads:any
     constructor(private mediaService: MediaService, private toastr:ToastrService,private modalService: BsModalService) {}
     ngOnInit(): void {
@@ -69,14 +69,22 @@ export class MediaComponent implements OnInit {
       
       })
     }
+    updateImage(){
+      alert(" Are you sure you want to delete?");
+      this.mediaService.updateImage(this.selectedImage.imageId,this.selectedImage).subscribe(res=>{
+        this.toastr.success("Image updated ", "Success");
+        this.closeFirstModal();
+      })
+      
+    }
     pageChanged(event){
       this.pageNumber=event.page;
       this.getImages();
     }
 
     openModal(template: TemplateRef<any>, image:Image) {
-      this.modalRef = this.modalService.show(template, { id: 1, class: 'modal-lg' });
-      this.selectecdImage=image;
+      this.modalRef = this.modalService.show(template, { id: 1, class: 'modal-xl' });
+      this.selectedImage=image;
       
     }
     selectImage(image:Image){

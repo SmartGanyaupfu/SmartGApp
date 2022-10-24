@@ -1,4 +1,5 @@
 import { ContentBlock } from "./content-block";
+import { Gallery } from "./gallery";
 import { Image } from "./image";
 
 export interface Service {
@@ -18,4 +19,6 @@ export interface Service {
     dateUpdated: Date;
     deleted: boolean;
     authorId: string;
+    galleryId:number;
+    gallery:Gallery;
 }

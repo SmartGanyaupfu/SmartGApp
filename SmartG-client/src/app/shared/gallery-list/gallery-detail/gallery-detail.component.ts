@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormArray, FormControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import { ToastrService } from 'ngx-toastr';
 import { Gallery } from 'src/app/_interfaces/gallery';
+import { GalleryImage } from 'src/app/_interfaces/gallery-image';
 import { Image } from 'src/app/_interfaces/image';
 import { Pagination } from 'src/app/_interfaces/pagination';
 import { GalleryService } from 'src/app/_services/gallery.service';
@@ -26,10 +28,14 @@ export class GalleryDetailComponent implements OnInit {
   pageSize:number=10;
   galleryId:any;
   
+  selectecdImage:GalleryImage;
+
+  modalRef?: BsModalRef | null;
+  modalRef2?: BsModalRef;
 
   public pagination:Pagination;
 
-  constructor(private fb: UntypedFormBuilder,private mediaService: MediaService,
+  constructor(private fb: UntypedFormBuilder,private mediaService: MediaService,private modalService: BsModalService,
     private toastService:ToastrService, private galleryService:GalleryService, private router:Router,) {
     this.initialiseGalleryForm();
     //this.addRolesCheckboxes();
@@ -42,12 +48,13 @@ export class GalleryDetailComponent implements OnInit {
     if(history.state.galleryData){
       localStorage.setItem('galleryData',JSON.stringify(history.state.galleryData));
     this.gallery=JSON.parse(localStorage.getItem('galleryData'));
-    //this.initialiseForm();
+    //this.arr2.push(this.gallery.images);
     }else {
       localStorage.removeItem('galleryData');
       this.galleryService.getGalleryById(this.galleryId).subscribe(res=>{
         this.gallery=res;
        // this.initialiseForm();
+       //this.arr2.push(this.gallery.images);
       })
     }
   this.getImages();
@@ -66,7 +73,7 @@ export class GalleryDetailComponent implements OnInit {
 
   initialiseGalleryForm(){
     
-    let mySelectedImages=  JSON.parse(localStorage.getItem("selectedImages" ));
+    //let mySelectedImages=  JSON.parse(localStorage.getItem("selectedImages" ));
    
   
     this.galleryForm= new UntypedFormGroup({
@@ -76,15 +83,21 @@ export class GalleryDetailComponent implements OnInit {
   }
 
 
-  addGallery() {
+  updateGallery() {
   
-  this.galleryService.newGallery(this.galleryForm.value).subscribe(res=>{
-    this.toastService.success("U have successfully created a gallery", "Success");
+  this.galleryService.updateGallery(this.galleryId,this.gallery).subscribe(res=>{
+    this.toastService.success("U have successfully updated a gallery", "Success");
     this.galleryForm.reset();
     this.arr2.clear();
     
   })
+
   
+  }
+ 
+
+  removeImageFromGallery(image){
+    this.gallery.images.splice(this.gallery.images.indexOf(image),1);
   }
 
  
@@ -110,13 +123,27 @@ export class GalleryDetailComponent implements OnInit {
     if (event.target.checked) {
       //this.arr2.push(images);
       this.arr2.push(new FormControl(JSON.parse(event.target.value)));
+      this.gallery.images.push(JSON.parse(event.target.value));
+      console.log(this.gallery);
 
     } else {
       const index = this.arr2.controls.findIndex(x => x.value === JSON.parse(event.target.value));
       this.arr2.removeAt(index);
-
+      
     }
      
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { id: 1, class: 'modal-xl' });
+    //this.selectecdImage=image;
+    
+  }
+ 
+  
+ 
+  closeModal(modalId?: number){
+    this.modalService.hide(modalId);
   }
 
 }

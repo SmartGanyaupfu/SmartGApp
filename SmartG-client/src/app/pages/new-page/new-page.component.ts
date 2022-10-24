@@ -34,6 +34,7 @@ export class NewPageComponent implements OnInit {
   contentBlock: ContentBlockForCreationDto={content:'',title:''};
   contentBlocks: ContentBlockForCreationDto[]=[];
   authorId?: any;
+  galleryId:number=1;
   createPageForm:UntypedFormGroup=new UntypedFormGroup({});
   page:Page;
   modalRef?: BsModalRef | null;
@@ -95,7 +96,7 @@ export class NewPageComponent implements OnInit {
       
       let newPage:PageForCreationDto= {title:this.title,slug:this.slug===''?this.slugify(this.title):this.slugify(this.slug),
        excerpt:this.excerpt,imageId:this.image.imageId,metaDescription:this.metaDescription,contentBlocks:this.contentBlocks,metaKeyWords:this.metaKeyWords,
-      content:this.content}
+      content:this.content,galleryId:this.galleryId}
    console.log(newPage);
       this.pageService.createPage(newPage).subscribe(res=>{
        this.route.navigateByUrl('/admin/pages')

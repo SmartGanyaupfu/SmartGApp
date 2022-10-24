@@ -22,6 +22,7 @@
                         <label  class="form-label"> Category  </label>
                        <span></span>
                         <select id="cars" class="form-control" name='categoryId' [(ngModel)]="categoryId">
+                          <option [ngValue]="null" [disabled]="true" >Choose Category</option>
                             <option   *ngFor="let catgory of categories" [ngValue]="catgory?.categoryId">{{catgory.name}}
                               
                             </option>
@@ -43,6 +44,18 @@
                    <img *ngIf="image" src="{{image.imageUrl}}" width="70">
                   
                    <i class="fa-solid fa-upload image-upload-icon" (click)="selectTab(1)" style="font-size: 30px;" ></i>
+
+                   <div class="mt-2" >
+                    <label  class="form-label"> Choose Gallery  </label>
+                   <span></span>
+                    <select   class="form-control" name='galleryId' [(ngModel)]="galleryId">
+                      <option [ngValue]="null" [disabled]="true" >Choose Gallery</option>
+                        <option   *ngFor="let gallery of galleries" [ngValue]="gallery?.galleryId"> {{gallery?.title}}
+                          
+                        </option>
+                  
+                      </select>
+                  </div> 
                    
                </div>
                 <div class="col-12 mt-2">
@@ -133,6 +146,8 @@
        
                    </editor>
                 </div>
+
+              
                
               
             </div>

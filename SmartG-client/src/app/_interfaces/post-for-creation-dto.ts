@@ -10,5 +10,7 @@ export interface PostForCreationDto {
     slug: string;
     categoryId: number
     imageId: number;
+
+    galleryId:number;
     contentBlocks: ContentBlockForCreationDto[];
 }

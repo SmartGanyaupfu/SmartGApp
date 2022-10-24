@@ -1,4 +1,5 @@
 import { ContentBlock } from "./content-block";
+import { Gallery } from "./gallery";
 import { Image } from "./image";
 
 export interface Page {
@@ -18,6 +19,8 @@ export interface Page {
         dateUpdated: Date;
         deleted: boolean;
         authorId?: any;
+    galleryId:number;
+    gallery:Gallery;
   
 
 }

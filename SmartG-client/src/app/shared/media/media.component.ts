@@ -62,15 +62,18 @@ export class MediaComponent implements OnInit {
     }
     deleteImage(image:Image){
       let imageId=image.imageId
-      this.mediaService.deleteImage(imageId).subscribe(res=>{
-        this.toastr.success('Image deleted.', 'Deleted');
-        //let imageDeleted= this.images.find(i=>i.imageId===imageId);
-        this.images.splice(this.images.indexOf(image),1);
-      
-      })
+      if(confirm("Are you sure to delete, this is a permanent action ")) {
+        this.mediaService.deleteImage(imageId).subscribe(res=>{
+          this.toastr.success('Image deleted.', 'Deleted');
+          //let imageDeleted= this.images.find(i=>i.imageId===imageId);
+          this.images.splice(this.images.indexOf(image),1);
+        
+        })
+      }
+    
     }
     updateImage(){
-      alert(" Are you sure you want to delete?");
+     
       this.mediaService.updateImage(this.selectedImage.imageId,this.selectedImage).subscribe(res=>{
         this.toastr.success("Image updated ", "Success");
         this.closeFirstModal();

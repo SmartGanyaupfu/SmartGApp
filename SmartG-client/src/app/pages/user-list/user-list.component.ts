@@ -108,10 +108,11 @@ this.router.navigateByUrl('admin/users');
 }
 
   deleteUser(user:User){
+    if(confirm("Are you sure to delete, this is a permanent action ")) {
     this.authenticationService.delete(user.id).subscribe(response=>{
       this.toastService.success("Success","User Successfully deleted");
-      this.users.splice(this.users.indexOf(user));
-    });
+      this.users.splice(this.users.indexOf(user),1);
+    });}
   }
 
   getUsers(){

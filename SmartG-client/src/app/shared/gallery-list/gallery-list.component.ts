@@ -27,11 +27,11 @@ getGalleries(){
 }
 
 deleteGallery(gallery:Gallery){
-
+  if(confirm("Are you sure to delete, this is a permanent action ")) {
   this.galleryService.deleteGallery(gallery.galleryId).subscribe(res=>{
     this.galleries.splice(this.galleries.indexOf(gallery),1);
     this.toastr.success("Gallery deleted!","Deleted");
-  })
+  })}
 }
 
 }

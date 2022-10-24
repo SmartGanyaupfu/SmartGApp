@@ -38,10 +38,11 @@ this.users=res;
   })
 }
 deletePortfolio(page:Portfolio){
+  if(confirm("Are you sure to delete, this is a permanent action ")) {
 this.portfolioService.deletePortfolio(page.portfolioId).subscribe(res=>{
-  this.pages.splice(this.pages.indexOf(page));
+  this.pages.splice(this.pages.indexOf(page),1);
   this.toastr.success("Portfolio has been permanently deleted", "Deleted")
-})
+})}
 }
 
 getAuthor(userId:string){

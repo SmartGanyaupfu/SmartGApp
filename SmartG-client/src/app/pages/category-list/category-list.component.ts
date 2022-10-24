@@ -40,10 +40,11 @@ this.users=res;
   })
 }
 deleteCategory(page:Category){
+  if(confirm("Are you sure to delete, this is a permanent action ")) {
 this.catService.deleteCategory(page.categoryId).subscribe(res=>{
-  this.pages.splice(this.pages.indexOf(page));
+  this.pages.splice(this.pages.indexOf(page),1);
   this.toastr.success("Category has been permanently deleted", "Deleted")
-})
+})}
 }
 
 getAuthor(userId:string){

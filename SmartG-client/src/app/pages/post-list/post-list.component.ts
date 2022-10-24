@@ -40,10 +40,11 @@ this.users=res;
   })
 }
 deletePost(page:Post){
+  if(confirm("Are you sure to delete, this is a permanent action ")) {
 this.postService.deletePost(page.postId).subscribe(res=>{
-  this.pages.splice(this.pages.indexOf(page));
+  this.pages.splice(this.pages.indexOf(page),1);
   this.toastr.success("Post has been permanently deleted", "Deleted")
-})
+})}
 }
 
 getAuthor(userId:string){

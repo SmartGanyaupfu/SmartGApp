@@ -37,10 +37,11 @@ this.users=res;
   })
 }
 deletePage(page:Page){
+  if(confirm("Are you sure to delete, this is a permanent action ")) {
 this.pageService.deletePage(page.pageId).subscribe(res=>{
-  this.pages.splice(this.pages.indexOf(page));
+  this.pages.splice(this.pages.indexOf(page),1);
   this.toastr.success("Page has been permanently deleted", "Deleted")
-})
+})}
 }
 updatePage(pageId:number){
   

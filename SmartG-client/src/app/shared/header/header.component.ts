@@ -48,7 +48,7 @@ gotResults=false;
       this.gotResults=true;
      }
      
-     this.modalRef = this.modalService.show(template, { id: 1, class: 'modal-lg' });
+     this.modalRef = this.modalService.show(template, { id: 1, class: 'modal-xl' });
     
       
     })

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
 using SmartG.API.Extensions;
@@ -53,6 +54,7 @@ namespace SmartG.API.Controllers.API.V1
             return Ok(galleryToReturn);
         }
 
+        [Authorize]
         // POST api/values
         [HttpPost("new-gallery")]
         public async Task<IActionResult> AddGallery( [FromBody] GalleryForCreationDto galleryForCreation)
@@ -66,6 +68,7 @@ namespace SmartG.API.Controllers.API.V1
             return CreatedAtRoute("galleryRoute", new { galleryId = galleryToReturn.GalleryId }, galleryToReturn);
         }
 
+        [Authorize]
         // POST api/values
         [HttpPost("{galleryId}/new-gallery")]
         public async Task<IActionResult> AddImagesToGallery(int galleryId, [FromBody] ICollection<GalleryImageDto> images )
@@ -101,7 +104,7 @@ namespace SmartG.API.Controllers.API.V1
             await _repository.SaveAsync();
             return NoContent();
         }
-
+        [Authorize]
         // PUT api/values/5
         [HttpPut("{galleryId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -127,7 +130,7 @@ namespace SmartG.API.Controllers.API.V1
             return NoContent();
 
         }
-
+        [Authorize]
         // DELETE api/values/5
         [HttpDelete("{galleryId}")]
         public async Task<IActionResult> DeleteGallery(int galleryId)

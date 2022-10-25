@@ -204,6 +204,10 @@ a.nav-link:hover {
     color: #2dadc6;
     border-top: 2px solid #14344c;
 }
+/* Links */
+.link-color {
+    color: #14344c;
+}
 a {
     color: rgb(250, 249, 252);
 }

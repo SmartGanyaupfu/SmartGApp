@@ -46,7 +46,7 @@
 
                    
                    <div class="mt-2" >
-                   <span></span>
+                   <span>Gallery</span>
                     <select   class="form-control" formControlName="galleryId">
                         <option   *ngFor="let gallery of galleries" [ngValue]="gallery?.galleryId"> {{gallery?.title}}
                           
@@ -121,7 +121,7 @@
             </div>
                 <button type="submit" class="mt-5 primary-bg-btn" mat-raised-button>Update</button>
               </form>
-       {{updatePageForm.value|json}}
+       
              
           </tab>
           <tab heading="Images">

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.Contracts;
 using SmartG.Entities.Models;
@@ -26,7 +27,7 @@ namespace SmartG.API.Controllers.API.V1
             _mapper = mapper;
             _imageService = imageService;
         }
-
+        [Authorize]
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
@@ -44,7 +45,7 @@ namespace SmartG.API.Controllers.API.V1
 
             return NoContent();
         }
-
+        [Authorize]
         [HttpPut ("{id}")]
         public async Task <IActionResult> UpdateImage(int id, [FromBody] GalleryImageForUpdateDto image)
         {

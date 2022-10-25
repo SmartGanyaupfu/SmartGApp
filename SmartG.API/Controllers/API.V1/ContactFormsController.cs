@@ -14,7 +14,6 @@ namespace SmartG.API.Controllers.API.V1
     public class ContactFormsController : Controller
     {
         
-       
         private readonly IEmailSender _emailSenderService;
 
         public ContactFormsController(IEmailSender emailSenderService)
@@ -25,14 +24,13 @@ namespace SmartG.API.Controllers.API.V1
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]ContactFormDto contact)
         {
-            var myEmail = "elsmart35@gmail.com";
+            var myEmail = "dev@smartganyaupfu.com";
             var message = new EmailMessageDto(new string[] {  myEmail}, "Web Form ", "From "+contact.Email +" <br>  Name "+contact.Name + "<br>  Message  "+contact.Message );
             await _emailSenderService.SendEmailAsync(message);
 
             return Ok();
         }
 
-        
     }
 }
 

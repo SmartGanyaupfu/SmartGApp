@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.API.ActionFilters;
 using SmartG.Contracts;
@@ -58,7 +59,7 @@ namespace SmartG.API.Controllers.API.V1
 
 
 
-
+        [Authorize]
         [HttpPost("{postId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateComment([FromBody] CommentForCreationDto comment, Guid postId, string postType)
@@ -102,7 +103,7 @@ namespace SmartG.API.Controllers.API.V1
         }
 
 
-
+        [Authorize]
         [HttpPut("{commentId}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateCommentById(int commentId, [FromBody] CommentForUpdateDto comment)
@@ -119,6 +120,7 @@ namespace SmartG.API.Controllers.API.V1
             await _repository.SaveAsync();
             return NoContent();
         }
+        [Authorize]
 
         [HttpDelete("{commentId}")]
         public async Task<IActionResult> DeleteComment(int commentId)

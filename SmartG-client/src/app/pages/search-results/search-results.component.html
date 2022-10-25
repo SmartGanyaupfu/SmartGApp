@@ -33,11 +33,11 @@
                 <div class="row mt-4">
                   <div class="col-md-4 " *ngFor="let portfolio of searchResult.portfolios">
                     <div class="card" style="max-width: 100%;">
-                      <img src="{{portfolio?.image?.imageUrl}}" class="card-img-top" alt="{{portfolio.title + ' image'}}" routerLink="/portfolios/{{portfolio.slug}}">
+                       <img src="{{portfolio?.image?.imageUrl}}" class="card-img-top" alt="{{portfolio.title + ' image'}}" >
                       <div class="card-body">
-                        <h5 class="card-title" routerLink="/portfolios/{{portfolio.slug}}">{{portfolio?.title}}</h5>
+                        <h5 class="card-title" >{{portfolio?.title}}</h5>
                         <p class="card-text">{{portfolio?.excerpt}}</p>
-                        <a href="#" mat-raised-button class="mt" routerLink="/portfolios/{{portfolio.slug}}">Read More</a>
+                        <a  mat-raised-button class="mt" routerLink="/portfolios/{{portfolio.slug}}">Read More</a>
                       </div>
                     </div>
                   </div>

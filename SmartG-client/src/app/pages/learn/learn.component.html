@@ -1,6 +1,10 @@
-<div class="container mt-5 mb-3">     
+<div class="container mt-5 mb-3" *ngIf="page;else else_block">     
     <h1 class="sg-title">{{page?.title}} </h1>
     <div [innerHtml]="page?.content"></div>
 </div>
-
+<ng-template #else_block>
+    <div class="alert alert-secondary" role="alert">
+      Oops! Nothing Found. Please check again later.
+    </div>
+  </ng-template>
 

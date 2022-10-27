@@ -24,7 +24,7 @@ export class DetailedViewResolver implements Resolve<Page> {
         widget => {
          
         // page start
-        return this.pageService.getPageById(widget?.homePage).pipe(
+        return this.pageService.getPageById(widget?.homePage>0?widget?.homePage:1).pipe(
           
           map(
             page => {

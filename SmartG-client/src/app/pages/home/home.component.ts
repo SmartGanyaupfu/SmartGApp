@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
   pageSize:number=6;
   blocks:ContentBlock[];
   widget:Widget;
-  ages = [3, 10, 18, 20];
 
   // Slide for portfolio
   itemsPerSlide = 3;

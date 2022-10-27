@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/_interfaces/post';
+import { Widget } from 'src/app/_interfaces/widget';
 import { PostService } from 'src/app/_services/post.service';
+import { WidgetService } from 'src/app/_services/widget.service';
 
 @Component({
   selector: 'app-post',
@@ -13,17 +15,29 @@ webPost:Post[];
 mobilePost:Post[];
 pageNumber:number=1;
   pageSize:number=6;
-  constructor(private postService:PostService) { }
+
+  widget:Widget;
+  constructor(private postService:PostService,private widgetService:WidgetService) { }
 
   ngOnInit(): void {
-    this.getBlogs();
+
   }
   getBlogs(){
-    this.postService.getPosts(this.pageNumber,this.pageSize).subscribe(response=>{
+    this.postService.getPosts(this.pageNumber,this.widget.postPageSize).subscribe(response=>{
     this.posts=response.result;
     this.webPost=this.posts.filter(x=>x.category.categoryId===1);
     this.mobilePost=this.posts.filter(x=>x.category.categoryId===2);
     console.log(this.posts);
     })
+    }
+
+    getWidgets(){
+      this.widgetService.getWidget().subscribe(res=>{
+        this.widget= res;
+       
+        this.getBlogs();
+      
+       
+      })
     }
 }

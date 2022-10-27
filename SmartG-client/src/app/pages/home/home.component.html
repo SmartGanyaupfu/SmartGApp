@@ -2,7 +2,7 @@
    
     
     
-    <div class="card mb-3" style="max-width: 100%;">
+    <div class="card mb-3" style="max-width: 100%;" *ngIf="widget;else else_page">
         <div class="row g-0">
           <div class="col-md-3 mx-auto">
             <img class=" img-thumbnail  rounded-circle mx-auto d-block " width="200" src="{{widget?.profilePicture}}" alt="Smart Ganyaupfu profile image">
@@ -142,7 +142,7 @@
                 </div>
              
           </div> <!--My skills-->
-          <div class="card mb-3 card-light" style="max-width: 100%;"> <!--Blog-->
+          <div class="card mb-3 card-light" style="max-width: 100%;" *ngIf="posts!=null;else else_page">  <!--Blog-->
               
             <div class="card-body" >
               <h4 class="card-title primary-color sg-title-widget">Blog</h4>
@@ -204,3 +204,12 @@
 </div>
 
 
+<ng-template #else_page>
+  <div class="alert alert-secondary" role="alert">
+    Oops! Nothing Found. Please check again later.
+
+    <button *ngIf="0>1" routerLink="/admin/widgets">Set Page</button>
+  </div>
+
+
+</ng-template>

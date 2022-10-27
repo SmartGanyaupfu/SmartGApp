@@ -10,7 +10,7 @@ import { WidgetService } from 'src/app/_services/widget.service';
   styleUrls: ['./service.component.css']
 })
 export class ServiceComponent implements OnInit {
-  public myServices:Service[]=[];
+  public myServices:Service[];
   pageNumber:number=1;
   pageSize:number=6;
   widget:Widget;
@@ -24,7 +24,7 @@ export class ServiceComponent implements OnInit {
   GetServices(){
     this.serviceService.getServices(this.pageNumber,this.widget.postPageSize).subscribe(response=>{
       this.myServices=response.result;
-      console.log(this.myServices);
+      //console.log(this.myServices);
     })
       }
       getWidgets(){

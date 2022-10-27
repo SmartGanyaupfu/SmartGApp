@@ -1,4 +1,4 @@
-<div class="container mt-5 mb-3">
+<div class="container mt-5 mb-3" *ngIf="posts!=null;else else_block">
   <h1 class="sg-title">Blog</h1>
 
 
@@ -26,13 +26,13 @@
               
           </div> <!--port all-->
        
-
-          <ng-template #else_block>
-            <p class="alert alert-secondary mt-3"> Oops! Nothing found. </p>
-          </ng-template>
-        
       
     </div>
 
  
 </div>
+<ng-template #else_block>
+  <div class="alert alert-secondary" role="alert">
+    Oops! Nothing Found. Please check again later.
+  </div>
+</ng-template>

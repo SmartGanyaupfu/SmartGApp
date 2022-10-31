@@ -35,7 +35,7 @@ export class NewServiceComponent implements OnInit {
   contentBlocks: ContentBlockForCreationDto[]=[];
   pageNumber:number=1;
   pageSize:number=20;
-  galleryId:number=1;
+  galleryId:number=null;
   
   page:Service;
   modalRef?: BsModalRef | null;
@@ -79,13 +79,10 @@ export class NewServiceComponent implements OnInit {
     getCategories(){
       this.categoryService.getCategories(this.pageNumber,this.pageSize).subscribe(res=>{
         this.categories=res.result;
-        console.log(this.categories);
       })
     }
     addFeatureImage(image:Image){
       this.image=image;
-      console.log('fired');
-      console.log(this.image);
       this.selectTab(0);
     }
 

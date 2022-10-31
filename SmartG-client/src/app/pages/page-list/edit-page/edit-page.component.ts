@@ -89,7 +89,6 @@ export class EditPageComponent implements OnInit {
         this.pageService.getPageById(this.pageId).subscribe(res=>{
           this.page=res;
           this.slug=this.page.slug;
-          console.log(this.page);
           this.initialiseForm();
       this.setUpdatePageFromValue();
       
@@ -105,7 +104,6 @@ export class EditPageComponent implements OnInit {
     }
 
     updatePage(){
-     console.log(this.page);
      if(this.image){
       this.updatePageForm.patchValue({
         imageId:this.image.imageId,
@@ -117,8 +115,6 @@ export class EditPageComponent implements OnInit {
         
       })
      }
-   
-     console.log(this.updatePageForm.value)
       this.pageService.updatePage(this.page.pageId,this.updatePageForm.value).subscribe(res=>{
         this.toaster.success('Page updated.','Success');
         this.router.navigateByUrl('/admin/pages');
@@ -126,8 +122,6 @@ export class EditPageComponent implements OnInit {
     }
     addFeatureImage(image:Image){
       this.image=image;
-      console.log('fired');
-      console.log(this.image);
       this.selectTab(0);
     }
 

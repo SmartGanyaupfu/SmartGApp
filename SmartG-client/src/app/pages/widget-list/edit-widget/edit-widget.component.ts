@@ -85,7 +85,7 @@ widgetId:any='';
       intro: this.page?.intro,
       title: this.page?.title,
       footerCopyrightBlock:this.page?.footerCopyrightBlock,
-      homePageSize: this.page?.homePage,
+      homePageSize: this.page?.homePageSize,
       postPageSize: this.page?.postPageSize,
     })
   }

@@ -30,7 +30,7 @@ getBlocks(){
   this.blockService.getContentBlocks(this.pageNumber,this.pageSize).subscribe(res=>{
     this.pages=res.result;
     this.pagination=res.pagination;
-    console.log(res);
+    
     
   })
 }

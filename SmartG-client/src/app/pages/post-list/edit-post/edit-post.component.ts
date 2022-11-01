@@ -99,7 +99,6 @@ export class EditPostComponent implements OnInit {
     }
 
     updatePage(){
-     console.log(this.page);
      if(this.image){
       this.updatePageForm.patchValue({
         imageId:this.image.imageId,
@@ -111,7 +110,6 @@ export class EditPostComponent implements OnInit {
       })
      }
    
-     console.log(this.updatePageForm.value)
       this.postService.updatePost(this.page.postId,this.updatePageForm.value).subscribe(res=>{
         this.toaster.success('Post updated.','Success')
        this.router.navigateByUrl('/admin/posts')
@@ -120,13 +118,10 @@ export class EditPostComponent implements OnInit {
     getCategories(){
       this.categoryService.getCategories(this.pageNumber,this.pageSize).subscribe(res=>{
         this.categories=res.result;
-        console.log(this.categories);
       })
     }
     addFeatureImage(image:Image){
       this.image=image;
-      console.log('fired');
-      console.log(this.image);
       this.selectTab(0);
     }
 

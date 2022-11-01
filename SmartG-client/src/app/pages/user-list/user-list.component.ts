@@ -70,7 +70,6 @@ export class UserListComponent implements OnInit {
 
      
     this.modalRef = this.modalService.show(updateUserTemplate,{class: 'modal-lg'});
-    console.log(this.selectedUser);
   
   }
   initialiseUserUpdateForm(){

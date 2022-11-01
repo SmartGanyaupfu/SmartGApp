@@ -64,7 +64,7 @@ export class GalleryDetailComponent implements OnInit {
   }
   isChecked(image){
     const index = this.arr2.controls.findIndex(x => x.value.imageUrl === image);
-    //console.log(index)
+   
     if (index!==-1){
       return true;
     }
@@ -124,7 +124,7 @@ export class GalleryDetailComponent implements OnInit {
       //this.arr2.push(images);
       this.arr2.push(new FormControl(JSON.parse(event.target.value)));
       this.gallery.images.push(JSON.parse(event.target.value));
-      console.log(this.gallery);
+    
 
     } else {
       const index = this.arr2.controls.findIndex(x => x.value === JSON.parse(event.target.value));

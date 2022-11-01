@@ -83,7 +83,6 @@ export class NewPortfolioComponent implements OnInit {
         this.toaster.success('Page Created.', 'Success')
        this.router.navigateByUrl('/admin/portfolios')
      })*/
-     console.log(newPortfolio);
     }
 
     getCategories(){

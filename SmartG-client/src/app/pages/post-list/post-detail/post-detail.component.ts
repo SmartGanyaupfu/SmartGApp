@@ -20,7 +20,6 @@ export class PostDetailComponent implements OnInit {
     this.route.data.subscribe(data=>{
       this.page=data.post;
     })
-    //console.log(this.route.parent.url)
   /*
     if(history.state.postData){
       localStorage.setItem('postData',JSON.stringify(history.state.postData));

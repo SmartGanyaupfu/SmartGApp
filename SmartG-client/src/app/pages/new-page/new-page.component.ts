@@ -97,15 +97,13 @@ export class NewPageComponent implements OnInit {
       let newPage:PageForCreationDto= {title:this.title,slug:this.slug===''?this.slugify(this.title):this.slugify(this.slug),
        excerpt:this.excerpt,imageId:this.image.imageId,metaDescription:this.metaDescription,contentBlocks:this.contentBlocks,metaKeyWords:this.metaKeyWords,
       content:this.content,galleryId:this.galleryId}
-   console.log(newPage);
+  
       this.pageService.createPage(newPage).subscribe(res=>{
        this.route.navigateByUrl('/admin/pages')
      })
     }
     addFeatureImage(image:Image){
       this.image=image;
-      console.log('fired');
-      console.log(this.image);
       this.selectTab(0);
     }
 

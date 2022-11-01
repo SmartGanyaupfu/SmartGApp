@@ -26,7 +26,7 @@ export class PortfolioComponent implements OnInit {
       this.portfolios=response.result;
       this.webPortfolio=this.portfolios.filter(x=>x.category.categoryId===1);
       this.mobilePortfolio=this.portfolios.filter(x=>x.category.categoryId===2);
-      console.log(this.mobilePortfolio);
+     
     })
   }
 

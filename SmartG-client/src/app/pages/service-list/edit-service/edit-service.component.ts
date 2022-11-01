@@ -93,7 +93,6 @@ export class EditServiceComponent implements OnInit {
     }
 
     updatePage(){
-     console.log(this.page);
      if(this.image){
       this.updatePageForm.patchValue({
         imageId:this.image.imageId,
@@ -105,7 +104,6 @@ export class EditServiceComponent implements OnInit {
       })
      }
    
-     console.log(this.updatePageForm.value)
       this.serviceService.updateService(this.page.offeredServiceId,this.updatePageForm.value).subscribe(res=>{
         this.toaster.success('Service updated.','Success')
        this.router.navigateByUrl('/admin/services')
@@ -114,8 +112,6 @@ export class EditServiceComponent implements OnInit {
    
     addFeatureImage(image:Image){
       this.image=image;
-      console.log('fired');
-      console.log(this.image);
       this.selectTab(0);
     }
 

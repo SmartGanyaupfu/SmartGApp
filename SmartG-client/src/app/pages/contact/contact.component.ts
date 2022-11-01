@@ -37,7 +37,6 @@ sendMessage(){
     this.toastr.success('Thanks for contacting me. Your message has been submited','Success')
     form=null;
   })*/
-  console.log(form);
   this.submitted=true;
   
 }

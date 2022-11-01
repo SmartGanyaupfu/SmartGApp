@@ -39,7 +39,7 @@ export class NewGalleryComponent implements OnInit {
   }
   isChecked(image){
     const index = this.arr2.controls.findIndex(x => x.value.imageUrl === image);
-    //console.log(index)
+    
     if (index!==-1){
       return true;
     }

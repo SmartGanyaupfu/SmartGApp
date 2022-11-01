@@ -24,7 +24,6 @@ export class ServiceComponent implements OnInit {
   GetServices(){
     this.serviceService.getServices(this.pageNumber,this.widget.postPageSize).subscribe(response=>{
       this.myServices=response.result;
-      //console.log(this.myServices);
     })
       }
       getWidgets(){

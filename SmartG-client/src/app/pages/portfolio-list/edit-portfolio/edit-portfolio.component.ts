@@ -104,7 +104,6 @@ export class EditPortfolioComponent implements OnInit {
     }
 
     updatePage(){
-     console.log(this.page);
      if(this.image){
       this.updatePageForm.patchValue({
         imageId:this.image.imageId,
@@ -116,7 +115,6 @@ export class EditPortfolioComponent implements OnInit {
       })
      }
    
-     console.log(this.updatePageForm.value)
       this.portService.updatePortfolio(this.page.portfolioId,this.updatePageForm.value).subscribe(res=>{
         this.toaster.success('Portfolio updated.','Success')
         this.router.navigateByUrl('/admin/portfolios')
@@ -125,7 +123,6 @@ export class EditPortfolioComponent implements OnInit {
     getCategories(){
       this.categoryService.getCategories(this.pageNumber,this.pageSize).subscribe(res=>{
         this.categories=res.result;
-        console.log(this.categories);
       })
     }
     getGalleries(){
@@ -137,8 +134,6 @@ export class EditPortfolioComponent implements OnInit {
     }
     addFeatureImage(image:Image){
       this.image=image;
-      console.log('fired');
-      console.log(this.image);
       this.selectTab(0);
     }
 

@@ -31,7 +31,6 @@ getServices(){
   this.serviceService.getServices(this.pageNumber,this.pageSize).subscribe(res=>{
     this.pages=res.result;
     this.pagination=res.pagination;
-    console.log(res);
     
   })
 }

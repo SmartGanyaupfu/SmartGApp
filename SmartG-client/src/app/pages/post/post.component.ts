@@ -27,7 +27,6 @@ pageNumber:number=1;
     this.posts=response.result;
     this.webPost=this.posts.filter(x=>x.category.categoryId===1);
     this.mobilePost=this.posts.filter(x=>x.category.categoryId===2);
-    console.log(this.posts);
     })
     }
 

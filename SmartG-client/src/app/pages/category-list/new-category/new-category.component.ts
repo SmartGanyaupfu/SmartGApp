@@ -59,7 +59,6 @@ editSlug(){
         slug:this.slugify(this.slug)===''?this.slugify(this.name):this.slugify(this.slug),
         name:this.name
       })
-     console.log(this.createPageForm.value)
       this.catService.createCategory(this.createPageForm.value).subscribe(res=>{
         this.toaster.success('Category block Added.','Success')
        this.router.navigateByUrl('/admin/categories')

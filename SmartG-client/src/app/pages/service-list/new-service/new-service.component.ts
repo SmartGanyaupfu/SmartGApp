@@ -69,7 +69,6 @@ export class NewServiceComponent implements OnInit {
       let newService:ServiceForCreationDto= {title:this.title,slug:this.slug===''?this.slugify(this.title):this.slugify(this.slug),
        excerpt:this.excerpt,imageId:this.image?.imageId,metaDescription:this.metaDescription,contentBlocks:this.contentBlocks,metaKeyWords:this.metaKeyWords,
       content:this.content,galleryId:this.galleryId}
-   console.log(newService);
       this.serviceService.createService(newService).subscribe(res=>{
         this.toaster.success('Post Created.', 'Success')
        this.router.navigateByUrl('/admin/services')

@@ -116,7 +116,6 @@ widgetId:any='';
 
 
     updateWidget(){
-     console.log(this.createPageForm.value)
       this.widgetService.updateWidget( this.widgetId,this.createPageForm.value).subscribe(res=>{
         this.toaster.success('Widget update.','Success')
        this.router.navigateByUrl('/admin/widgets')

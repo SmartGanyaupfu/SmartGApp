@@ -46,8 +46,7 @@ export class MediaComponent implements OnInit {
        for(let i=0;i<data.length;i++){
         this.images.unshift(data[i])
        }
-       //this.images=data;
-       console.log(this.imageUploads)
+      
        this.filesToUpload=null;
        this.pagination.CurrentPage=1;
        this.toastr.success("All images uploaded", "Success")

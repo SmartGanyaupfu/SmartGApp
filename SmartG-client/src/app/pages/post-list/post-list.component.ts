@@ -30,7 +30,6 @@ getPosts(){
   this.postService.getPosts(this.pageNumber,this.pageSize).subscribe(res=>{
     this.pages=res.result;
     this.pagination=res.pagination;
-    console.log(res);
     
   })
 }

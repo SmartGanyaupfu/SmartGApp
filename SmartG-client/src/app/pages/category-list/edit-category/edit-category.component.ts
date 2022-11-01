@@ -79,7 +79,6 @@ editSlug(){
         slug:this.slugify(this.slug)===''?this.slugify(this.page.slug):this.slugify(this.slug),
         name:this.page.name
       })
-     console.log(this.updatePageForm.value)
      this.catService.updateCategory(this.page.categoryId, this.updatePageForm.value).subscribe(res=>{
         this.toaster.success('Category updated.','Success')
        this.router.navigateByUrl('/admin/categories')

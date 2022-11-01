@@ -30,8 +30,7 @@ getCategories(){
   this.catService.getCategories(this.pageNumber,this.pageSize).subscribe(res=>{
     this.pages=res.result;
     this.pagination=res.pagination;
-    console.log(res);
-    
+      
   })
 }
 loadUsers(){

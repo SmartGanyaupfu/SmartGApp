@@ -75,9 +75,6 @@ export class EditContentBlockComponent implements OnInit {
 
     updatePage(){
    
-
-   
-     console.log(this.updatePageForm.value)
       this.blockService.updateBlock(this.page.contentBlockId,this.updatePageForm.value).subscribe(res=>{
         this.toaster.success('Content block updated.','Success')
        this.router.navigateByUrl('/admin/content-blocks')
@@ -86,8 +83,6 @@ export class EditContentBlockComponent implements OnInit {
    
     addFeatureImage(image:Image){
       this.image=image;
-      console.log('fired');
-      console.log(this.image);
       this.selectTab(0);
     }
 

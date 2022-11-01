@@ -54,7 +54,6 @@ export class NewContentBlockComponent implements OnInit {
 
     AddBlock(){
    
-     console.log(this.createPageForm.value)
       this.blockService.createBlock(this.createPageForm.value).subscribe(res=>{
         this.toaster.success('Content block Added.','Success')
        this.router.navigateByUrl('/admin/content-blocks')

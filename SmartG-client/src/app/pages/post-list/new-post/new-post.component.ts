@@ -69,7 +69,7 @@ export class NewPostComponent implements OnInit {
       let newPost:PostForCreationDto= {title:this.title,slug:this.slug===''?this.slugify(this.title):this.slugify(this.slug),
        excerpt:this.excerpt,imageId:this.image?.imageId,metaDescription:this.metaDescription,contentBlocks:this.contentBlocks,metaKeyWords:this.metaKeyWords,
       content:this.content,categoryId:this.categoryId, galleryId:this.galleryId}
-   console.log(newPost);
+  
       this.postService.createPost(newPost).subscribe(res=>{
         this.toaster.success('Post Created.', 'Success')
        this.router.navigateByUrl('/admin/posts')
@@ -79,13 +79,10 @@ export class NewPostComponent implements OnInit {
     getCategories(){
       this.categoryService.getCategories(this.pageNumber,this.pageSize).subscribe(res=>{
         this.categories=res.result;
-        console.log(this.categories);
       })
     }
     addFeatureImage(image:Image){
       this.image=image;
-      console.log('fired');
-      console.log(this.image);
       this.selectTab(0);
     }
 

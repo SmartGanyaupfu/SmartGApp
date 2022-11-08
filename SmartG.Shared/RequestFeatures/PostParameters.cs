@@ -6,6 +6,9 @@ namespace SmartG.Shared.RequestFeatures
         public PostParameters()
         {
         }
+
+        public string Author { get; set; }
+        public string Category { get; set; }
     }
 }
 

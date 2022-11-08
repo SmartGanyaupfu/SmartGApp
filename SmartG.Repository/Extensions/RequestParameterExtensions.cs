@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using SmartG.Entities.Models;
 
 namespace SmartG.Repository.Extensions
 {
@@ -17,6 +18,27 @@ namespace SmartG.Repository.Extensions
             var lowerCaseTerm = searchTerm.Trim().ToLower();
             return data.Where(d => ((string)property.GetValue(d)).Contains(lowerCaseTerm)).ToList();
         }
+
+        public static IQueryable<Post> FilterPostsByAuthor(this IQueryable<Post>
+           post, string author)
+        {
+            if (string.IsNullOrWhiteSpace(author))
+                return post;
+
+            return post.Where(
+               p => (p.AuthorId == author));
+        }
+
+        public static IQueryable<Post> FilterPostsByCategory(this IQueryable<Post>
+     post, string category)
+        {
+            if (string.IsNullOrWhiteSpace(category))
+                return post;
+           return  post.Where(
+         p => (p.Category.Name == category));
+        }
+    
     }
+ 
 }
 

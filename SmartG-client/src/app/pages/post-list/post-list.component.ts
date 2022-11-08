@@ -3,8 +3,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Pagination } from 'src/app/_interfaces/pagination';
 import { Post } from 'src/app/_interfaces/post';
 import { User } from 'src/app/_interfaces/user';
+import { Widget } from 'src/app/_interfaces/widget';
 import { AuthService } from 'src/app/_services/auth.service';
 import { PostService } from 'src/app/_services/post.service';
+import { WidgetService } from 'src/app/_services/widget.service';
 
 @Component({
   selector: 'app-post-list',
@@ -15,19 +17,30 @@ export class PostListComponent implements OnInit {
 
   public pagination:Pagination;
   pageNumber:number=1;
-pageSize:number=3;
+  widget:Widget;
 pages:Post[];
 users:User[];
-  constructor(private postService:PostService, private toastr:ToastrService, private authService: AuthService) { }
+author:string="";
+  category:string="";
+  constructor(private postService:PostService, private toastr:ToastrService, private authService: AuthService,
+    private widgetService:WidgetService) { }
 
   ngOnInit(): void {
-   this.getPosts();
+   this.getWidgets();
     this.loadUsers();
 
   }
-
+  getWidgets(){
+    this.widgetService.getWidget().subscribe(res=>{
+      this.widget= res;
+     
+      this.getPosts();
+    
+     
+    })
+  }
 getPosts(){
-  this.postService.getPosts(this.pageNumber,this.pageSize).subscribe(res=>{
+  this.postService.getPosts(this.pageNumber,this.widget.postPageSize, this.author,this.category).subscribe(res=>{
     this.pages=res.result;
     this.pagination=res.pagination;
     

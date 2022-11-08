@@ -8,7 +8,7 @@ namespace SmartG.API.Extensions
     {
        public static string GetUserId(this ClaimsPrincipal claims)
         {
-            return claims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return claims.FindFirst(ClaimTypes.GivenName)?.Value;
         }
 
     }

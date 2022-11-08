@@ -26,7 +26,8 @@ namespace SmartG.Repository
 
         public async Task<PagedList<Post>> GetAllPostsAsync(PostParameters postParameters, bool trackChanges)
         {
-            var posts = await FindAll(trackChanges).Search(postParameters.SearchTerm).Include(i => i.Image).Include(c => c.Category).Include(g => g.Gallery).ThenInclude(i => i.Images)
+            var posts = await FindAll(trackChanges).FilterPostsByAuthor(postParameters.Author).Include(i => i.Image).Include(c => c.Category).FilterPostsByCategory(postParameters.Category)
+                .Include(g => g.Gallery).ThenInclude(i => i.Images)
                 .OrderByDescending(p => p.DateCreated).ToListAsync();
             return PagedList<Post>.ToPagedList(posts, postParameters.PageNumber, postParameters.PageSize);
         }

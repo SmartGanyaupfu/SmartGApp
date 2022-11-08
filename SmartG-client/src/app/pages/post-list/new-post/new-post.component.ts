@@ -31,7 +31,7 @@ export class NewPostComponent implements OnInit {
   metaKeyWords: string='';
   image: Image;
   categories:Category[]=[];
-  galleryId:number=1;
+  galleryId:number;
   contentBlock: ContentBlockForCreationDto={content:'',title:''};
   contentBlocks: ContentBlockForCreationDto[]=[];
   pageNumber:number=1;

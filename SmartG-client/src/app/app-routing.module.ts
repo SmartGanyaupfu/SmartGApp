@@ -63,11 +63,11 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
   { path: 'home', component: HomeComponent,resolve:{home:DetailedViewResolver}},
-  { path: 'service', component: ServiceComponent, canActivate:[AuthGuardService]},
-  { path: 'portfolio', component: PortfolioComponent, canActivate:[AuthGuardService]},
-  { path: 'blog', component: PostComponent,canActivate:[AuthGuardService]},
-  { path: 'contact', component: ContactComponent,canActivate:[AuthGuardService]},
-  { path: 'learn-to-code', component: LearnComponent,canActivate:[AuthGuardService]},
+  { path: 'service', component: ServiceComponent},
+  { path: 'portfolio', component: PortfolioComponent},
+  { path: 'blog', component: PostComponent},
+  { path: 'contact', component: ContactComponent},
+  { path: 'learn-to-code', component: LearnComponent},
 
   { path: 'admin/page/new-page', component: NewPageComponent,canActivate:[AuthGuardService]},
   { path: 'admin/page/edit/:pageId', component: EditPageComponent,canActivate:[AuthGuardService]},

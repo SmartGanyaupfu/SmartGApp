@@ -5,7 +5,12 @@ body, .card{
     background: rgba(246, 246,246, 1);
     color: rgb(32, 30, 30);
 }
+/*headings*/
+h1, h2, h3, h4, h5, h6 {
 
+font-family: monospace !important;
+line-height: 2rem;
+}
 /* Main headings*/
 .sg-title{
   
@@ -17,12 +22,12 @@ font-size: 36px !important;
 
 }
 .sg-title::before{
-    content:'[';
+    content:'_';
    color: #2dadc6;
    font-size: 42px !important;
 }
 .sg-title:after{
-    content:']';
+    content:'';
    color: #2dadc6;
    font-size: 42px !important;
 }
@@ -69,7 +74,7 @@ a h2:hover{
 }
 
 a img:hover{
-    transform: scale(0.95);
+    
     color: #2dadc6;
 }
 
@@ -89,6 +94,9 @@ a:hover {
 }
 .customLink {
     color: #14344c;
+}
+.customLink:hover {
+    color:#2dadc6;
 }
 /* Buttons */
 .primary-bg-btn {
@@ -123,7 +131,11 @@ margin-right: 15px !important;
     background: #fff !important;
     color: #000 !important;
 }
-
+/* Smart CODE Section*/
+.sg-alert-code {
+    background: #444 !important;
+    color:greenyellow !important;
+}
 
 /* Social Icons*/
 .social-icons i {
@@ -319,4 +331,11 @@ a {
     .the-content img{
         width: 100%;
     }
+    /*sg title*/
+    .sg-title{
+  
+        
+        font-size: 26px !important;
+        
+        }
     }

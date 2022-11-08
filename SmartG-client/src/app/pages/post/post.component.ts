@@ -12,21 +12,23 @@ import { WidgetService } from 'src/app/_services/widget.service';
 export class PostComponent implements OnInit {
 posts:Post[];
 webPost:Post[];
-mobilePost:Post[];
+//mobilePost:Post[];
 pageNumber:number=1;
   pageSize:number=6;
+  author:string="";
+  category:string="";
 
   widget:Widget;
   constructor(private postService:PostService,private widgetService:WidgetService) { }
 
   ngOnInit(): void {
-
+this.getWidgets();
   }
   getBlogs(){
-    this.postService.getPosts(this.pageNumber,this.widget.postPageSize).subscribe(response=>{
+    this.postService.getPosts(this.pageNumber,this.widget.postPageSize, this.author,this.category).subscribe(response=>{
     this.posts=response.result;
-    this.webPost=this.posts.filter(x=>x.category.categoryId===1);
-    this.mobilePost=this.posts.filter(x=>x.category.categoryId===2);
+    //this.webPost=this.posts.filter(x=>x.category.categoryId===1);
+    //this.mobilePost=this.posts.filter(x=>x.category.categoryId===2);
     })
     }
 
@@ -38,5 +40,14 @@ pageNumber:number=1;
       
        
       })
+    }
+    getPostsByAuthor(author:string){
+      this.author=author;
+      this.getBlogs();
+    }
+
+    getPostsByCategory(catName){
+      this.category=catName;
+      this.getBlogs();
     }
 }

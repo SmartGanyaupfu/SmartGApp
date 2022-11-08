@@ -3,8 +3,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Page } from 'src/app/_interfaces/page';
 import { Pagination } from 'src/app/_interfaces/pagination';
 import { User } from 'src/app/_interfaces/user';
+import { Widget } from 'src/app/_interfaces/widget';
 import { AuthService } from 'src/app/_services/auth.service';
 import { PageService } from 'src/app/_services/page.service';
+import { WidgetService } from 'src/app/_services/widget.service';
 
 @Component({
   selector: 'app-page-list',
@@ -14,19 +16,29 @@ import { PageService } from 'src/app/_services/page.service';
 export class PageListComponent implements OnInit {
   public pagination:Pagination;
   pageNumber:number=1;
-pageSize:number=5;
+  widget:Widget;
 pages:Page[];
 users:User[];
-  constructor(private pageService:PageService, private toastr:ToastrService, private authService: AuthService) { }
+  constructor(private pageService:PageService, private toastr:ToastrService, private authService: AuthService,
+    private widgetService:WidgetService) { }
 
   ngOnInit(): void {
-    this.getPages();
+   this.getWidgets();
     this.loadUsers();
 
   }
+  getWidgets(){
+    this.widgetService.getWidget().subscribe(res=>{
+      this.widget= res;
+     
+      this.getPages();
+    
+     
+    })
+  }
 
 getPages(){
-  this.pageService.getPages(this.pageNumber,this.pageSize).subscribe(res=>{
+  this.pageService.getPages(this.pageNumber,this.widget.postPageSize).subscribe(res=>{
     this.pages=res.result;
     this.pagination=res.pagination;
   })

@@ -5,20 +5,27 @@
   <div>
       
 
-          <div class="services-home text-center mt-5"> <!--port all-->
+          <div class="services-home  mt-5"> <!--port all-->
   
               <div class="row mt-4">
-                <div class="col-md-6 mb-3 " *ngFor="let post of posts">
-                  <div class="card" style="max-width: 100%;">
-                    <a   routerLink="/blog/{{post.slug}}">
-                       <img src="{{post?.image?.imageUrl}}" class="card-img-top" alt="{{post.title + ' image'}}">
-                    <div class="card-body">
-                      <h2 class="card-title">{{post?.title}}</h2>
-                    </div>
-                      <p class="card-text">{{post?.excerpt}}</p></a>
-                     
-                    </div>
+                <div class="col-md-4 mb-3 " *ngFor="let post of posts">
+                 
                     <!--a  mat-raised-button  routerLink="/blog/{{post.slug}}">Read More</a-->
+
+                    <div class="card mb-3">
+                      <a   routerLink="/blog/{{post.slug}}">
+                      <img src="{{post?.image?.imageUrl}}" class="card-img-top" alt="{{post.title + ' image'}}"></a>
+                      <small class="post-category"><a type="button" (click)="getPostsByCategory(post.category.name)">{{post.category.name}}</a></small>
+                      <div class="card-body">
+                        <a   routerLink="/blog/{{post.slug}}"> <h2 class="card-title">{{post?.title}}</h2>
+                        <!--p class="card-text">{{post?.excerpt}}</p--></a>
+
+                      <p class="card-text"><small class="text-muted">By: <a class="customLink " type="button" (click)="getPostsByAuthor(post.authorId)">{{post.authorId}}</a></small> | 
+                        <small class="text-muted">Updated: {{post.dateUpdated | date:'d/M/yyyy'}}</small> 
+                         </p>
+                      </div>
+
+                    </div>
                 </div>
                  
               </div>

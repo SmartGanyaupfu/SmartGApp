@@ -6,3 +6,17 @@ a {
 a:hover{
     color: #2dadc6;
 }
+.post-category {
+    margin-top: -20px;
+    background-color:#2dadc6;
+    color: white;
+    width: fit-content;
+    padding: 5px;
+}
+.post-category:hover {
+    margin-top: -20px;
+    background-color:#14344c;
+    color: white;
+    width: fit-content;
+    padding: 5px;
+}

@@ -24,6 +24,8 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWidget();
+    //console.log(this)
+    //this.myArrow();
   }
 
   getWidget(){
@@ -31,13 +33,14 @@ export class ContactComponent implements OnInit {
       this.widget=response;
     })
   }
+   myArrow= ()=>console.log(this);
 sendMessage(){
   let form={name:this.name,email:this.email,message:this.message};
-  /*this.contactService.submitForm(form).subscribe(res=>{
+  this.contactService.submitForm(form).subscribe(res=>{
     this.toastr.success('Thanks for contacting me. Your message has been submited','Success')
-    form=null;
-  })*/
-  this.submitted=true;
+    this.submitted=true;
+  })
+ // this.submitted=true;
   
 }
 }

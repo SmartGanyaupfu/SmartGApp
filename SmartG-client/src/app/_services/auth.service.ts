@@ -56,7 +56,6 @@ export class AuthService {
     if(isPlatformBrowser(this.platformId)){
       const token = localStorage.getItem('my-token');
     
-    
     return !this.helper.isTokenExpired(token);
     }
   }

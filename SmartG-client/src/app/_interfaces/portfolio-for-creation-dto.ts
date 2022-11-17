@@ -8,8 +8,8 @@ export interface PortfolioForCreationDto {
     metaDescription: string;
     metaKeyWords: string;
     slug: string;
-    categoryId: number
-    imageId: number;
-    galleryId:number;
+    sgCategoryId?: any;
+    sgImageId?: number;
+    sgGalleryId?: number;
     contentBlocks: ContentBlockForCreationDto[];
 }

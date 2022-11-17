@@ -17,7 +17,7 @@
           <tr *ngFor="let page of pages">
             <td><img src="{{page?.image?.imageUrl!==null?page?.image.imageUrl:''}}" class="image-thumbnail" width="150"/></td>
             <td>{{page?.title}}</td>
-            <td>{{page?.category.name}}</td>
+            <td>{{page?.category?.name|| "Uncategorised"}}</td>
             <td>{{getAuthor(page?.authorId)}}</td>
             <td>{{page?.dateCreated | date:'d/M/yy'}}</td>
             <td>{{page?.dateUpdated | date:'d/M/yy'}}</td>

@@ -24,8 +24,7 @@ export class PortfolioComponent implements OnInit {
   GetPortfolios(){
     this.portfolioService.getPortfolios(this.pageNumber,this.widget.postPageSize).subscribe(response=>{
       this.portfolios=response.result;
-      this.webPortfolio=this.portfolios.filter(x=>x.category.categoryId===1);
-      this.mobilePortfolio=this.portfolios.filter(x=>x.category.categoryId===2);
+      
      
     })
   }

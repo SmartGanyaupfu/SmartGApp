@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using SmartG.API.ActionFilters;
 using SmartG.API.Extensions;
 using SmartG.Contracts;
@@ -39,7 +40,32 @@ namespace SmartG.API.Controllers.API.V1
             var portfolios = await _repository.Portfolio.GetAllPortfoliosAsync(requestParameters, trackChanges: false);
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(portfolios.MetaData));
             var portfoliosToReturn = _mapper.Map<IEnumerable<PortfolioDto>>(portfolios);
-            return Ok(portfoliosToReturn);
+
+            foreach (var post in portfoliosToReturn)
+            {
+                Category category;
+                Image image;
+
+                if (post.SgCategoryId != null)
+                {
+
+
+                    category = await _repository.Category.GetCategoryByIdAsync((int)post.SgCategoryId, trackChanges: false);
+                    post.Category = _mapper.Map<CategoryDto>(category);
+                }
+                if (post.SgImageId != null)
+                {
+                    image = await _repository.Image.GetImageByIdAsync((int)post.SgImageId, trackChanges: false);
+                    post.Image = _mapper.Map<ImageDto>(image);
+                }
+                Gallery gallery;
+                if (post.SgGalleryId != null)
+                {
+                    gallery = await _repository.Gallery.GetGalleryByIdAsync((int)post.SgGalleryId, trackChanges: false);
+                    post.Gallery = _mapper.Map<GalleryDto>(gallery);
+                }
+            }
+                return Ok(portfoliosToReturn);
         }
         // GET api/values/5
         [HttpGet("{portfolioId}", Name = "portfoliosId")]
@@ -49,6 +75,30 @@ namespace SmartG.API.Controllers.API.V1
             if (portfolio is null)
                 return NotFound();
             var portfolioToReturn = _mapper.Map<PortfolioDto>(portfolio);
+
+            int catId;
+
+            Category category;
+            Image image;
+            if (portfolio.SgCategoryId != null)
+            {
+                catId = (int)portfolio.SgCategoryId;
+
+                category = await _repository.Category.GetCategoryByIdAsync(catId, trackChanges: false);
+                portfolioToReturn.Category = _mapper.Map<CategoryDto>(category);
+            }
+            if (portfolio.SgImageId != null)
+            {
+                image = await _repository.Image.GetImageByIdAsync((int)portfolio.SgImageId, trackChanges: false);
+                portfolioToReturn.Image = _mapper.Map<ImageDto>(image);
+            }
+            Gallery gallery;
+            if (portfolio.SgGalleryId != null)
+            {
+                gallery = await _repository.Gallery.GetGalleryByIdAsync((int)portfolio.SgGalleryId, trackChanges: false);
+                portfolioToReturn.Gallery = _mapper.Map<GalleryDto>(gallery);
+            }
+
             return Ok(portfolioToReturn);
         }
 
@@ -58,8 +108,33 @@ namespace SmartG.API.Controllers.API.V1
             var portfolio = await _repository.Portfolio.GetPortfolioBySlugNameAsync(slug, trackChanges: false);
             if (portfolio is null)
                 return NotFound();
-            var pageToReturn = _mapper.Map<PortfolioDto>(portfolio);
-            return Ok(pageToReturn);
+            var portfolioToReturn = _mapper.Map<PortfolioDto>(portfolio);
+
+
+            int catId;
+
+            Category category;
+            Image image;
+            if (portfolio.SgCategoryId != null)
+            {
+                catId = (int)portfolio.SgCategoryId;
+
+                category = await _repository.Category.GetCategoryByIdAsync(catId, trackChanges: false);
+                portfolioToReturn.Category = _mapper.Map<CategoryDto>(category);
+            }
+            if (portfolio.SgImageId != null)
+            {
+                image = await _repository.Image.GetImageByIdAsync((int)portfolio.SgImageId, trackChanges: false);
+                portfolioToReturn.Image = _mapper.Map<ImageDto>(image);
+            }
+            Gallery gallery;
+            if (portfolio.SgGalleryId != null)
+            {
+                gallery = await _repository.Gallery.GetGalleryByIdAsync((int)portfolio.SgGalleryId, trackChanges: false);
+                portfolioToReturn.Gallery = _mapper.Map<GalleryDto>(gallery);
+            }
+
+            return Ok(portfolioToReturn);
         }
 
         [Authorize]

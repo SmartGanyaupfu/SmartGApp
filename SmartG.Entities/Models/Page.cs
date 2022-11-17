@@ -14,11 +14,12 @@ namespace SmartG.Entities.Models
         public string? MetaDescription { get; set; }
         public string? MetaKeyWords { get; set; }
         public string? Slug { get; set; }
-        public int? ImageId { get; set; }
-        public Image? Image { get; set; }
+
+        public int? SgImageId { get; set; }
+        public int? SgGalleryId { get; set; }
         public ICollection<ContentBlock>? ContentBlocks { get; set; }
-        public int? GalleryId { get; set; }
-        public Gallery? Gallery { get; set; }
+       
+        
 
 
     }

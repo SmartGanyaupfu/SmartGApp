@@ -18,7 +18,7 @@ namespace SmartG.Repository
         {
             base.OnModelCreating(modelBuilder);
 
-            ///optional relationships
+            /*//optional relationships
             modelBuilder.Entity<Post>()
             .HasOne(p => p.Category)
             .WithMany(p=>p.Posts)
@@ -27,7 +27,7 @@ namespace SmartG.Repository
           modelBuilder.Entity<Portfolio>()
              .HasOne(p => p.Category)
              .WithMany(b => b.Portfolios)
-             .IsRequired(false);
+             .IsRequired(false);*/
 
            /* modelBuilder.Entity<Post>()
                 .HasOne(i => i.Image)

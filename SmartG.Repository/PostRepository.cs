@@ -26,21 +26,20 @@ namespace SmartG.Repository
 
         public async Task<PagedList<Post>> GetAllPostsAsync(PostParameters postParameters, bool trackChanges)
         {
-            var posts = await FindAll(trackChanges).FilterPostsByAuthor(postParameters.Author).Include(i => i.Image).Include(c => c.Category).FilterPostsByCategory(postParameters.Category)
-                .Include(g => g.Gallery).ThenInclude(i => i.Images)
+            var posts = await FindAll(trackChanges).FilterPostsByAuthor(postParameters.Author).FilterPostsByCategory(postParameters.SgCategoryId)
                 .OrderByDescending(p => p.DateCreated).ToListAsync();
             return PagedList<Post>.ToPagedList(posts, postParameters.PageNumber, postParameters.PageSize);
         }
 
         public async Task<Post> GetPostByIdAsync(Guid postId, bool trackChanges)
         {
-            return await FindByCondition(p=>p.PostId.Equals(postId),trackChanges).Include(i => i.Image).Include(c=>c.Category).Include(b => b.ContentBlocks).Include(g => g.Gallery).ThenInclude(i => i.Images)
+            return await FindByCondition(p=>p.PostId.Equals(postId),trackChanges).Include(b => b.ContentBlocks)
                 .SingleOrDefaultAsync();
         }
 
         public async Task<Post> GetPostBySlugNameAsync(string slug, bool trackChanges)
         {
-            return await FindByCondition(p => p.Slug.Equals(slug), trackChanges).Include(i => i.Image).Include(b => b.ContentBlocks).Include(g => g.Gallery).ThenInclude(i => i.Images)
+            return await FindByCondition(p => p.Slug.Equals(slug), trackChanges).Include(b => b.ContentBlocks)
                 .SingleOrDefaultAsync();
         }
 

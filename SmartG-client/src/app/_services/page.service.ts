@@ -17,8 +17,8 @@ export class PageService {
     getPages(pageNumber?:number,pageSize?:number){
       const parmsObj={
     
-        pageNumber:pageNumber||undefined,
-        pageSize:pageSize||undefined
+        pageNumber:pageNumber||'',
+        pageSize:pageSize||''
       };
       const params = new HttpParams({fromObject:parmsObj});
       return this.http.get<Page[]>(this.baseurl +'pages',{observe:'response',params}).pipe(

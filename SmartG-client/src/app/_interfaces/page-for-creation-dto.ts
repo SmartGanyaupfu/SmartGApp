@@ -10,9 +10,11 @@ export interface PageForCreationDto {
     metaDescription: string;
     metaKeyWords: string;
     slug: string;
-    imageId: number;
-
-    galleryId:number;
     contentBlocks: ContentBlockForCreationDto[];
+
+       
+        authorId?: any;
+    sgImageId?: number;
+    sgGalleryId?: any;
     
 }

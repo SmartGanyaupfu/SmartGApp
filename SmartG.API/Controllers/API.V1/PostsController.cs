@@ -37,8 +37,34 @@ namespace SmartG.API.Controllers.API.V1
         {
 
             var posts = await _repository.Post.GetAllPostsAsync (postParameters, trackChanges: false);
+
+
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(posts.MetaData));
             var postsToReturn = _mapper.Map<IEnumerable<PostDto>>(posts);
+            foreach(var post in postsToReturn)
+            {
+                Category category;
+                Image image;
+
+                if (post.SgCategoryId != null)
+                {
+                   
+
+                    category = await _repository.Category.GetCategoryByIdAsync((int)post.SgCategoryId, trackChanges: false);
+                    post.Category = _mapper.Map<CategoryDto>(category);
+                }
+                if (post.SgImageId != null)
+                {
+                    image = await _repository.Image.GetImageByIdAsync((int)post.SgImageId, trackChanges: false);
+                    post.Image = _mapper.Map<ImageDto>(image);
+                }
+                Gallery gallery;
+                if (post.SgGalleryId != null)
+                {
+                    gallery = await _repository.Gallery.GetGalleryByIdAsync((int)post.SgGalleryId, trackChanges: false);
+                    post.Gallery = _mapper.Map<GalleryDto>(gallery);
+                }
+            }
             return Ok(postsToReturn);
         }
 
@@ -49,7 +75,32 @@ namespace SmartG.API.Controllers.API.V1
             var post = await _repository.Post.GetPostByIdAsync(postId, trackChanges: false);
             if (post is null)
                 return NotFound();
+            int catId;
+            
+            Category category;
+            Image image;
             var postToReturn = _mapper.Map<PostDto>(post);
+            if (post.SgCategoryId != null)
+            {
+                catId = (int)post.SgCategoryId;
+
+                category = await _repository.Category.GetCategoryByIdAsync(catId, trackChanges: false);
+                postToReturn.Category = _mapper.Map<CategoryDto>(category);
+            }
+            if (post.SgImageId != null)
+            {
+                image = await _repository.Image.GetImageByIdAsync((int)post.SgImageId, trackChanges: false);
+                postToReturn.Image = _mapper.Map<ImageDto>(image);
+            }
+            Gallery gallery;
+            if (post.SgGalleryId != null)
+            {
+                gallery = await _repository.Gallery.GetGalleryByIdAsync((int)post.SgGalleryId, trackChanges: false);
+                postToReturn.Gallery = _mapper.Map<GalleryDto>(gallery);
+            }
+
+
+
             return Ok(postToReturn);
         }
         [HttpGet("slug/{postSlug}")]
@@ -58,38 +109,33 @@ namespace SmartG.API.Controllers.API.V1
             var post = await _repository.Post.GetPostBySlugNameAsync(postSlug, trackChanges: false);
             if (post is null)
                 return NotFound();
+            int catId;
+
+            Category category;
+            Image image;
+            Gallery gallery;
+            var postToReturn = _mapper.Map<PostDto>(post);
+            if (post.SgCategoryId != null)
+            {
+                catId = (int)post.SgCategoryId;
+
+                category = await _repository.Category.GetCategoryByIdAsync(catId, trackChanges: false);
+                postToReturn.Category = _mapper.Map<CategoryDto>(category);
+            }
+            if (post.SgImageId != null)
+            {
+                image = await _repository.Image.GetImageByIdAsync((int)post.SgImageId, trackChanges: false);
+                postToReturn.Image = _mapper.Map<ImageDto>(image);
+            }
+            if (post.SgGalleryId != null)
+            {
+                gallery = await _repository.Gallery.GetGalleryByIdAsync((int)post.SgGalleryId, trackChanges: false);
+                postToReturn.Gallery = _mapper.Map<GalleryDto>(gallery);
+            }
             var pageToReturn = _mapper.Map<PostDto>(post);
             return Ok(pageToReturn);
         }
-        /*[Authorize]
-        [HttpPost("{postId}/add-image")]
-        public async Task<IActionResult> AddImage(IFormFile file, Guid postId)
-        {
-            var postEntity = await _repository.Post.GetPostByIdAsync(postId, trackChanges: true);
-            if (postEntity is null)
-                return NotFound($"post with id {postEntity} does not exist");
-
-            var result = await _imageService.AddImageAsync(file);
-            if (result.Error != null)
-                return BadRequest(result.Error.Message);
-
-            var image = new Image()
-            {
-                DateCreated = DateTime.Now,
-                DateUpdated = DateTime.Now,
-                Deleted = false,
-                PublicId = result.PublicId,
-                ImageUrl = result.SecureUrl.AbsoluteUri
-            };
-            postEntity.Image = image;
-
-            await _repository.SaveAsync();
-
-            var postToReturn = _mapper.Map<PostDto>(postEntity);
-
-
-            return CreatedAtRoute("postsId", new { postId = postToReturn.PostId }, postToReturn);
-        }*/
+ 
 
         [Authorize]
         [HttpPost]

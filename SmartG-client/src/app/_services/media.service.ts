@@ -19,8 +19,8 @@ export class MediaService {
     getImages(pageNumber?:number,pageSize?:number){
       const parmsObj={
     
-        pageNumber:pageNumber||undefined,
-        pageSize:pageSize||undefined
+        pageNumber:pageNumber||'',
+        pageSize:pageSize||''
       };
       const params = new HttpParams({fromObject:parmsObj});
       return this.http.get<Image[]>(this.baseurl +'media',{observe:'response',params}).pipe(

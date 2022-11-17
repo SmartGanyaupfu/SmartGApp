@@ -56,9 +56,9 @@ export class EditPortfolioComponent implements OnInit {
   excerpt: new UntypedFormControl(),
   metaDescription: new UntypedFormControl(),
   metaKeyWords: new UntypedFormControl(),
-  imageId:new UntypedFormControl(),
-  galleryId: new FormControl(),
-  categoryId:new UntypedFormControl()
+  sgImageId:new UntypedFormControl(),
+  sgGalleryId: new FormControl(),
+  sgCategoryId:new UntypedFormControl()
     });
   }
   setUpdatePageFromValue(){
@@ -69,9 +69,9 @@ export class EditPortfolioComponent implements OnInit {
   excerpt: this.page?.excerpt,
   metaDescription:this.page?.metaDescription,
   metaKeyWords: this.page?.metaKeyWords,
-  imageId:this.page?.imageId,
-  galleryId:this.page?.galleryId,
-  categoryId:this.page.category.categoryId
+  sgImageId:this.page?.sgImageId,
+  sgGalleryId:this.page?.sgGalleryId,
+  sgCategoryId:this.page?.category?.categoryId||"Choose Category"
     })
   }
   
@@ -106,7 +106,7 @@ export class EditPortfolioComponent implements OnInit {
     updatePage(){
      if(this.image){
       this.updatePageForm.patchValue({
-        imageId:this.image.imageId,
+        sgImageId:this.image.imageId,
           slug:this.slug===''?this.slugify(this.page.slug):this.slugify(this.slug)
         })
      }else{

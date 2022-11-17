@@ -12,15 +12,16 @@ export interface Page {
         metaDescription: string;
         metaKeyWords: string;
         slug: string;
-        imageId: number;
         image: Image;
         contentBlocks: ContentBlock[];
         dateCreated: Date;
         dateUpdated: Date;
         deleted: boolean;
         authorId?: any;
-    galleryId:number;
-    gallery:Gallery;
+    gallery?:Gallery;
+    sgImageId?: number;
+    sgGalleryId?: any;
+   
   
 
 }

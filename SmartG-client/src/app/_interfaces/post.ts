@@ -12,9 +12,6 @@ import { Image } from "./image";
         metaKeyWords: string;
         slug: string;
         category: Category;
-        imageId: number;
-
-    galleryId:number;
         image: Image;
         contentBlocks: ContentBlock[];
         dateCreated: Date;
@@ -22,5 +19,12 @@ import { Image } from "./image";
         deleted: boolean;
         authorId: string;
         gallery:Gallery;
+
+        
+        sgCategoryId?: number;
+        sgImageId: number;
+        sgGalleryId?: any;
+        
+      
     }
 

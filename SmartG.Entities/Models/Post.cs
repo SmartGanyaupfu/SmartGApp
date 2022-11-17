@@ -11,15 +11,15 @@ namespace SmartG.Entities.Models
         public string? MetaKeyWords { get; set; }
         public string? Slug { get; set; }
 
-        public int CategoryId { get; set; }
-        public Category? Category { get; set; }
+
+        public int? SgCategoryId { get; set; }
+        public int? SgImageId { get; set; }
+        public int? SgGalleryId { get; set; }
         public ICollection<Comment>? Comments { get; set; }
-        public int? ImageId { get; set; }
-        public Image? Image { get; set; }
+
 
         public ICollection<ContentBlock>? ContentBlocks { get; set; }
-        public int? GalleryId { get; set; }
-        public Gallery? Gallery { get; set; }
+        
 
     }
 }

@@ -6,10 +6,11 @@
         
         <hr/>
         <tabset #staticTabs>
-         
+          
           <tab heading="New Post">
             <div class="alert alert-info" *ngIf="createPageForm.dirty">
                 <p><strong>Information: </strong> Changes detected, please note any unsaved changes will be lost!</p>
+               
             </div>
             <form #createPageForm="ngForm" autocomplete="off" (ngSubmit)="addPage()">
               <div class="row">
@@ -138,8 +139,9 @@
             </div>
                 <button type="submit" class="mt-5 primary-bg-btn" mat-raised-button>Publish</button>
               </form>
-       
+      
           </tab>
+          
           <tab heading="Images">
             <div class="row">
                 <app-media (newImageSelectedEvent)="addFeatureImage($event)"></app-media>
@@ -147,6 +149,6 @@
           </tab>
         </tabset>
       </div>
-  
+      
  </div>
 

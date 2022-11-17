@@ -8,9 +8,9 @@ export interface PostForCreationDto {
     metaDescription: string;
     metaKeyWords: string;
     slug: string;
-    categoryId: number
-    imageId: number;
-
-    galleryId:number;
     contentBlocks: ContentBlockForCreationDto[];
+
+        sgCategoryId?: number;
+        sgImageId: number;
+        sgGalleryId?: any;
 }

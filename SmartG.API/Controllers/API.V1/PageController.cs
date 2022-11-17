@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using SmartG.API.ActionFilters;
 using SmartG.API.Extensions;
 using SmartG.CloudinaryService;
@@ -40,6 +41,25 @@ namespace SmartG.API.Controllers.API.V1
             var pages = await _repository.Page.GetAllPagesAsync(pageParameters, trackChanges: false);
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pages.MetaData));
             var pagesToReturn = _mapper.Map<IEnumerable<PageDto>>(pages);
+
+            foreach (var post in pagesToReturn)
+            {
+               
+                Image image;
+
+               
+                if (post.SgImageId != null)
+                {
+                    image = await _repository.Image.GetImageByIdAsync((int)post.SgImageId, trackChanges: false);
+                    post.Image = _mapper.Map<ImageDto>(image);
+                }
+                Gallery gallery;
+                if (post.SgGalleryId != null)
+                {
+                    gallery = await _repository.Gallery.GetGalleryByIdAsync((int)post.SgGalleryId, trackChanges: false);
+                    post.Gallery = _mapper.Map<GalleryDto>(gallery);
+                }
+            }
             return Ok(pagesToReturn);
         }
 
@@ -51,6 +71,21 @@ namespace SmartG.API.Controllers.API.V1
             if (page is null)
                 return NotFound();
             var pageToReturn = _mapper.Map<PageDto>(page);
+
+            Image image;
+            
+           
+            if (page.SgImageId != null)
+            {
+                image = await _repository.Image.GetImageByIdAsync((int)page.SgImageId, trackChanges: false);
+                pageToReturn.Image = _mapper.Map<ImageDto>(image);
+            }
+            Gallery gallery;
+            if (page.SgGalleryId != null)
+            {
+                gallery = await _repository.Gallery.GetGalleryByIdAsync((int)page.SgGalleryId, trackChanges: false);
+                pageToReturn.Gallery = _mapper.Map<GalleryDto>(gallery);
+            }
             return Ok(pageToReturn);
         }
         [HttpGet("slug/{pageSlug}")]
@@ -60,6 +95,21 @@ namespace SmartG.API.Controllers.API.V1
             if (page is null)
                 return NotFound();
             var pageToReturn = _mapper.Map<PageDto>(page);
+
+            Image image;
+
+
+            if (page.SgImageId != null)
+            {
+                image = await _repository.Image.GetImageByIdAsync((int)page.SgImageId, trackChanges: false);
+                pageToReturn.Image = _mapper.Map<ImageDto>(image);
+            }
+            Gallery gallery;
+            if (page.SgGalleryId != null)
+            {
+                gallery = await _repository.Gallery.GetGalleryByIdAsync((int)page.SgGalleryId, trackChanges: false);
+                pageToReturn.Gallery = _mapper.Map<GalleryDto>(gallery);
+            }
             return Ok(pageToReturn);
         }
 

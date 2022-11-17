@@ -18,8 +18,8 @@ export class PortfolioService {
     getPortfolios(pageNumber?:number,pageSize?:number){
       const parmsObj={
     
-        pageNumber:pageNumber||undefined,
-        pageSize:pageSize||undefined
+        pageNumber:pageNumber||'',
+        pageSize:pageSize||''
       };
       const params = new HttpParams({fromObject:parmsObj});
       return this.http.get<Portfolio[]>(this.baseurl +'portfolios',{observe:'response',params}).pipe(

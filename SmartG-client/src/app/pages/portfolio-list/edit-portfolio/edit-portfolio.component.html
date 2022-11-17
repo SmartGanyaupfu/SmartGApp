@@ -18,8 +18,8 @@
                     <div class="mt-2" >
                         <label  class="form-label"> Category  </label>
                        <span></span>
-                        <select id="cars" class="form-control" formControlName='categoryId' >
-                            <option   *ngFor="let catgory of categories" [ngValue]="catgory?.categoryId">{{catgory.name}}
+                        <select id="cars" class="form-control" formControlName='sgCategoryId' >
+                            <option   *ngFor="let catgory of categories" [ngValue]="catgory?.categoryId">{{catgory.name }}
                               
                             </option>
                       
@@ -47,7 +47,7 @@
                    
                    <div class="mt-2" >
                    <span>Gallery</span>
-                    <select   class="form-control" formControlName="galleryId">
+                    <select   class="form-control" formControlName="sgGalleryId">
                         <option   *ngFor="let gallery of galleries" [ngValue]="gallery?.galleryId"> {{gallery?.title}}
                           
                         </option>

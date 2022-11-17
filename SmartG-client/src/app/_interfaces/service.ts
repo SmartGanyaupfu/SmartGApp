@@ -13,12 +13,15 @@ export interface Service {
     metaKeyWords: string;
     slug: string;
     image: Image;
-    imageId: number;
     contentBlocks: ContentBlock[];
     dateCreated: Date;
     dateUpdated: Date;
     deleted: boolean;
     authorId: string;
-    galleryId:number;
     gallery:Gallery;
+
+        sgImageId?: number;
+        sgGalleryId?: number;
+       
+        
 }

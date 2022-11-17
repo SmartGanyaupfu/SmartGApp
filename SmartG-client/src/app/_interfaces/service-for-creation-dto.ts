@@ -1,4 +1,5 @@
 import { ContentBlockForCreationDto } from "./content-block-for-creation-dto";
+import { Image } from "./image";
 
 export interface ServiceForCreationDto {
 
@@ -8,8 +9,11 @@ export interface ServiceForCreationDto {
     metaDescription: string;
     metaKeyWords: string;
     slug: string;
-    imageId: number;
-
-    galleryId:number;
     contentBlocks: ContentBlockForCreationDto[];
+
+    
+   
+
+        sgImageId?: number;
+        sgGalleryId?: number;
 }

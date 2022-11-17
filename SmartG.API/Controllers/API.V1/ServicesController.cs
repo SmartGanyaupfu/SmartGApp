@@ -39,6 +39,26 @@ namespace SmartG.API.Controllers.API.V1
             var services = await _repository.Service.GetServicesAsync(requestParameters, trackChanges: false);
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(services.MetaData));
             var servicesToReturn = _mapper.Map<IEnumerable<ServiceDto>>(services);
+
+            foreach (var post in servicesToReturn)
+            {
+
+                Image image;
+
+
+                if (post.SgImageId != null)
+                {
+                    image = await _repository.Image.GetImageByIdAsync((int)post.SgImageId, trackChanges: false);
+                    post.Image = _mapper.Map<ImageDto>(image);
+                }
+                Gallery gallery;
+                if (post.SgGalleryId != null)
+                {
+                    gallery = await _repository.Gallery.GetGalleryByIdAsync((int)post.SgGalleryId, trackChanges: false);
+                    post.Gallery = _mapper.Map<GalleryDto>(gallery);
+                }
+            }
+
             return Ok(servicesToReturn);
         }
         // GET api/values/5
@@ -49,6 +69,21 @@ namespace SmartG.API.Controllers.API.V1
             if (service is null)
                 return NotFound();
             var serviceToReturn = _mapper.Map<ServiceDto>(service);
+            Image image;
+
+
+            if (service.SgImageId != null)
+            {
+                image = await _repository.Image.GetImageByIdAsync((int)service.SgImageId, trackChanges: false);
+                serviceToReturn.Image = _mapper.Map<ImageDto>(image);
+            }
+            Gallery gallery;
+            if (service.SgGalleryId != null)
+            {
+                gallery = await _repository.Gallery.GetGalleryByIdAsync((int)service.SgGalleryId, trackChanges: false);
+                serviceToReturn.Gallery = _mapper.Map<GalleryDto>(gallery);
+            }
+
             return Ok(serviceToReturn);
         }
         [HttpGet("slug/{slug}")]
@@ -57,8 +92,22 @@ namespace SmartG.API.Controllers.API.V1
             var service = await _repository.Service.GetServiceBySlugAsync(slug, trackChanges: false);
             if (service is null)
                 return NotFound();
-            var pageToReturn = _mapper.Map<ServiceDto>(service);
-            return Ok(pageToReturn);
+            var serviceToReturn = _mapper.Map<ServiceDto>(service);
+            Image image;
+
+
+            if (service.SgImageId != null)
+            {
+                image = await _repository.Image.GetImageByIdAsync((int)service.SgImageId, trackChanges: false);
+                serviceToReturn.Image = _mapper.Map<ImageDto>(image);
+            }
+            Gallery gallery;
+            if (service.SgGalleryId != null)
+            {
+                gallery = await _repository.Gallery.GetGalleryByIdAsync((int)service.SgGalleryId, trackChanges: false);
+                serviceToReturn.Gallery = _mapper.Map<GalleryDto>(gallery);
+            }
+            return Ok(serviceToReturn);
         }
         [Authorize]
         [HttpPost]

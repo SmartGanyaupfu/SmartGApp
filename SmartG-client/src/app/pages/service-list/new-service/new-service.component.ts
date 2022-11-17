@@ -64,13 +64,18 @@ export class NewServiceComponent implements OnInit {
     }
 
     addPage(){
-      this.contentBlocks?.push(this.contentBlock);
+      
+      if(this.contentBlock.title){
+
+        this.contentBlocks.push(this.contentBlock);
+      }
       
       let newService:ServiceForCreationDto= {title:this.title,slug:this.slug===''?this.slugify(this.title):this.slugify(this.slug),
-       excerpt:this.excerpt,imageId:this.image?.imageId,metaDescription:this.metaDescription,contentBlocks:this.contentBlocks,metaKeyWords:this.metaKeyWords,
-      content:this.content,galleryId:this.galleryId}
-      this.serviceService.createService(newService).subscribe(res=>{
-        this.toaster.success('Post Created.', 'Success')
+       excerpt:this.excerpt,sgImageId:this?.image.imageId,metaDescription:this.metaDescription,contentBlocks:this.contentBlocks, metaKeyWords:this.metaKeyWords,
+      content:this.content,sgGalleryId:this.galleryId}
+      console.log(newService);
+     this.serviceService.createService(newService).subscribe(res=>{
+        this.toaster.success('Service Created.', 'Success')
        this.router.navigateByUrl('/admin/services')
      })
     }

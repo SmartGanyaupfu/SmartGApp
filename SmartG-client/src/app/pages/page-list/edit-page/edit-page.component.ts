@@ -60,7 +60,7 @@ export class EditPageComponent implements OnInit {
   excerpt: new UntypedFormControl(),
   metaDescription: new UntypedFormControl(),
   metaKeyWords: new UntypedFormControl(),
-  imageId:new UntypedFormControl()
+  sgImageId:new UntypedFormControl()
     });
   }
   setUpdatePageFromValue(){
@@ -71,7 +71,7 @@ export class EditPageComponent implements OnInit {
   excerpt: this.page?.excerpt,
   metaDescription:this.page?.metaDescription,
   metaKeyWords: this.page?.metaKeyWords,
-  imageId:this.page?.imageId
+  sgImageId:this.page?.sgImageId
     })
   }
   
@@ -106,7 +106,7 @@ export class EditPageComponent implements OnInit {
     updatePage(){
      if(this.image){
       this.updatePageForm.patchValue({
-        imageId:this.image.imageId,
+        sgImageId:this.image.imageId,
         slug:this.slug===''?this.slugify(this.page.slug):this.slugify(this.slug)
         })
      }else{

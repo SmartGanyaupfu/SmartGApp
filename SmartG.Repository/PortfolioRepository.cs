@@ -25,20 +25,20 @@ namespace SmartG.Repository
 
         public async Task<PagedList<Portfolio>> GetAllPortfoliosAsync(RequestParameters requestParameters, bool trackChanges)
         {
-            var portfolioList = await FindAll(trackChanges).Search(requestParameters.SearchTerm).Include(i => i.Image).Include(c=>c.Category).Include(g=>g.Gallery).ThenInclude(i => i.Images).OrderByDescending(p => p.DateCreated).ToListAsync();
+            var portfolioList = await FindAll(trackChanges).Search(requestParameters.SearchTerm).OrderByDescending(p => p.DateCreated).ToListAsync();
             return PagedList<Portfolio>.ToPagedList(portfolioList, requestParameters.PageNumber, requestParameters.PageSize);
         }
 
         public async Task<Portfolio> GetPortfolioByIdAsync(Guid portfolioId, bool trackChanges)
         {
-            return await FindByCondition(p => p.PortfolioId.Equals(portfolioId), trackChanges).Include(i=>i.Image).Include(c => c.Category).Include(b => b.ContentBlocks)
-                .Include(g => g.Gallery).ThenInclude(i=>i.Images).SingleOrDefaultAsync();
+            return await FindByCondition(p => p.PortfolioId.Equals(portfolioId), trackChanges).Include(b => b.ContentBlocks)
+                .SingleOrDefaultAsync();
         }
 
         public async Task<Portfolio> GetPortfolioBySlugNameAsync(string slug, bool trackChanges)
         {
 
-            return await FindByCondition(p => p.Slug.Equals(slug), trackChanges).Include(i => i.Image).Include(b => b.ContentBlocks).Include(g => g.Gallery).ThenInclude(i => i.Images).SingleOrDefaultAsync();
+            return await FindByCondition(p => p.Slug.Equals(slug), trackChanges).Include(b => b.ContentBlocks).SingleOrDefaultAsync();
         }
 
         public void UpdatePortfolioAsync(Portfolio portfolio)

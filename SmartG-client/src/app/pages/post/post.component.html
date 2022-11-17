@@ -15,7 +15,7 @@
                     <div class="card mb-3">
                       <a   routerLink="/blog/{{post.slug}}">
                       <img src="{{post?.image?.imageUrl}}" class="card-img-top" alt="{{post.title + ' image'}}"></a>
-                      <small class="post-category"><a type="button" (click)="getPostsByCategory(post.category.name)">{{post.category.name}}</a></small>
+                      <small class="post-category" *ngIf="post?.category?.name"><a type="button" (click)="getPostsByCategory(post?.category?.name)">{{post?.category?.name}}</a></small>
                       <div class="card-body">
                         <a   routerLink="/blog/{{post.slug}}"> <h2 class="card-title">{{post?.title}}</h2>
                         <!--p class="card-text">{{post?.excerpt}}</p--></a>

@@ -30,12 +30,12 @@ namespace SmartG.Repository.Extensions
         }
 
         public static IQueryable<Post> FilterPostsByCategory(this IQueryable<Post>
-     post, string category)
+     post, int sgCategoryId)
         {
-            if (string.IsNullOrWhiteSpace(category))
+            if (sgCategoryId<1)
                 return post;
            return  post.Where(
-         p => (p.Category.Name == category));
+         p => (p.SgCategoryId == sgCategoryId));
         }
     
     }

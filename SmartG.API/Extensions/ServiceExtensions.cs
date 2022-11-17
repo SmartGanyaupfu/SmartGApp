@@ -22,7 +22,7 @@ namespace SmartG.API.Extensions
            services.AddCors(options =>
            {
                options.AddPolicy("CorsPolicy", builder =>
-                builder.WithOrigins("https://smartganyaupfu.com", "https://www.smartganyaupfu.com", "http://localhost:4000", "http://localhost:4200")
+                builder.WithOrigins("https://smartganyaupfu.com", "http://smartganyaupfu.com", "https://www.smartganyaupfu.com", "http://www.smartganyaupfu.com", "http://localhost:4000", "http://localhost:4200")
                 .AllowAnyMethod()
                 .AllowAnyHeader().WithExposedHeaders("X-Pagination"));
            });

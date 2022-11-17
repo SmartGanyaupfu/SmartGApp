@@ -8,7 +8,7 @@ namespace SmartG.Shared.RequestFeatures
         }
 
         public string Author { get; set; }
-        public string Category { get; set; }
+        public int SgCategoryId { get; set; }
     }
 }
 

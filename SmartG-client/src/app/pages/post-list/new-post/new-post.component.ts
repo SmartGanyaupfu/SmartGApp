@@ -64,11 +64,13 @@ export class NewPostComponent implements OnInit {
     }
 
     addPage(){
-      this.contentBlocks?.push(this.contentBlock);
+      if(this.contentBlocks.length>0){
+        this.contentBlocks?.push(this.contentBlock);
+      }
       
       let newPost:PostForCreationDto= {title:this.title,slug:this.slug===''?this.slugify(this.title):this.slugify(this.slug),
-       excerpt:this.excerpt,imageId:this.image?.imageId,metaDescription:this.metaDescription,contentBlocks:this.contentBlocks,metaKeyWords:this.metaKeyWords,
-      content:this.content,categoryId:this.categoryId, galleryId:this.galleryId}
+       excerpt:this.excerpt,sgImageId:this.image?.imageId,metaDescription:this.metaDescription,contentBlocks:this.contentBlocks,metaKeyWords:this.metaKeyWords,
+      content:this.content,sgCategoryId:this.categoryId, sgGalleryId:this.galleryId}
   
       this.postService.createPost(newPost).subscribe(res=>{
         this.toaster.success('Post Created.', 'Success')

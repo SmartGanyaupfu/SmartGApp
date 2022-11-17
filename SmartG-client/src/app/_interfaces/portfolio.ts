@@ -12,9 +12,8 @@ export interface Portfolio {
     metaDescription: string;
     metaKeyWords: string;
     slug: string;
-    category: Category;
-    imageId: number;
-    galleryId:number
+    category?: Category;
+  
     image: Image;
     contentBlocks: ContentBlock[];
     dateCreated: Date;
@@ -22,4 +21,10 @@ export interface Portfolio {
     deleted: boolean;
     authorId: string;
     gallery:Gallery;
+
+    sgCategoryId?: any;
+    sgImageId?: number;
+    sgGalleryId?: number;
+    
+  
 }

@@ -14,10 +14,11 @@ namespace SmartG.Shared.DTOs
         public string? MetaKeyWords { get; set; }
         public string? Slug { get; set; }
         public DateTime? DateUpdated { get; set; }
-
-        public int? ImageId { get; set; }
         public string? AuthorId { get; set; }
-        public int? GalleryId { get; set; }
+
+        public int? SgCategoryId { get; set; }
+        public int? SgImageId { get; set; }
+        public int? SgGalleryId { get; set; }
 
     }
 }

@@ -3,8 +3,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Pagination } from 'src/app/_interfaces/pagination';
 import { Portfolio } from 'src/app/_interfaces/portfolio';
 import { User } from 'src/app/_interfaces/user';
+import { Widget } from 'src/app/_interfaces/widget';
 import { AuthService } from 'src/app/_services/auth.service';
 import { PortfolioService } from 'src/app/_services/portfolio.service';
+import { WidgetService } from 'src/app/_services/widget.service';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -14,19 +16,28 @@ import { PortfolioService } from 'src/app/_services/portfolio.service';
 export class PortfolioListComponent implements OnInit {
   public pagination:Pagination;
   pageNumber:number=1;
-pageSize:number=3;
+  widget:Widget;
 pages:Portfolio[];
 users:User[];
-  constructor(private portfolioService:PortfolioService, private toastr:ToastrService, private authService: AuthService) { }
+  constructor(private portfolioService:PortfolioService, private toastr:ToastrService, private authService: AuthService, private widgetService: WidgetService) { }
 
   ngOnInit(): void {
-   this.getPortfolios();
+   this.getWidgets();
     this.loadUsers();
 
   }
+  getWidgets(){
+    this.widgetService.getWidget().subscribe(res=>{
+      this.widget= res;
+     
+      this.getPortfolios();
+    
+     
+    })
+  }
 
 getPortfolios(){
-  this.portfolioService.getPortfolios(this.pageNumber,this.pageSize).subscribe(res=>{
+  this.portfolioService.getPortfolios(this.pageNumber,this.widget.postPageSize).subscribe(res=>{
     this.pages=res.result;
     this.pagination=res.pagination;
     

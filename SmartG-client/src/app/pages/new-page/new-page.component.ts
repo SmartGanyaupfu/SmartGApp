@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -20,6 +20,11 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
   styleUrls: ['./new-page.component.css']
 })
 export class NewPageComponent implements OnInit {
+
+  @HostListener('window:beforeunload', ['$event'])
+  handleBeforeUnload(event: Event) {
+      event.returnValue = false;
+  }
   html = 'placeholder';
   slugEdit:boolean;
   show:boolean=true;
@@ -34,7 +39,7 @@ export class NewPageComponent implements OnInit {
   contentBlock: ContentBlockForCreationDto={content:'',title:''};
   contentBlocks: ContentBlockForCreationDto[]=[];
   authorId?: any;
-  galleryId:number=1;
+  galleryId:number;
   createPageForm:UntypedFormGroup=new UntypedFormGroup({});
   page:Page;
   modalRef?: BsModalRef | null;
@@ -92,13 +97,16 @@ export class NewPageComponent implements OnInit {
     })
   }
     addPage(){
-      this.contentBlocks?.push(this.contentBlock);
+      if(this.contentBlocks.length>0){
+        this.contentBlocks?.push(this.contentBlock);
+      }
       
       let newPage:PageForCreationDto= {title:this.title,slug:this.slug===''?this.slugify(this.title):this.slugify(this.slug),
-       excerpt:this.excerpt,imageId:this.image.imageId,metaDescription:this.metaDescription,contentBlocks:this.contentBlocks,metaKeyWords:this.metaKeyWords,
-      content:this.content,galleryId:this.galleryId}
-  
+       excerpt:this.excerpt,sgImageId:this.image?.imageId,metaDescription:this.metaDescription,contentBlocks:this.contentBlocks,metaKeyWords:this.metaKeyWords,
+      content:this.content,sgGalleryId:this.galleryId}
       this.pageService.createPage(newPage).subscribe(res=>{
+
+  this.toaster.success("Your page has been created", "Success");
        this.route.navigateByUrl('/admin/pages')
      })
     }

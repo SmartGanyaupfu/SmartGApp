@@ -335,8 +335,9 @@ a {
         display: none;
     }
     /*Images*/
-    .the-content img{
-        width: 100%;
+    .the-content img, img{
+        max-width: 100% !important;
+        height: auto !important;
     }
     /*sg title*/
     .sg-title{

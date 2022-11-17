@@ -21,7 +21,7 @@ export class PostListComponent implements OnInit {
 pages:Post[];
 users:User[];
 author:string="";
-  category:string="";
+  sgCategory:number;
   constructor(private postService:PostService, private toastr:ToastrService, private authService: AuthService,
     private widgetService:WidgetService) { }
 
@@ -40,7 +40,7 @@ author:string="";
     })
   }
 getPosts(){
-  this.postService.getPosts(this.pageNumber,this.widget.postPageSize, this.author,this.category).subscribe(res=>{
+  this.postService.getPosts(this.pageNumber,this.widget.postPageSize, this.author,this.sgCategory).subscribe(res=>{
     this.pages=res.result;
     this.pagination=res.pagination;
     

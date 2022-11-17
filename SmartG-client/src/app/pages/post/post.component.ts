@@ -16,7 +16,7 @@ webPost:Post[];
 pageNumber:number=1;
   pageSize:number=6;
   author:string="";
-  category:string="";
+  category:number;
 
   widget:Widget;
   constructor(private postService:PostService,private widgetService:WidgetService) { }

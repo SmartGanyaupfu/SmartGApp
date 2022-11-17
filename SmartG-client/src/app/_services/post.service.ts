@@ -14,13 +14,13 @@ export class PostService {
   paginatedResult:PaginatedResult<Post[]>= new PaginatedResult<Post[]>();
     
     constructor(private http:HttpClient) { }
-    getPosts(pageNumber?:number,pageSize?:number, author?:string,category?:string){
+    getPosts(pageNumber?:number,pageSize?:number, author?:string,category?:number){
       const parmsObj={
     
         pageNumber:pageNumber||'',
         pageSize:pageSize||'',
         Author:author||'',
-        Category:category||''
+        SgCategoryId:category||''
       };
       const params = new HttpParams({fromObject:parmsObj});
       return this.http.get<Post[]>(this.baseurl +'posts',{observe:'response',params}).pipe(

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SmartG.Contracts;
+using SmartG.Entities.Models;
 using SmartG.Shared.DTOs;
 using SmartG.Shared.RequestFeatures;
 
@@ -49,9 +50,96 @@ namespace SmartG.API.Controllers.API.V1
             var results = new SearchDto();
 
             var postsToReturn = _mapper.Map<ICollection<PostDto>>(posts);
-            var portfolioToReturn = _mapper.Map<ICollection<PortfolioDto>>(portfolios);
+
+            foreach (var post in postsToReturn)
+            {
+                Category category;
+                Image image;
+
+                if (post.SgCategoryId != null)
+                {
+
+
+                    category = await _repository.Category.GetCategoryByIdAsync((int)post.SgCategoryId, trackChanges: false);
+                    post.Category = _mapper.Map<CategoryDto>(category);
+                }
+                if (post.SgImageId != null)
+                {
+                    image = await _repository.Image.GetImageByIdAsync((int)post.SgImageId, trackChanges: false);
+                    post.Image = _mapper.Map<ImageDto>(image);
+                }
+                Gallery gallery;
+                if (post.SgGalleryId != null)
+                {
+                    gallery = await _repository.Gallery.GetGalleryByIdAsync((int)post.SgGalleryId, trackChanges: false);
+                    post.Gallery = _mapper.Map<GalleryDto>(gallery);
+                }
+            }
+                var portfolioToReturn = _mapper.Map<ICollection<PortfolioDto>>(portfolios);
+            foreach (var post in portfolioToReturn)
+            {
+                Category category;
+                Image image;
+
+                if (post.SgCategoryId != null)
+                {
+
+
+                    category = await _repository.Category.GetCategoryByIdAsync((int)post.SgCategoryId, trackChanges: false);
+                    post.Category = _mapper.Map<CategoryDto>(category);
+                }
+                if (post.SgImageId != null)
+                {
+                    image = await _repository.Image.GetImageByIdAsync((int)post.SgImageId, trackChanges: false);
+                    post.Image = _mapper.Map<ImageDto>(image);
+                }
+                Gallery gallery;
+                if (post.SgGalleryId != null)
+                {
+                    gallery = await _repository.Gallery.GetGalleryByIdAsync((int)post.SgGalleryId, trackChanges: false);
+                    post.Gallery = _mapper.Map<GalleryDto>(gallery);
+                }
+            }
+
             var pageToReturn = _mapper.Map<ICollection<PageDto>>(pages);
+            foreach (var post in pageToReturn)
+            {
+
+                Image image;
+
+
+                if (post.SgImageId != null)
+                {
+                    image = await _repository.Image.GetImageByIdAsync((int)post.SgImageId, trackChanges: false);
+                    post.Image = _mapper.Map<ImageDto>(image);
+                }
+                Gallery gallery;
+                if (post.SgGalleryId != null)
+                {
+                    gallery = await _repository.Gallery.GetGalleryByIdAsync((int)post.SgGalleryId, trackChanges: false);
+                    post.Gallery = _mapper.Map<GalleryDto>(gallery);
+                }
+            }
+
             var serviceToReturn = _mapper.Map<ICollection<ServiceDto>>(services);
+            foreach (var post in serviceToReturn)
+            {
+
+                Image image;
+
+
+                if (post.SgImageId != null)
+                {
+                    image = await _repository.Image.GetImageByIdAsync((int)post.SgImageId, trackChanges: false);
+                    post.Image = _mapper.Map<ImageDto>(image);
+                }
+                Gallery gallery;
+                if (post.SgGalleryId != null)
+                {
+                    gallery = await _repository.Gallery.GetGalleryByIdAsync((int)post.SgGalleryId, trackChanges: false);
+                    post.Gallery = _mapper.Map<GalleryDto>(gallery);
+                }
+            }
 
             results.Portfolios = portfolioToReturn;
             results.Pages = pageToReturn;

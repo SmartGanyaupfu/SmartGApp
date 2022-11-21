@@ -74,7 +74,6 @@ import { TrustedUrlPipe } from './_pipes/trusted-url.pipe';
 import { WidgetListComponent } from './pages/widget-list/widget-list.component';
 import { NewWidgetComponent } from './pages/widget-list/new-widget/new-widget.component';
 import { EditWidgetComponent } from './pages/widget-list/edit-widget/edit-widget.component';
-import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { SearchComponent } from './pages/search/search.component';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { NewUserComponent } from './pages/user-list/new-user/new-user.component';
@@ -143,7 +142,6 @@ export function tokenGetter() {
     WidgetListComponent,
     NewWidgetComponent,
     EditWidgetComponent,
-    SearchResultsComponent,
     SearchComponent,
     UserListComponent,
     NewUserComponent,

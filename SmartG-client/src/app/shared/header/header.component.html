@@ -113,7 +113,7 @@
                         <div class="card" style="max-width: 100%;">
                           <img src="{{portfolio?.image?.imageUrl}}" class="card-img-top" alt="{{portfolio.title + ' image'}}" routerLink="/portfolios/{{portfolio.slug}}">
                           <div class="card-body">
-                            <h5 class="card-title" routerLink="/portfolios/{{portfolio.slug}}">{{portfolio?.title}}</h5>
+                            <h3 class="card-title" routerLink="/portfolios/{{portfolio.slug}}">{{portfolio?.title}}</h3>
                             <p class="card-text">{{portfolio?.excerpt}}</p>
                             <a href="#" mat-raised-button class="mt" routerLink="/portfolios/{{portfolio.slug}}" (click)="modalRef?.hide()">Read More</a>
                           </div>
@@ -134,7 +134,7 @@
                         <div class="card" style="max-width: 100%;">
                           <img src="{{page?.image?.imageUrl}}" class="card-img-top" alt="{{page.title + ' image'}}" routerLink="/pages/{{page.slug}}">
                           <div class="card-body">
-                            <h5 class="card-title" routerLink="/pages/{{page.slug}}">{{page?.title}}</h5>
+                            <h3 class="card-title" routerLink="/pages/{{page.slug}}">{{page?.title}}</h3>
                             <p class="card-text">{{page?.excerpt}}</p>
                             <a href="#" mat-raised-button class="mt" routerLink="/pages/{{page.slug}}" (click)="modalRef?.hide()">Read More</a>
                           </div>

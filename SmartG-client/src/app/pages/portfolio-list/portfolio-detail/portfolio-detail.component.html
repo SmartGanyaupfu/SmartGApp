@@ -1,5 +1,5 @@
 <div class="container mt-3 post-content">
-    <button routerLink="/admin/portfolio/edit/{{page?.portfolioId}}">Edit</button>
+    <button  *ngIf="loggedIn" routerLink="/admin/portfolio/edit/{{page?.portfolioId}}">Edit</button>
     <h1 class="sg-title">{{page?.title}} </h1>
     <!--img src="{{page?.image?.imageUrl}}" class="img-fluid" alt="page image"-->
     <div class="the-content" [innerHtml]="page?.content">

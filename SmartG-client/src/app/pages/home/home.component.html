@@ -49,7 +49,7 @@
 
 
             </ng-template>
-              <div class="services-home text-center mt-5" *ngIf="myServices;else else_block"> <!--My services-->
+              <div class="services-home mt-5" *ngIf="myServices;else else_block"> <!--My services-->
                   <h2 class="sg-title">My Services</h2>
                   <div class="row mt-4">
                       <div class="col-md-6 mt-2" *ngFor="let service of myServices">
@@ -65,7 +65,7 @@
                           </div>-->
                          
                           <div class="card text-white sg-card-link">
-                           <a routerLink="/services/{{service.slug}}"> <img src="{{service?.image?.imageUrl}}" class="card-img rounded" alt="Smart Services" routerLink="/services/{{service.slug}}">
+                           <a routerLink="/services/{{service.slug}}"> <img src="{{service?.image?.imageUrl}}" class="card-img rounded" alt="Smart Services" routerLink="/services/{{service.slug}}" width="100%" height="auto">
                             <div class="card-img-overlay">
                               <h2 class="card-title sg-card-title" routerLink="/services/{{service.slug}}">{{service?.title}}</h2>
                              
@@ -87,7 +87,7 @@
               </ng-template>
               <!--close my services-->
               <hr>
-              <div class="services-home text-center mt-5" *ngIf="portfolios; else else_block"> <!--My Portifolio-->
+              <div class="services-home  mt-5" *ngIf="portfolios; else else_block"> <!--My Portifolio-->
                 <h2 class="sg-title">Portfolio</h2>
                 
                <div class="sg-desktop">
@@ -99,7 +99,7 @@
                 >
                 <slide *ngFor="let slide of portfolios; let index=index">
                   <a class="sg-slide" routerLink="/portfolios/{{slide.slug}}">
-                    <img [src]="slide?.image?.imageUrl" alt="{{slide.title + ' image'}}" style="display: block; width: 100%;">
+                    <img [src]="slide?.image?.imageUrl" alt="{{slide.title + ' image'}}" width="100%" height="auto" style="display: block; width: 100%;">
                   <div class="carousel-caption">
                     <h2 class="card-title sg-card-title" >{{slide?.title}}</h2>
                   </div></a>
@@ -115,7 +115,7 @@
                 >
                 <slide *ngFor="let slide of portfolios; let index=index">
                   <a class="sg-slide" routerLink="/portfolios/{{slide.slug}}">
-                    <img [src]="slide?.image?.imageUrl" alt="{{slide.title + ' image'}}" style="display: block; width: 100%;">
+                    <img [src]="slide?.image?.imageUrl" alt="{{slide.title + ' image'}}"   width="100%" height="auto" style="display: block; width: 100%;">
                   <div class="carousel-caption">
                     <h2 class="card-title sg-card-title" >{{slide?.title}}</h2>
                   </div></a>

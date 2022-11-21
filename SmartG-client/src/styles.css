@@ -38,6 +38,8 @@ font-size: 36px !important;
    color: #2dadc6;
    font-size: 42px !important;
 }
+/* card title*/
+
 .sg-card-title {
     background-color: #0c0c0c;
 }
@@ -151,7 +153,7 @@ color:#2dadc6;
 font-size: medium;
 }
 .modal-body {
-    background: #2dadc6;
+    background: #8bc8d4;
 }
 .social-icons ul li {
   list-style: none;
@@ -305,7 +307,7 @@ a {
 .carousel-control-next-icon {
  
     background: transparent;
-    border: solid black;
+    border: solid #2dadc6;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
@@ -316,7 +318,7 @@ a {
 
 .carousel-control-prev-icon {
     background: transparent;
-    border: solid black;
+    border: solid #2dadc6;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;

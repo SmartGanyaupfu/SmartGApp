@@ -33,7 +33,6 @@ import { NewPostComponent } from './pages/post-list/new-post/new-post.component'
 import { PostDetailComponent } from './pages/post-list/post-detail/post-detail.component';
 import { PostListComponent } from './pages/post-list/post-list.component';
 import { PostComponent } from './pages/post/post.component';
-import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { SearchComponent } from './pages/search/search.component';
 import { EditServiceComponent } from './pages/service-list/edit-service/edit-service.component';
 import { NewServiceComponent } from './pages/service-list/new-service/new-service.component';
@@ -53,6 +52,7 @@ import { UploadMediaComponent } from './shared/media/upload-media/upload-media.c
 import { BlogResolver } from './_resolver/blog.resolver';
 import { DetailedViewResolver } from './_resolver/detailed-view.resolver';
 import { HomeResolver } from './_resolver/home.resolver';
+import { LearnResolver } from './_resolver/learn.resolver';
 import { PortfolioResolver } from './_resolver/portfolio.resolver';
 import { ServiceResolver } from './_resolver/service.resolver';
 import { AuthGuardService } from './_services/auth-guard.service';
@@ -60,14 +60,14 @@ import { RoleGuardService } from './_services/role-guard.service';
 
 const routes: Routes = [
 
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', redirectTo: '', pathMatch: 'full' },
 
-  { path: 'home', component: HomeComponent,resolve:{home:DetailedViewResolver}},
+  { path: '', component: HomeComponent,resolve:{home:DetailedViewResolver}},
   { path: 'service', component: ServiceComponent},
   { path: 'portfolio', component: PortfolioComponent},
   { path: 'blog', component: PostComponent},
   { path: 'contact', component: ContactComponent},
-  { path: 'learn-to-code', component: LearnComponent},
+  { path: 'learn-to-code', component: LearnComponent, resolve:{learn:LearnResolver}},
 
   { path: 'admin/page/new-page', component: NewPageComponent,canActivate:[AuthGuardService]},
   { path: 'admin/page/edit/:pageId', component: EditPageComponent,canActivate:[AuthGuardService]},
@@ -125,12 +125,11 @@ const routes: Routes = [
   { path: 'auth/forgot-password', component: ForgotPasswordComponent },
   { path: 'auth/reset-password', component: ResetPasswordComponent },
   { path: 'auth/register', component: RegisterComponent },
-  { path: 'search', component: SearchResultsComponent},
   { path: 'search-form', component: SearchComponent},
 
   {
     path: '**',
-    redirectTo: '/home'
+    redirectTo: ''
   }
 ];
 

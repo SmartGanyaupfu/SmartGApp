@@ -8,3 +8,6 @@
 .navbar-toggler-icon {
     color: #000 !important;
 }
+.card-title {
+    font-size: 23px;
+}

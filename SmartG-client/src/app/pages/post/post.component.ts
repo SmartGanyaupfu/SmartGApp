@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/_interfaces/post';
 import { Widget } from 'src/app/_interfaces/widget';
 import { PostService } from 'src/app/_services/post.service';
+import { SeoService } from 'src/app/_services/seo.service';
 import { WidgetService } from 'src/app/_services/widget.service';
 
 @Component({
@@ -19,7 +20,7 @@ pageNumber:number=1;
   category:number;
 
   widget:Widget;
-  constructor(private postService:PostService,private widgetService:WidgetService) { }
+  constructor(private postService:PostService,private widgetService:WidgetService,private seoService:SeoService) { }
 
   ngOnInit(): void {
 this.getWidgets();
@@ -35,7 +36,13 @@ this.getWidgets();
     getWidgets(){
       this.widgetService.getWidget().subscribe(res=>{
         this.widget= res;
-       
+        this.seoService.metaTitle.setTitle('SG | Blog- I Share some useful articles- coding blogs and tutorials')
+        this.seoService.metaTagService.updateTag({name:'description', content:'SG | Blog - I share some useful coding'+
+         'articles and tutorials. If you want to learn how to code, you are at the right place.'})
+        this.seoService.metaTagService.updateTag({
+          name:'keywords',
+        content:' Blog Hosting, Android and IOS mobile app development, Developer, Web design, Graphic Design'
+        })
         this.getBlogs();
       
        

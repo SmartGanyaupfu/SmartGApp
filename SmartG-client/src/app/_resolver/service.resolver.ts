@@ -25,7 +25,7 @@ export class ServiceResolver implements Resolve<Service> {
           content:service.metaKeyWords
           })
           // the canActivate expect and Observable<boolean> that's why we have to return true here
-          console.log('Called from the resolver')
+         // console.log('Called from the resolver')
           return service;
         }
       ))

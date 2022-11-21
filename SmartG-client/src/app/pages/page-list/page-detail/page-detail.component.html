@@ -1,6 +1,6 @@
 
 <div class="container mt-3 post-content">
-    <button routerLink="/admin/page/edit/{{page?.pageId}}">Edit</button>
+    <button *ngIf="loggedIn" routerLink="/admin/page/edit/{{page?.pageId}}">Edit</button>
     <h1 class="sg-title">{{page?.title}} </h1>
   
     

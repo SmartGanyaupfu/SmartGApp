@@ -27,7 +27,7 @@ export class PortfolioResolver implements Resolve<Portfolio> {
           content:portfolio.metaKeyWords
           })
           // the canActivate expect and Observable<boolean> that's why we have to return true here
-          console.log('Called from the resolver')
+         // console.log('Called from the resolver')
           return portfolio;
         }
       ))

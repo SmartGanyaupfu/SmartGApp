@@ -5,6 +5,7 @@ using SmartG.Entities.Models;
 using SmartG.Shared.RequestFeatures;
 
 using SmartG.Repository.Extensions;
+using System.Security.Cryptography;
 
 namespace SmartG.Repository
 {
@@ -26,7 +27,7 @@ namespace SmartG.Repository
 
         public async Task<PagedList<Post>> GetAllPostsAsync(PostParameters postParameters, bool trackChanges)
         {
-            var posts = await FindAll(trackChanges).FilterPostsByAuthor(postParameters.Author).FilterPostsByCategory(postParameters.SgCategoryId)
+            var posts = await FindAll(trackChanges).Search(postParameters.SearchTerm).FilterPostsByAuthor(postParameters.Author).FilterPostsByCategory(postParameters.SgCategoryId)
                 .OrderByDescending(p => p.DateCreated).ToListAsync();
             return PagedList<Post>.ToPagedList(posts, postParameters.PageNumber, postParameters.PageSize);
         }
